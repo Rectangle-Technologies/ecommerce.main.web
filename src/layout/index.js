@@ -7,6 +7,7 @@ const Layout = (props) => {
     return (
         <>
             <Header />
+            <h1></h1>
             {/* <Footer /> */}
         </>
     )

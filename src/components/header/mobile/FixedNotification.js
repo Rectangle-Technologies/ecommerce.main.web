@@ -5,7 +5,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 const FixedNotificationMobile = (props) => {
     return (
         <div style={{
-            height: "8vw",
+            height: "13vw",
             width: "100%",
             backgroundColor: "#EB31E2",
             display: "flex",
@@ -25,10 +25,10 @@ const FixedNotificationMobile = (props) => {
                 <Typography color="#330C3E" style={{ fontFamily: "Poppins", fontSize: "3.8vw"  }}>SALE ITEMS&nbsp;</Typography>
                 <Typography style={{ fontFamily: "Poppins", color: "white", fontSize: "3.8vw"  }}>Shop now</Typography>
             </div>
-            {/* <div style={{ display: "flex", flexDirection: "row" }} >
-                <PhoneIcon style={{ color: "white" }}/>
-                <Typography style={{ fontFamily: "Poppins", color: "white" }}> +91 45678 91011</Typography>
-            </div> */}
+            <div style={{ display: "flex", flexDirection: "row", justifyContent: "center", alignItems: "center" }} >
+                <PhoneIcon style={{ color: "white", fontSize: "4.2vw" }}/>
+                <Typography style={{ fontFamily: "Poppins", color: "white", fontSize: "3.8vw" }}> +91 45678 91011</Typography>
+            </div>
         </div>
     )
 }

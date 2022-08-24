@@ -12,7 +12,7 @@ const Footer = () => {
         <Grid container>
           <center>
             <Grid item xs={12} md={3} my={1}>
-              Icon
+            <img src="/logo.png" style={{ maxHeight: "80px", aspectRatio: 2.2}} />
             </Grid>
           </center>
         </Grid>

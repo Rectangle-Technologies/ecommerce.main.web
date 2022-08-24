@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { BrowserView, TabletView, MobileView } from "react-device-detect";
+import { BrowserView, TabletView, MobileOnlyView } from "react-device-detect";
 import FixedNotificationDesktop from "./desktop/FixedNotification";
 import FixedNotificationMobile from "./mobile/FixedNotification";
+import NavbarDesktop from "./desktop/Navbar";
+import NavbarMobile from "./mobile/Navbar";
 
 const Header = (props) => {
     return (
@@ -14,19 +16,18 @@ const Header = (props) => {
             <TabletView>
                 <FixedNotificationDesktop />
             </TabletView>
-            <MobileView>
+            <MobileOnlyView>
                 <FixedNotificationMobile />
-            </MobileView>
+            </MobileOnlyView>
 
 
-            <div style={{
-                borderBottom: "1px solid black"
-            }}>
-                {/* logo section */}
-                {/* <img src="/logo.png" /> */}
-                {/* important links */}
-                {/* important icons */}
-            </div>
+            {/* NAVBAR */}
+            <BrowserView>
+                <NavbarDesktop />
+            </BrowserView>
+            <MobileOnlyView>
+                <NavbarMobile/>
+            </MobileOnlyView>
         </>
     )
 }
