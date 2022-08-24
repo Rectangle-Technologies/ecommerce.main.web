@@ -1,10 +1,10 @@
 import { Navigate } from "react-router-dom";
-import Footer from "./components/footer/Footer";
+import Layout from "./layout";
 
 const routes = [
   {
     path: "/",
-    element: <Footer />,
+    element: <Layout />,
   },
   {
     path: "*",
