@@ -50,10 +50,10 @@ const NavbarDesktop = (props) => {
             </div>
             {/* important icons */}
             <div style={{ padding: "10px" }}>
-                <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
+                <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
             </div>
         </div>
     )

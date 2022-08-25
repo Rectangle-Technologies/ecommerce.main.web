@@ -31,54 +31,54 @@ const NavbarMobile = (props) => {
             {/* important links */}
             {isOpen &&
                 <>
-                    <Typography onClick={() => { setIsOpen(false) }} style={{ fontSize: 24 }}><CloseIcon style={{ zIndex: 1000, border: "1px solid black", padding: "5px", borderRadius: "5px", marginRight: "15px", position: "absolute", backgroundColor: "white", top: 15, right: 5 }} fontSize="large" /></Typography>
-                    <div style={{ zIndex: 999 ,transition: "ease-in-out 1s", transitionDelay: "1s", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "white", position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh" }} >
+                    <Typography onClick={() => { setIsOpen(false) }} style={{ fontSize: 24 }}><CloseIcon style={{ zIndex: 2147483647, border: "1px solid black", padding: "5px", borderRadius: "5px", marginRight: "15px", position: "absolute", backgroundColor: "white", top: 15, right: "20vw" }} fontSize="large" /></Typography>
+                    <div style={{ zIndex: 2147483646 ,transition: "ease-in-out 1s", transitionDelay: "1s", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", backgroundColor: "white", position: "absolute", top: 0, left: 0, width: "80vw", height: "100vh" }} >
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 24 }}>New-in</Typography>
+                            <Typography className="navbar_mobile_item navbar_mobile_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
                         </Link>
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >Categories</Typography>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Categories</Typography>
                         </Link>
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >Flash Sale</Typography>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Flash Sale</Typography>
                         </Link>
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >Client Diaries</Typography>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
                         </Link>
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >My Account</Typography>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >My Account</Typography>
                         </Link>
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >Customize online</Typography>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Customize online</Typography>
                         </Link>
                         <Link to="/" style={{ textDecoration: "none" }}>
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >Contact us</Typography>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Contact us</Typography>
                         </Link>
                         {/* <div style={{ width: "100vw", borderBottom: "4px solid #EB31E2" }} ></div> */}
                         {/* <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 24 }} >
                                 Search
                             </Typography>
                         </div>
 
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 24 }} >
                                 Wishlist
                             </Typography>
                         </div>
 
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 24 }} >
                                 Cart
                             </Typography>
                         </div>
 
                         <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
-                            <Typography className="navbar_item" style={{ fontSize: 24 }} >
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 24 }} >
                                 Profile
                             </Typography>
                         </div> */}

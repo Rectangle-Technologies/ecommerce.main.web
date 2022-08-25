@@ -10,7 +10,7 @@ const Caraousel = (props) => {
             </ol>
             <div className="carousel-inner">
                 <div className="carousel-item active">
-                    <img loading="lazy" style={{ aspectRatio: 1.65, width: "100%" }} className="d-block w-100" src="/BANNER1.jpeg" alt="First slide"/>
+                    <img loading="lazy" style={{ aspectRatio: 1.65, objectFit: "cover", width: "100%" }} className="d-block w-100" src="/BANNER1.jpeg" alt="First slide"/>
                 </div>
                 <div className="carousel-item">
                     <img loading="lazy" style={{ aspectRatio: 1.65, width: "100%" }} className="d-block w-100" src="/IMAGE3.jpg" alt="First slide"/>
