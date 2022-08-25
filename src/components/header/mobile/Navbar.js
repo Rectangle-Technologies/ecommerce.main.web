@@ -21,11 +21,12 @@ const NavbarMobile = (props) => {
             justifyContent: "space-between",
             alignItems: "center"
         }}>
-            {/* logo section */}
-            <img src="/logo.png" style={{ maxHeight: "100%", aspectRatio: 2.2 }} />
 
             {/* toggle menu */}
-            <MenuIcon onClick={() => { setIsOpen(!isOpen) }} style={{ border: "1px solid black", padding: "5px", borderRadius: "5px", marginRight: "15px" }} />
+            <MenuIcon onClick={() => { setIsOpen(!isOpen) }} style={{ border: "1px solid black", padding: "5px", borderRadius: "5px", marginLeft: "15px" }} />
+
+            {/* logo section */}
+            <img src="/logo.png" style={{ maxHeight: "100%", aspectRatio: 2.2 }} />
 
             {/* important links */}
             {isOpen &&
@@ -53,7 +54,8 @@ const NavbarMobile = (props) => {
                         <Link to="/" style={{ textDecoration: "none" }}>
                             <Typography className="navbar_item" style={{ fontSize: 24 }} >Contact us</Typography>
                         </Link>
-                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                        {/* <div style={{ width: "100vw", borderBottom: "4px solid #EB31E2" }} ></div> */}
+                        {/* <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 30 }} />
                             <Typography className="navbar_item" style={{ fontSize: 24 }} >
                                 Search
@@ -79,8 +81,16 @@ const NavbarMobile = (props) => {
                             <Typography className="navbar_item" style={{ fontSize: 24 }} >
                                 Profile
                             </Typography>
-                        </div>
+                        </div> */}
                     </div></>}
+
+            {/* important icons */}
+            <div style={{ padding: "0px" }}>
+                <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
+                <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
+                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
+                <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
+            </div>
         </div>
     )
 }
