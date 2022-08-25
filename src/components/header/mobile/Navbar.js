@@ -31,8 +31,8 @@ const NavbarMobile = (props) => {
             {/* important links */}
             {isOpen &&
                 <>
-                    <Typography onClick={() => { setIsOpen(false) }} style={{ fontSize: 24 }}><CloseIcon style={{ zIndex: 1, border: "1px solid black", padding: "5px", borderRadius: "5px", marginRight: "15px", position: "absolute", backgroundColor: "white", top: 15, right: 5 }} fontSize="large" /></Typography>
-                    <div style={{ transition: "ease-in-out 1s", transitionDelay: "1s", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "white", position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh" }} >
+                    <Typography onClick={() => { setIsOpen(false) }} style={{ fontSize: 24 }}><CloseIcon style={{ zIndex: 1000, border: "1px solid black", padding: "5px", borderRadius: "5px", marginRight: "15px", position: "absolute", backgroundColor: "white", top: 15, right: 5 }} fontSize="large" /></Typography>
+                    <div style={{ zIndex: 999 ,transition: "ease-in-out 1s", transitionDelay: "1s", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", backgroundColor: "white", position: "absolute", top: 0, left: 0, width: "100vw", height: "100vh" }} >
                         <Link to="/" style={{ textDecoration: "none" }}>
                             <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 24 }}>New-in</Typography>
                         </Link>
