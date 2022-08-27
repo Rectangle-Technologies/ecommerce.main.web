@@ -14,28 +14,29 @@ const DoubleTextComponent = (props) => {
           marginBottom: "3.2vw",
         }}
       >
-        <div style={{ position: "absolute", left: "48%" }}>
+        <div style={{ position: "absolute", left: "50%" }}>
           <Typography
             style={{
               position: "relative",
-              left: "-50%",
-              fontFamily: "Cookie",
-              fontSize: "7vw",
+              left: props.left || "-50%",
+              fontFamily: props.backTextFontFamily || "Cookie",
+              fontSize: props.backTextFontSize || "7vw",
               color: "#928C8C4D",
             }}
           >
             {backText}
           </Typography>
         </div>
-        <div style={{ position: "absolute", left: "48%" }}>
+        <div style={{ position: "absolute", left: "50%" }}>
           <Typography
             style={{
-              borderBottom: "4px solid black",
+              borderBottom: props.underline === false || "4px solid black",
               position: "relative",
-              left: "-50%",
-              top: "4vw",
-              fontFamily: "Playfair Display",
-              fontSize: "3.5vw",
+              left: props.left || "-50%",
+              top: props.frontTextTopDistance || "4vw",
+              fontFamily: props.frontTextFontFamily || "Playfair Display",
+              fontSize: props.frontTextFontSize || "3.5vw",
+              fontWeight: props.frontFontWeight,
               color: "#222",
             }}
           >
