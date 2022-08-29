@@ -18,6 +18,12 @@ const ProductDetail = (props) => {
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams()
 
+    const config = {
+        headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM5ZmU3MDJiMzZhOWMxNGFiMzY5NCIsImlhdCI6MTY2MTc5NDQyN30.Q1OHlULJRwh9MD5awOjBFLhuwcUdvJYGifv_U__0uIw`
+        }
+    }
+
     const fetchProduct = async () => {
         props.addLoader()
         try {
@@ -47,11 +53,7 @@ const ProductDetail = (props) => {
                 productId: id,
                 quantity,
                 size
-            }, {
-                headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM5ZmU3MDJiMzZhOWMxNGFiMzY5NCIsImlhdCI6MTY2MTc3MTc4OX0.f82PWoNEdCrbSOf-5E7PFX9kH9vtr7LcbcyciJ2f7LY`
-                }
-            })
+            }, config)
             props.removeLoader()
             enqueueSnackbar('Product added to cart', {
                 variant: 'success',
@@ -61,7 +63,27 @@ const ProductDetail = (props) => {
             props.removeLoader()
             enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
                 variant: 'error',
-                autoHideDuration: '3000'
+                autoHideDuration: 3000
+            })
+        }
+    }
+
+    const handleAddToWishlist = async () => {
+        props.addLoader()
+        try {
+            await axios.post(`http://localhost:4000/wishlist/add`, {
+                productId: id
+            }, config)
+            props.removeLoader()
+            enqueueSnackbar('Added to wishlist', {
+                variant: 'success',
+                autoHideDuration: 3000
+            })
+        } catch (err) {
+            props.removeLoader()
+            enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
+                variant: 'error',
+                autoHideDuration: 3000
             })
         }
     }
@@ -206,33 +228,35 @@ const ProductDetail = (props) => {
                                     </Typography>
                                 </div>
                             </Link>
-                            <div
-                                style={{
-                                    display: "flex",
-                                    alignItems: 'center',
-                                    justifyContent: 'center',
-                                    margin: "0px 0px 0px 30px",
-                                    border: "1px solid #222222",
-                                    padding: "7px",
-                                    borderRadius: "30px",
-                                    width: '300px',
-                                    backgroundColor: "#F8F5CC",
-                                }}
-                            >
-                                <FavoriteIcon style={{ color: "#fc03f8", margin: "0px 5px" }} />
-                                <Typography
+                            <Link style={{ cursor: 'pointer' }} onClick={handleAddToWishlist}>
+                                <div
                                     style={{
-                                        ...textStyle,
-                                        fontSize: 14,
-                                        fontWeight: 500,
-                                        color: "#330C3E",
-                                        textAlign: 'center'
+                                        display: "flex",
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        margin: "0px 0px 0px 30px",
+                                        border: "1px solid #222222",
+                                        padding: "7px",
+                                        borderRadius: "30px",
+                                        width: '300px',
+                                        backgroundColor: "#F8F5CC",
                                     }}
-                                    ml={1}
                                 >
-                                    Add to Wishlist
-                                </Typography>
-                            </div>
+                                    <FavoriteIcon style={{ color: "#fc03f8", margin: "0px 5px" }} />
+                                    <Typography
+                                        style={{
+                                            ...textStyle,
+                                            fontSize: 14,
+                                            fontWeight: 500,
+                                            color: "#330C3E",
+                                            textAlign: 'center'
+                                        }}
+                                        ml={1}
+                                    >
+                                        Add to Wishlist
+                                    </Typography>
+                                </div>
+                            </Link>
                         </Box>
                         <Link style={{ cursor: 'pointer' }} onClick={handleAddToCart}>
                             <div
