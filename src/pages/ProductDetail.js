@@ -108,30 +108,30 @@ const ProductDetail = (props) => {
                 <Grid container my={5}>
                     <Grid item xs={12} md={5}>
                         <center>
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" style={{ width: isMobile ? '100%' : '80%' }}>
-                                <div class="carousel-inner">
-                                    <div class="carousel-item active">
+                            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: isMobile ? '100%' : '80%' }}>
+                                <div className="carousel-inner">
+                                    <div className="carousel-item active">
                                         <img
-                                            class="d-block w-100"
+                                            className="d-block w-100"
                                             src="https://i.pinimg.com/736x/33/66/50/336650d646d0f5d9e144e626323a3d42.jpg"
                                             alt={product.name}
                                         />
                                     </div>
-                                    <div class="carousel-item">
+                                    <div className="carousel-item">
                                         <img
-                                            class="d-block w-100"
+                                            className="d-block w-100"
                                             src="https://i.pinimg.com/736x/33/66/50/336650d646d0f5d9e144e626323a3d42.jpg"
                                             alt={product.name}
                                         />
                                     </div>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
+                                <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span className="sr-only">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
+                                <a className="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span className="sr-only">Next</span>
                                 </a>
                             </div>
                         </center>
@@ -165,7 +165,7 @@ const ProductDetail = (props) => {
                         </Typography>
                         <Box style={{ display: "flex", flexDirection: "row" }}>
                             {product.sizes.map((s, key) => (
-                                <Link style={{ cursor: 'pointer' }} onClick={() => setSize(s.title)}>
+                                <Link key={key} style={{ cursor: 'pointer' }} onClick={() => setSize(s.title)}>
                                     <div
                                         style={{
                                             border: s.title === size ? "1px solid #eb31e2" : "1px solid #222222",
@@ -328,7 +328,7 @@ const ProductDetail = (props) => {
 
                         <ul style={{ listStyleType: "disc" }}>
                             {product.features.map((f, key) => (
-                                <li>{f.key}: {f.value}</li>
+                                <li key={key}>{f.key}: {f.value}</li>
                             ))}
                         </ul>
                     </Typography>}

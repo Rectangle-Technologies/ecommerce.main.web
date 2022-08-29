@@ -37,20 +37,14 @@ const Footer4 = () => {
         Follow us on:
       </Typography>
       <Box style={{ display: "flex", flexDirection: "row" }}>
-        <IconButton color="primary">
-          <FacebookIcon
-            onClick={() => (window.location.href = "https://www.facebook.com/")}
-          />
+        <IconButton color="primary" onClick={() => (window.location.href = "https://www.facebook.com/")} >
+          <FacebookIcon />
         </IconButton>
         <IconButton color="secondary">
-          <InstagramIcon
-            onClick={() => (window.location.href = "https://www.facebook.com/")}
-          />
+          <InstagramIcon />
         </IconButton>
         <IconButton color="error">
-          <YouTubeIcon
-            onClick={() => (window.location.href = "https://www.facebook.com/")}
-          />
+          <YouTubeIcon />
         </IconButton>
       </Box>
       <Typography

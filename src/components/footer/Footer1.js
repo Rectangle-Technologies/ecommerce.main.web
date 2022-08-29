@@ -20,21 +20,21 @@ const Footer1 = () => {
         {desc2}
       </Typography>
       <Typography style={{ ...textStyle, fontFamily: "Roboto" }} mt={3} mb={1}>
-        <Box fontWeight="600" display="inline" color="#330C3E">
+        <Typography fontWeight="600" display="inline" color="#330C3E">
           Call us at:{" "}
-        </Box>{" "}
+        </Typography>{" "}
         {contact}
       </Typography>
       <Typography style={{ ...textStyle, fontFamily: "Roboto" }} my={1}>
-        <Box fontWeight="600" display="inline" color="#330C3E">
+        <Typography fontWeight="600" display="inline" color="#330C3E">
           Email:{" "}
-        </Box>{" "}
+        </Typography>{" "}
         {email}
       </Typography>
       <Typography style={{ ...textStyle, fontFamily: "Roboto" }} my={1}>
-        <Box fontWeight="600" display="inline" color="#330C3E">
+        <Typography fontWeight="600" display="inline" color="#330C3E">
           Address:{" "}
-        </Box>{" "}
+        </Typography>{" "}
         {address}
       </Typography>
     </Grid>

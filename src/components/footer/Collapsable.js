@@ -35,9 +35,9 @@ const Collapsable = (props) => {
         </Box>
       </Link>
       <Collapse in={isOpen}>
-        {props.list.map((name) => {
+        {props.list.map((name, key) => {
           return (
-            <Typography style={textStyle} my={1}>
+            <Typography key={key} style={textStyle} my={1}>
               {name}
             </Typography>
           );
