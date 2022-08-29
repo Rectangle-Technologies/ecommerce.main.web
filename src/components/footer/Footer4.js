@@ -74,9 +74,9 @@ const Footer4 = () => {
         label="Email"
         placeholder="Enter your email"
         size="small"
-        sx={{ my: 1 }}
+        sx={{ my: 1, mr: 1 }}
       />
-      <CustomButton variant="contained" sx={{ m: 1 }}>
+      <CustomButton variant="contained" sx={{ my: 1 }}>
         Subscribe
       </CustomButton>
     </Grid>
