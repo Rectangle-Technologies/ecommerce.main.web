@@ -7,6 +7,7 @@ import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import DesignServicesIcon from '@mui/icons-material/DesignServices';
 import { BrowserView, MobileView } from "react-device-detect";
+import InstagramIcon from '@mui/icons-material/Instagram';
 
 const AboutPage = () => {
     return (
@@ -16,7 +17,7 @@ const AboutPage = () => {
             <div style={{ position: "relative" }} className="about_page_banner_img">
                 <div style={{ width: "100%", height: "100%", backgroundColor: "rgb(0,0,0,0.35)" }} ></div>
                 <div style={{ position: "absolute", left: "50%", bottom: "0" }}>
-                    <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Khusboo_By_Bloom</Typography>
+                    <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Bloom_by_Khushboo</Typography>
                 </div>
             </div>
             </BrowserView>
@@ -25,7 +26,7 @@ const AboutPage = () => {
             <div style={{ position: "relative", width: "100%" }} className="about_page_banner_img">
                 <div style={{ width: "100%", height: "100%", backgroundColor: "rgb(0,0,0,0.35)" }} ></div>
                 <div style={{ position: "absolute", left: "50%", bottom: "0" }}>
-                    <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Khusboo_By_Bloom</Typography>
+                    <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Bloom_by_Khushboo</Typography>
                 </div>
             </div>
             </MobileView>
@@ -46,7 +47,7 @@ const AboutPage = () => {
                     <Typography style={{ fontFamily: "Roboto", marginTop: "25px", fontSize: "20px", lineHeight: "24px" }}>“The boutique stocks not only an exciting range of women's wear but also accessories, jewellery and bags.”</Typography>
                     <div style={{ display: "flex", alignItems: "center", marginTop: "25px" }}>
                         <div style={{ borderBottom: "5px solid #330C3E", width: "15px", marginRight: "10px" }} ></div>
-                        <Typography style={{ fontFamily: "Kaushan Script", fontSize: "25px", lineHeight: "27px" }}>Khushboo Ma'am</Typography>
+                        <Typography style={{ fontFamily: "Kaushan Script", fontSize: "25px", lineHeight: "27px" }}>Khushbo</Typography>
                     </div>
                 </Grid>
                 <DoubleTextComponent frontText="BLOOM BY KHUSHBOO" backText="Know About Us" frontTextFontFamily="Poppins" backTextFontSize="8vw" frontTextFontSize="2.6vw" frontTextTopDistance="6vw" underline={false} frontFontWeight="700" left="-35%" />
@@ -87,6 +88,37 @@ const AboutPage = () => {
                     </Grid>
                 </div>
             </div>
+            <DoubleTextComponent frontText="FOLLOW US ON" backText="Instagram" frontTextFontFamily="Poppins" backTextFontSize="10vw" frontTextFontSize="2.6vw" frontTextTopDistance="7vw" underline={false} frontFontWeight="700" left="-35%" />
+            <Grid container spacing={0} style={{ padding: "0px 10vw", marginBottom: "50px" }}>
+                <Grid item xs={6} md={3} className="about_insta_img" style={{ position: "relative" }}>
+                    <img src="/insta1.jpeg" />
+                    <div style={{ position: "absolute", top: 0, left: 0, width: "100%", aspectRatio: "1", backgroundColor: "rgb(235, 49, 226,.5)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                        <InstagramIcon style={{ fontSize: "50px", color: "white" }} />
+                        <Typography style={{ color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "25px", lineHeight: "37px", letterSpacing: "6%" }} >Follow Us</Typography>
+                    </div>
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta2.jpeg" />
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta3.jpeg" />
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta4.jpeg" />
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta5.jpeg" />
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta6.jpeg" />
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta7.jpeg" />
+                </Grid>
+                <Grid item xs={6} md={3} className="about_insta_img">
+                    <img src="/insta8.jpeg" />
+                </Grid>
+            </Grid>
         </>
     )
 }

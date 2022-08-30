@@ -40,8 +40,8 @@ const NavbarDesktop = (props) => {
                     </Link>
                 </div>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }} >
-                    <Link to="/" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >Customize online</Typography>
+                    <Link to="/about" style={{ textDecoration: "none" }}>
+                    <Typography className="navbar_item" style={{ fontSize: 18 }} >About us</Typography>
                     </Link>
                     <Link to="/" style={{ textDecoration: "none" }}>
                     <Typography className="navbar_item" style={{ fontSize: 18 }} >Contact us</Typography>
