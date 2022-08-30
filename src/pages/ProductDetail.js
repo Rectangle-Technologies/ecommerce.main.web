@@ -61,7 +61,13 @@ const ProductDetail = (props) => {
             })
         } catch (err) {
             props.removeLoader()
-            enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
+            let message = 'Something went wrong'
+            if (err?.response?.data?.errors) {
+                message = err?.response?.data?.errors[0].msg
+            } else if (err?.response?.data?.message) {
+                message = err?.response?.data?.message
+            }
+            enqueueSnackbar(message, {
                 variant: 'error',
                 autoHideDuration: 3000
             })
@@ -81,7 +87,13 @@ const ProductDetail = (props) => {
             })
         } catch (err) {
             props.removeLoader()
-            enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
+            let message = 'Something went wrong'
+            if (err?.response?.data?.errors) {
+                message = err?.response?.data?.errors[0].msg
+            } else if (err?.response?.data?.message) {
+                message = err?.response?.data?.message
+            }
+            enqueueSnackbar(message, {
                 variant: 'error',
                 autoHideDuration: 3000
             })
