@@ -38,7 +38,7 @@ const Footer = () => {
           <Grid item xs={12} md={3} my={1}>
             <center>
               <img
-                src="https://s3-alpha-sig.figma.com/img/9a46/9500/6f3948ba62843600ab4a655706064764?Expires=1662336000&Signature=M43px8ZLqOyIA~SusqE6D5lMUe6L0bb5MfrzLi0VMb4Jl0Bclme~DE~Gzk3dXnDRCip~uTiX0a4CbPcThV5jvA7Ozsp78ys5Qinq6F2JS3CxPFXvdDkqxE32GxMVEI1JFopZ-BGYLpGiHRDTJp6nR-e3anowbc5D8K4HPRcyekSwpbmMdzspeFdCpl5P-cojiGl7UI4lzBLFZ-BKkA00Otnmjc2Y-6py4YBEp8ncKuAdCRi5WUfAFhhVEDsH2kmnVO80pKMWvxh9az72Wg5pslCt-x12FVrPVejaf-4oBCXy7bOV2GHmTe3f5oy32bAS2rLw4H8z6BD08dMnC24mRA__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
+                src="https://s3-alpha-sig.figma.com/img/4c90/fc60/1aadc30cf43dacd92441bee2551cf456?Expires=1662940800&Signature=Ihm~3sNiVz0EKbw9wZODg6nlVg-oNyo4DwuQsfAEAOeCBNHAQmbExnGt37lj-Fikr9brXP1bzHixX~Fxs-PyFcGZRU3aLDhSOoMGa-DQKCUl~GgKEohxyUpVJUC6a5ja1C4rrtm43BwvkEQ5N-DZ2iPShOBwaD3WYr4hEYIXRjN-wsvgumBNHhk4zIiag~92Acr6ExbRIrnW7jFGAfjmcQouYLjIQbBJF8AgYHTf4N07p1RL46noCXlZkRpOwfz-e~aUqcG6oa5PZvVjf683XGKDOEy3BRIHzyI8bJyS9f5a1z1F6r9klg5yOhj6jqwVXD5HZ8cmITfH6jMKLbLpoQ__&Key-Pair-Id=APKAINTVSUGEWH5XD5UA"
                 alt="Payment Icons"
                 maxWidth="300px"
                 width="100%"

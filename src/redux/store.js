@@ -16,8 +16,7 @@ const store = createStore(
 
 store.subscribe(() => {
     // this is just a function that saves state to localStorage
-    console.log("STORE")
     stateLoader.saveState(store.getState());
-}); 
+});
 
 export default store;

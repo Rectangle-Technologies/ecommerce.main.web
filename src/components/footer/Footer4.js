@@ -37,20 +37,14 @@ const Footer4 = () => {
         Follow us on:
       </Typography>
       <Box style={{ display: "flex", flexDirection: "row" }}>
-        <IconButton color="primary">
-          <FacebookIcon
-            onClick={() => (window.location.href = "https://www.facebook.com/")}
-          />
+        <IconButton color="primary" onClick={() => (window.location.href = "https://www.facebook.com/")} >
+          <FacebookIcon />
         </IconButton>
         <IconButton color="secondary">
-          <InstagramIcon
-            onClick={() => (window.location.href = "https://www.facebook.com/")}
-          />
+          <InstagramIcon />
         </IconButton>
         <IconButton color="error">
-          <YouTubeIcon
-            onClick={() => (window.location.href = "https://www.facebook.com/")}
-          />
+          <YouTubeIcon />
         </IconButton>
       </Box>
       <Typography
@@ -74,9 +68,9 @@ const Footer4 = () => {
         label="Email"
         placeholder="Enter your email"
         size="small"
-        sx={{ my: 1 }}
+        sx={{ my: 1, mr: 1 }}
       />
-      <CustomButton variant="contained" sx={{ m: 1 }}>
+      <CustomButton variant="contained" sx={{ my: 1 }}>
         Subscribe
       </CustomButton>
     </Grid>
