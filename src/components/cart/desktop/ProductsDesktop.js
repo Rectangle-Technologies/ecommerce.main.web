@@ -135,11 +135,6 @@ const ProductsDesktop = (props) => {
             <div style={{ width: '20%', margin: 'auto', padding: 10 }}>
                 <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{props.product.size}</Typography>
             </div>
-            {/* <div style={{ width: '6%', margin: 'auto', padding: 10 }}>
-                <Link style={{ cursor: 'pointer' }} onClick={handleRemoveFromCart}>
-                    <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, textAlign: 'center' }} m={2}>X</Typography>
-                </Link>
-            </div> */}
         </div>
     )
 }

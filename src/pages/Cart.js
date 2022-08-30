@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserView } from 'react-device-detect'
+import { BrowserView, MobileOnlyView } from 'react-device-detect'
 import { useSnackbar } from 'notistack'
 import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
 import axios from 'axios'
 import CartDesktop from '../components/cart/desktop/CartDesktop'
+import CartMobile from '../components/cart/mobile/CartMobile'
 
 const Cart = (props) => {
     const [instructions, setInstructions] = useState()
@@ -65,7 +66,23 @@ const Cart = (props) => {
                     />
                 }
             </BrowserView>
-
+            <MobileOnlyView>
+                {cart &&
+                    <CartMobile
+                        cart={cart}
+                        instructions={instructions}
+                        setInstructions={setInstructions}
+                        voucher={voucher}
+                        setVoucher={setVoucher}
+                        total={total}
+                        discount={discount}
+                        finalAmount={finalAmount}
+                        setCart={setCart}
+                        setTotal={setTotal}
+                        setFinalAmount={setFinalAmount}
+                    />
+                }
+            </MobileOnlyView>
         </>
     )
 }
