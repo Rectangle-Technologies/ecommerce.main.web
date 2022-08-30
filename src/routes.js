@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import Layout from "./layout";
 import AboutPage from "./pages/About";
+import ContactUs from "./pages/ContactUs";
 import Landing from "./pages/Landing";
 import ProductDetail from "./pages/ProductDetail";
 
@@ -20,6 +21,10 @@ const routes = [
       {
         path: "/about",
         element: <AboutPage />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUs />,
       },
     ],
   },

@@ -43,7 +43,7 @@ const NavbarDesktop = (props) => {
                     <Link to="/about" style={{ textDecoration: "none" }}>
                     <Typography className="navbar_item" style={{ fontSize: 18 }} >About us</Typography>
                     </Link>
-                    <Link to="/" style={{ textDecoration: "none" }}>
+                    <Link to="/contact" style={{ textDecoration: "none" }}>
                     <Typography className="navbar_item" style={{ fontSize: 18 }} >Contact us</Typography>
                     </Link>
                 </div>
