@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { BrowserView, MobileOnlyView } from 'react-device-detect'
+import { BrowserView, MobileOnlyView, TabletView } from 'react-device-detect'
 import { useSnackbar } from 'notistack'
 import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
@@ -83,6 +83,23 @@ const Cart = (props) => {
                     />
                 }
             </MobileOnlyView>
+            <TabletView>
+            {cart &&
+                    <CartDesktop
+                        cart={cart}
+                        instructions={instructions}
+                        setInstructions={setInstructions}
+                        voucher={voucher}
+                        setVoucher={setVoucher}
+                        total={total}
+                        discount={discount}
+                        finalAmount={finalAmount}
+                        setCart={setCart}
+                        setTotal={setTotal}
+                        setFinalAmount={setFinalAmount}
+                    />
+                }
+            </TabletView>
         </>
     )
 }

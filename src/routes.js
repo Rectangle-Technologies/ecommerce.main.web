@@ -26,7 +26,7 @@ const routes = [
       {
         path: '/cart',
         element: <Cart />
-      }
+      },
       {
         path: "/contact",
         element: <ContactUs />,
