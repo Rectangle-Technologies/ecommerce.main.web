@@ -23,7 +23,7 @@ const Footer4 = () => {
   });
 
   return (
-    <Grid item xs={12} md={2.5} my={1}>
+    <Grid item xs={12} md={2.5} my={1} px={2}>
       <Typography
         style={{
           ...textStyle,

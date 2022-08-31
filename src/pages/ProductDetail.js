@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
 import axios from 'axios'
 import { BASE_URL_1, BASE_URL_2 } from "../constants/urls";
+import formatAmount from "../helpers/formatAmount";
 
 const ProductDetail = (props) => {
     const [product, setProduct] = useState();
@@ -121,7 +122,7 @@ const ProductDetail = (props) => {
                 <Grid container my={5}>
                     <Grid item xs={12} md={5}>
                         <center>
-                            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: isMobile ? '100%' : '80%' }}>
+                            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 900 ? '100%' : '80%' }}>
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
                                         <img
@@ -163,13 +164,13 @@ const ProductDetail = (props) => {
                         >
                             Product by Bloom By Khushboo
                         </Typography>
-                        <div style={{ display: 'flex', flexDirection: 'row', marginTop: 60 }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 60 }}>
                             <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 30 }}>
-                                Rs. {product.price}
+                                {formatAmount(product.price)}
                             </Typography>
                             {product.mrp !== product.price &&
-                                <Typography style={{ ...textStyle, fontSize: 30, color: '#928C8C', textDecoration: 'line-through' }} ml={2}>
-                                    {product.mrp}
+                                <Typography style={{ ...textStyle, fontSize: 20, color: '#928C8C', textDecoration: 'line-through' }} ml={2}>
+                                    {formatAmount(product.mrp)}
                                 </Typography>
                             }
                         </div>

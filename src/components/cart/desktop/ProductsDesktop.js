@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL_1 } from '../../../constants/urls'
+import formatAmount from '../../../helpers/formatAmount'
 
 const ProductsDesktop = (props) => {
     const [quantity, setQuantity] = useState(props.product.quantity || 1)
@@ -71,7 +72,7 @@ const ProductsDesktop = (props) => {
                 <Typography style={{ ...textStyle, fontWeight: 500 }} m={2}>{props.product.productId.name}</Typography>
             </Link>
             <div style={{ width: '20%', margin: 'auto', padding: 10 }}>
-                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>Rs. {props.product.productId.price}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{formatAmount(props.product.productId.price)}</Typography>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '20%', margin: 'auto', padding: 10 }}>
                 <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>

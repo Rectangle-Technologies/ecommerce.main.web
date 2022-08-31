@@ -5,8 +5,8 @@ import TypographyLink from "../TypographyLink";
 
 const Footer2 = () => {
   return (
-    <Grid item xs={12} md={5.5}>
-      <Grid container>
+    <Grid item xs={12} md={5.5} px={2}>
+      <Grid container >
         <Grid item xs={4} my={1}>
           <Typography
             style={{

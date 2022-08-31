@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import formatAmount from '../../../helpers/formatAmount'
 
 const ProductsMobile = (props) => {
     const [quantity, setQuantity] = useState(props.product.quantity || 1)
@@ -70,7 +71,7 @@ const ProductsMobile = (props) => {
                 <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`, { replace: true })}>
                     <Typography style={{ ...textStyle, fontWeight: 500, textAlign: 'left' }} mx={1}>{props.product.productId.name}</Typography>
                 </Link>
-                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>Rs. {props.product.productId.price}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>{formatAmount(props.product.productId.price)}</Typography>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: 10 }}>
                     <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>
                         <div

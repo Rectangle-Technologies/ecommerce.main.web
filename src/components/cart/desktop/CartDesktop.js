@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import textStyle from '../../../helpers/textStyle'
 import ProductsDesktop from './ProductsDesktop'
 import { useNavigate } from 'react-router-dom';
+import formatAmount from '../../../helpers/formatAmount';
 
 const CartDesktop = (props) => {
   const navigate = useNavigate()
@@ -74,16 +75,16 @@ const CartDesktop = (props) => {
             <div style={{ backgroundColor: '#E6E6E6', padding: 15 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>SUB TOTAL</Typography>
-                <Typography style={{ ...textStyle, fontWeight: 500 }}>Rs. {props.total}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>{formatAmount(props.total)}</Typography>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15 }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>DISCOUNT (if any)</Typography>
-                <Typography style={{ ...textStyle, fontWeight: 500 }}>-Rs. {props.discount}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>-{formatAmount(props.discount)}</Typography>
               </div>
               <hr style={{ backgroundColor: '#000000' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15 }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>TOTAL AMOUNT</Typography>
-                <Typography style={{ ...textStyle, fontWeight: 500 }}>Rs. {props.finalAmount}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>{formatAmount(props.finalAmount)}</Typography>
               </div>
             </div>
             <center>
