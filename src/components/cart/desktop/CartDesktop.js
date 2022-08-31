@@ -13,6 +13,8 @@ const CartDesktop = (props) => {
     "&:hover": {
       backgroundColor: "#fc03cf",
     },
+    width: '25%',
+    fontSize: 16
   });
 
   return (
@@ -54,7 +56,7 @@ const CartDesktop = (props) => {
               onChange={(e) => props.setInstructions(e.target.value)}
             />
             <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20 }} my={2}>Apply Voucher</Typography>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
               <TextField
                 variant='outlined'
                 placeholder='Voucher Code'
