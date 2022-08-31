@@ -26,7 +26,6 @@ const CartDesktop = (props) => {
           <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Price</Typography>
           <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Quantity</Typography>
           <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Size</Typography>
-          {/* <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '6%', textAlign: 'center' }}></Typography> */}
         </div>
         {props.cart.products.length
           ? props.cart.products.map((p, key) => (

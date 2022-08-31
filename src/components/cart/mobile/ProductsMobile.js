@@ -21,7 +21,7 @@ const ProductsMobile = (props) => {
         props.addLoader()
         try {
             if (action == '+') {
-                const res = await axios.post(`http://localhost:4000/cart/add`, {
+                const res = await axios.post(`${BASE_URL_1}/cart/add`, {
                     productId: props.product.productId._id,
                     size: props.product.size,
                     quantity: 1
@@ -32,7 +32,7 @@ const ProductsMobile = (props) => {
                 setQuantity(quantity + 1)
                 props.removeLoader()
             } else if (action == '-') {
-                const res = await axios.post(`http://localhost:4000/cart/delete/${props.product.productId._id}`, {
+                const res = await axios.post(`${BASE_URL_1}/cart/delete/${props.product.productId._id}`, {
                     size: props.product.size
                 }, config)
                 props.setCart(res.data.cart)

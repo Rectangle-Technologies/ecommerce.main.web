@@ -2,12 +2,13 @@ import { LOGIN } from "./type";
 import axios from "axios";
 import { addLoader } from "./loaderActions";
 import { removeLoader } from "./loaderActions";
+import { BASE_URL_1 } from "../../../constants/urls";
 
 export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
   dispatch(addLoader());
   try {
     const res = await axios.post(
-      "http://localhost:4000/auth/admin/login",
+      `${BASE_URL_1}/auth/admin/login`,
       data
     );
     enqueueSnackbar("Login Successful", {

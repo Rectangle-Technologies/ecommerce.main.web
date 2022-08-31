@@ -10,6 +10,7 @@ import { useSnackbar } from "notistack";
 import { connect } from "react-redux";
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
 import axios from 'axios'
+import { BASE_URL_1, BASE_URL_2 } from "../constants/urls";
 
 const ProductDetail = (props) => {
     const [product, setProduct] = useState();
@@ -27,7 +28,7 @@ const ProductDetail = (props) => {
     const fetchProduct = async () => {
         props.addLoader()
         try {
-            const res = await axios.get(`http://localhost:5000/products/fetchDetails/${id}`)
+            const res = await axios.get(`${BASE_URL_2}/products/fetchDetails/${id}`)
             setProduct(res.data.product)
             props.removeLoader()
         } catch (err) {
@@ -49,7 +50,7 @@ const ProductDetail = (props) => {
         }
         props.addLoader()
         try {
-            await axios.post(`http://localhost:4000/cart/add`, {
+            await axios.post(`${BASE_URL_1}/cart/add`, {
                 productId: id,
                 quantity,
                 size
@@ -77,7 +78,7 @@ const ProductDetail = (props) => {
     const handleAddToWishlist = async () => {
         props.addLoader()
         try {
-            await axios.post(`http://localhost:4000/wishlist/add`, {
+            await axios.post(`${BASE_URL_1}/wishlist/add`, {
                 productId: id
             }, config)
             props.removeLoader()

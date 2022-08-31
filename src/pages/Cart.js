@@ -6,6 +6,7 @@ import { addLoader, removeLoader } from '../redux/services/actions/loaderActions
 import axios from 'axios'
 import CartDesktop from '../components/cart/desktop/CartDesktop'
 import CartMobile from '../components/cart/mobile/CartMobile'
+import { BASE_URL_1 } from '../constants/urls'
 
 const Cart = (props) => {
     const [instructions, setInstructions] = useState()
@@ -24,7 +25,7 @@ const Cart = (props) => {
     const fetchCart = async () => {
         props.addLoader()
         try {
-            const res = await axios.get(`http://localhost:4000/cart/get`, config)
+            const res = await axios.get(`${BASE_URL_1}/cart/get`, config)
             setCart(res.data.cart)
             setTotal(res.data.cart.total)
             setFinalAmount(res.data.cart.total)
@@ -84,7 +85,7 @@ const Cart = (props) => {
                 }
             </MobileOnlyView>
             <TabletView>
-            {cart &&
+                {cart &&
                     <CartDesktop
                         cart={cart}
                         instructions={instructions}
