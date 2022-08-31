@@ -5,6 +5,7 @@ import ContactUs from "./pages/ContactUs";
 import Landing from "./pages/Landing";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from './pages/Cart'
+import Checkout from "./pages/Checkout";
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
         element: <ContactUs />,
       },
     ],
+  },
+  {
+    path: '/checkout',
+    element: <Checkout />
   },
   {
     path: "*",
