@@ -88,7 +88,16 @@ const CartDesktop = (props) => {
               </div>
             </div>
             <center>
-              <Link style={{ cursor: 'pointer' }}>
+              <Link style={{ cursor: 'pointer' }}
+                onClick={() => navigate('/checkout', {
+                  state: {
+                    cart: props.cart,
+                    instructions: props.instructions,
+                    total: props.total,
+                    discount: props.discount,
+                    finalAmount: props.finalAmount
+                  }
+                })}>
                 <div style={{ backgroundColor: '#FA861B', border: '1px solid #330C3E', width: '80%', padding: 10, marginTop: 15 }}>
                   <Typography style={{ ...textStyle, fontWeight: 500, color: '#F8F5CC', textAlign: 'center' }}>Proceed to Checkout</Typography>
                 </div>
