@@ -33,25 +33,25 @@ const NavbarMobile = (props) => {
                 <>
                     <Typography onClick={() => { setIsOpen(false) }} style={{ fontSize: 24 }}><CloseIcon style={{ zIndex: 2147483647, border: "1px solid black", padding: "5px", borderRadius: "5px", marginRight: "15px", position: "absolute", backgroundColor: "white", top: 15, right: "20vw" }} fontSize="large" /></Typography>
                     <div style={{ zIndex: 2147483646 ,transition: "ease-in-out 1s", transitionDelay: "1s", display: "flex", flexDirection: "column", justifyContent: "flex-start", alignItems: "flex-start", backgroundColor: "white", position: "absolute", top: 0, left: 0, width: "80vw", height: "100vh" }} >
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item navbar_mobile_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Categories</Typography>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Flash Sale</Typography>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/diaries" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >My Account</Typography>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Customize online</Typography>
                         </Link>
-                        <Link to="/" style={{ textDecoration: "none" }}>
+                        <Link to="/" style={{ textDecoration: "none" }} onClick={() => {setIsOpen(false)}}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Contact us</Typography>
                         </Link>
                         {/* <div style={{ width: "100vw", borderBottom: "4px solid #EB31E2" }} ></div> */}
@@ -86,10 +86,10 @@ const NavbarMobile = (props) => {
 
             {/* important icons */}
             <div style={{ padding: "0px" }}>
-                <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
-                <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
-                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
-                <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} />
+                <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {setIsOpen(false)}} />
+                <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {setIsOpen(false)}} />
+                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {setIsOpen(false)}} />
+                <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {setIsOpen(false)}} />
             </div>
         </div>
     )

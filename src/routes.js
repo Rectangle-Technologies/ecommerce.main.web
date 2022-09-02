@@ -5,6 +5,7 @@ import ContactUs from "./pages/ContactUs";
 import Landing from "./pages/Landing";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from './pages/Cart'
+import ClientDiariesComponent from "./components/ClientDiaries";
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
       {
         path: '/cart',
         element: <Cart />
+      },
+      {
+        path: '/diaries',
+        element: <ClientDiariesComponent />
       },
       {
         path: "/contact",
