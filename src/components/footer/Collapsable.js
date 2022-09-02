@@ -3,9 +3,13 @@ import React, { useState } from "react";
 import textStyle from "../../helpers/textStyle";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+import TypographyLink from "../TypographyLink";
+import { useNavigate } from "react-router-dom";
 
 const Collapsable = (props) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate()
+
   return (
     <Box my={2}>
       <Link
@@ -35,11 +39,11 @@ const Collapsable = (props) => {
         </Box>
       </Link>
       <Collapse in={isOpen}>
-        {props.list.map((name, key) => {
+        {props.list.map((item, key) => {
           return (
-            <Typography key={key} style={textStyle} my={1}>
-              {name}
-            </Typography>
+            <TypographyLink key={key} style={textStyle} my={1} onClick={() => navigate(`${item.url}`, { replace: true })}>
+              {item.name}
+            </TypographyLink>
           );
         })}
       </Collapse>

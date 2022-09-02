@@ -1,9 +1,11 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import textStyle from "../../helpers/textStyle";
 import TypographyLink from "../TypographyLink";
 
 const Footer2 = () => {
+  const navigate = useNavigate()
   return (
     <Grid item xs={12} md={5.5} px={2}>
       <Grid container >
@@ -29,7 +31,7 @@ const Footer2 = () => {
           <TypographyLink style={textStyle} my={1}>
             My Wishlist
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/cart', { replace: true })}>
             View Cart
           </TypographyLink>
           <TypographyLink style={textStyle} my={1}>
