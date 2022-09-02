@@ -7,6 +7,7 @@ import NavbarDesktop from "./desktop/Navbar";
 import NavbarMobile from "./mobile/Navbar";
 
 const Header = (props) => {
+    const { innerWidth: width, innerHeight: height } = window;
     return (
         <>
             {/* fix notification */}
@@ -23,8 +24,17 @@ const Header = (props) => {
 
             {/* NAVBAR */}
             <BrowserView>
-                <NavbarDesktop />
+            {width > 900 
+                ? <NavbarDesktop />
+                : <NavbarMobile />
+            }
             </BrowserView>
+            <TabletView>
+                {width > 900 
+                ? <NavbarDesktop />
+                : <NavbarMobile />
+            }
+            </TabletView>
             <MobileOnlyView>
                 <NavbarMobile/>
             </MobileOnlyView>
