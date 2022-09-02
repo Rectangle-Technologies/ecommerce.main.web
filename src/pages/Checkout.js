@@ -4,16 +4,71 @@ import formatAmount from '../helpers/formatAmount'
 import textStyle from '../helpers/textStyle'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { BASE_URL_3 } from '../constants/urls';
+import { useSnackbar } from 'notistack';
+import { connect } from 'react-redux';
+import { addLoader, removeLoader } from '../redux/services/actions/loaderActions';
 
-const Checkout = () => {
+const Checkout = (props) => {
     const location = useLocation()
     const navigate = useNavigate()
+    const { enqueueSnackbar } = useSnackbar()
 
     useEffect(() => {
         if (!location.state) {
             navigate('/', { replace: true })
         }
     }, [])
+
+    const checkoutHandler = async () => {
+        props.addLoader()
+        try {
+            const res = await axios.post(`${BASE_URL_3}/payment/createOrder`, {
+                amount: location?.state?.finalAmount,
+            })
+            localStorage.setItem('order', JSON.stringify({
+                products: location?.state?.cart?.products,
+                amount: location?.state?.finalAmount,
+                instructions: location?.state?.instructions
+            }))
+            const options = {
+                // SECRET KEY: AYaj4UxyYjSJZZD3bHYUwEP3
+                key: res.data.data.key, // Enter the Key ID generated from the Dashboard
+                amount: res.data.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+                currency: res.data.data.currency,
+                name: "Bloom By Khushbu",
+                description: "Test Transaction",
+                image: "https://example.com/your_logo",
+                order_id: res.data.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+                callback_url: `${BASE_URL_3}/payment/verify`,
+                prefill: {
+                    name: "Gaurav Kumar",
+                    email: "gaurav.kumar@example.com",
+                    contact: "9999999999",
+                },
+                theme: {
+                    color: "#3399cc",
+                },
+            };
+            const paymentObject = new window.Razorpay(options);
+            paymentObject.open();
+            props.removeLoader()
+        } catch (err) {
+            console.log(err)
+            props.removeLoader()
+            let message = 'Something went wrong'
+            if (err?.response?.data?.errors) {
+                message = err?.response?.data?.errors[0].msg
+            } else if (err?.response?.data?.message) {
+                message = err?.response?.data?.message
+            }
+            enqueueSnackbar(message, {
+                variant: 'error',
+                autoHideDuration: 3000
+            })
+        }
+    }
 
     return (
         <>
@@ -133,7 +188,7 @@ const Checkout = () => {
                             </Grid>
                             <Grid item xs={12} md={6} my={2}>
                                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                    <Link style={{ cursor: 'pointer' }}>
+                                    <Link style={{ cursor: 'pointer' }} onClick={checkoutHandler}>
                                         <div style={{ backgroundColor: '#FA861B', padding: '10px 50px', borderRadius: 30 }}>
                                             <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 18, color: '#F8F5CC', textAlign: 'center' }}>
                                                 Proceed
@@ -150,4 +205,4 @@ const Checkout = () => {
     )
 }
 
-export default Checkout
+export default connect(null, { addLoader, removeLoader })(Checkout)

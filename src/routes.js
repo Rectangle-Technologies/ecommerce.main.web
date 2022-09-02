@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from './pages/Cart'
 import Checkout from "./pages/Checkout";
+import OrderStatus from "./pages/OrderStatus";
 
 const routes = [
   {
@@ -32,6 +33,10 @@ const routes = [
         path: "/contact",
         element: <ContactUs />,
       },
+      {
+        path: '/orderstatus/:status',
+        element: <OrderStatus />
+      }
     ],
   },
   {
