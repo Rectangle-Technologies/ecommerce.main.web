@@ -22,6 +22,7 @@ const OrderStatus = (props) => {
         try {
             const res = await axios.post(`${BASE_URL_1}/order/create`, data, config)
             setOrder(res.data.order)
+            localStorage.removeItem('order')
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
