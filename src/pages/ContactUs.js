@@ -34,7 +34,7 @@ const ContactUs = (props) => {
         },
         validationSchema: ContactUpSchema,
         onSubmit: (values, actions) => {
-            props.addNewQuery(values, props.auth.token, enqueueSnackbar, actions.setSubmitting);
+            props.addNewQuery(values, props.auth.token, enqueueSnackbar, actions.setSubmitting, actions.resetForm);
         }
     })
 
