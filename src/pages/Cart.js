@@ -18,7 +18,7 @@ const Cart = (props) => {
     const { enqueueSnackbar } = useSnackbar()
     const config = {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGVmY2NjMDQ4MGRhYjllY2U5ZGY3NCIsImlhdCI6MTY2MTkyNjg3OH0.IOOtT5gzeuEq2hT5T7UpI4pxCkv9vgTP35Aye4PlUko`
+            Authorization: `Bearer ${props.auth.token}`
         }
     }
 
@@ -105,4 +105,8 @@ const Cart = (props) => {
     )
 }
 
-export default connect(null, { addLoader, removeLoader })(Cart)
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { addLoader, removeLoader })(Cart)
