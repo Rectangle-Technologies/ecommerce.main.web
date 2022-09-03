@@ -124,20 +124,14 @@ const ProductDetail = (props) => {
                         <center>
                             <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 900 ? '100%' : '80%' }}>
                                 <div className="carousel-inner">
-                                    <div className="carousel-item active">
+                                    {product.imageUrls.map((url, index) => {return (
+                                    <div className={"carousel-item" + (index === 0 ? " active" : "")}>
                                         <img
-                                            className="d-block w-100"
-                                            src="https://i.pinimg.com/736x/33/66/50/336650d646d0f5d9e144e626323a3d42.jpg"
+                                            className="d-block w-100" key={index}
+                                            src={url}
                                             alt={product.name}
                                         />
-                                    </div>
-                                    <div className="carousel-item">
-                                        <img
-                                            className="d-block w-100"
-                                            src="https://i.pinimg.com/736x/33/66/50/336650d646d0f5d9e144e626323a3d42.jpg"
-                                            alt={product.name}
-                                        />
-                                    </div>
+                                    </div>)})}
                                 </div>
                                 <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

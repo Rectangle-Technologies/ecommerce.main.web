@@ -19,41 +19,49 @@ const NavbarDesktop = (props) => {
             alignItems: "center"
         }}>
             {/* logo section */}
-            <img src="/logo.png" style={{ maxHeight: "100%", aspectRatio: 2.2}} />
+            <img src="/logo.png" style={{ maxHeight: "100%", aspectRatio: 2.2 }} />
             {/* important links */}
             <div style={{ display: "flex", flexDirection: "column" }} >
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
                     <Link to="/" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
+                        <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
                     </Link>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >Categories</Typography>
+                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Categories</Typography>
                     </Link>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >Flash Sale</Typography>
+                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Flash Sale</Typography>
                     </Link>
                     <Link to="/diaries" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
+                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
                     </Link>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >My Account</Typography>
+                        <Typography className="navbar_item" style={{ fontSize: 18 }} >My Account</Typography>
                     </Link>
                 </div>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }} >
                     <Link to="/about" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >About us</Typography>
+                        <Typography className="navbar_item" style={{ fontSize: 18 }} >About us</Typography>
                     </Link>
                     <Link to="/contact" style={{ textDecoration: "none" }}>
-                    <Typography className="navbar_item" style={{ fontSize: 18 }} >Contact us</Typography>
+                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Contact us</Typography>
                     </Link>
                 </div>
             </div>
             {/* important icons */}
             <div style={{ padding: "10px" }}>
-                <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                <Link to="/about" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                    <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                <Link to="/about" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                    <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                    <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                <Link to="/about" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                    <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
             </div>
         </div>
     )
