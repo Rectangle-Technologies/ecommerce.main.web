@@ -129,6 +129,7 @@ const Checkout = (props) => {
                                 <TextField
                                     fullWidth
                                     label='First Name'
+                                    name="first_name"
                                     variant='outlined'
                                     placeholder='First Name'
                                 />
@@ -137,6 +138,7 @@ const Checkout = (props) => {
                                 <TextField
                                     fullWidth
                                     label='Last Name'
+                                    name="last_name"
                                     variant='outlined'
                                     placeholder='Last Name'
                                 />
@@ -146,6 +148,7 @@ const Checkout = (props) => {
                             <TextField
                                 fullWidth
                                 label='Address'
+                                name="address"
                                 variant='outlined'
                                 placeholder='Address'
                             />
@@ -155,6 +158,7 @@ const Checkout = (props) => {
                                 <TextField
                                     fullWidth
                                     label='City'
+                                    name="city"
                                     variant='outlined'
                                     placeholder='City'
                                 />
@@ -162,6 +166,7 @@ const Checkout = (props) => {
                             <Grid item xs={6} md={4}>
                                 <TextField
                                     fullWidth
+                                    name="state"
                                     label='State'
                                     variant='outlined'
                                     placeholder='State'
@@ -170,6 +175,7 @@ const Checkout = (props) => {
                             <Grid item xs={12} md={4}>
                                 <TextField
                                     fullWidth
+                                    name="pincode"
                                     label='Pincode'
                                     variant='outlined'
                                     placeholder='Pincode'
