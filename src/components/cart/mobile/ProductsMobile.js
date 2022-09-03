@@ -62,7 +62,7 @@ const ProductsMobile = (props) => {
         <Grid container my={2}>
             <Grid item xs={5} mx={1}>
                 <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`, { replace: true })}>
-                    <img src='https://i.pinimg.com/736x/33/66/50/336650d646d0f5d9e144e626323a3d42.jpg'
+                    <img src={props?.product?.productId?.imageUrls[0]}
                         style={{ width: '100%', aspectRatio: 0.65 }}
                     />
                 </Link>
