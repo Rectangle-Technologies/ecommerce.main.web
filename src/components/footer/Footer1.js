@@ -7,10 +7,10 @@ const Footer1 = () => {
     "Bloom is India's most-loved online fashion store featuring new products every day!";
   const desc2 =
     "Established In Year 20XX And Catering More Than 5 Lac Customers In Year.";
-  const contact = "+91 - 9857684857";
+  const contact = "+91 - 8983355550 / 9975663656";
   const email = "bloomboutique@gmail.com";
   const address =
-    "35 Anusuya enclave, Jagtap Chowk, Wanowrei, Pune, Maharashtra";
+    "F-21, Sacred Heart World, Opposite of Sacred Heart Town, Wanowrei, Pune, Maharashtra";
   return (
     <Grid item xs={12} md={3.5} my={1} px={2} mr={2}>
       <Typography style={textStyle} my={1}>

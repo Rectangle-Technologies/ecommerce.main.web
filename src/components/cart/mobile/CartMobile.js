@@ -18,7 +18,7 @@ const CartMobile = (props) => {
     return (
         <div style={{ margin: 20 }}>
             <Typography style={{ ...textStyle, fontWeight: 700, fontSize: 24, textAlign: 'center' }} my={2}>YOUR CART</Typography>
-            <div style={{ marginTop: 20, border: '1px solid #928C8C', width: '85%', margin: 'auto' }}>
+            <div style={{ marginTop: 20, border: '1px solid #928C8C', width: '100%', margin: 'auto' }}>
                 {props.cart.products.length
                     ? props.cart.products.map((p, key) => (
                         <ProductsMobile
@@ -32,7 +32,7 @@ const CartMobile = (props) => {
                     ))
                     : <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, textAlign: 'center' }} my={2}>Your cart is empty</Typography>}
             </div>
-            <div style={{ marginTop: 10, width: '85%', margin: 'auto' }}>
+            <div style={{ marginTop: 10, width: '100%', margin: 'auto' }}>
                 <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20 }} my={2}>ORDER SUMMARY</Typography>
                 <div style={{ backgroundColor: '#E6E6E6', padding: 15 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -75,7 +75,17 @@ const CartMobile = (props) => {
                     </CustomButton>
                 </div>
                 <center>
-                    <Link style={{ cursor: 'pointer' }}>
+                    <Link
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => navigate('/checkout', {
+                            state: {
+                                cart: props.cart,
+                                instructions: props.instructions,
+                                total: props.total,
+                                discount: props.discount,
+                                finalAmount: props.finalAmount
+                            }
+                        })}>
                         <div style={{ backgroundColor: '#FA861B', border: '1px solid #330C3E', width: '80%', padding: 10, marginTop: 15 }}>
                             <Typography style={{ ...textStyle, fontWeight: 500, color: '#F8F5CC', textAlign: 'center' }}>Proceed to Checkout</Typography>
                         </div>

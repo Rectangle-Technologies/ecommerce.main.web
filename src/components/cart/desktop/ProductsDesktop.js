@@ -6,6 +6,8 @@ import textStyle from '../../../helpers/textStyle'
 import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions'
 import { useNavigate } from 'react-router-dom'
+import { BASE_URL_1 } from '../../../constants/urls'
+import formatAmount from '../../../helpers/formatAmount'
 
 const ProductsDesktop = (props) => {
     const [quantity, setQuantity] = useState(props.product.quantity || 1)
@@ -13,7 +15,7 @@ const ProductsDesktop = (props) => {
     const navigate = useNavigate()
     const config = {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM5ZmU3MDJiMzZhOWMxNGFiMzY5NCIsImlhdCI6MTY2MTg1MzQ4MX0.jICcee3MryAKyYvx1Ve9uTe-jGcb6bcR8EXdTUFtERw`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGVmY2NjMDQ4MGRhYjllY2U5ZGY3NCIsImlhdCI6MTY2MTkyNjg3OH0.IOOtT5gzeuEq2hT5T7UpI4pxCkv9vgTP35Aye4PlUko`
         }
     }
 
@@ -21,7 +23,7 @@ const ProductsDesktop = (props) => {
         props.addLoader()
         try {
             if (action == '+') {
-                const res = await axios.post(`http://localhost:4000/cart/add`, {
+                const res = await axios.post(`${BASE_URL_1}/cart/add`, {
                     productId: props.product.productId._id,
                     size: props.product.size,
                     quantity: 1
@@ -32,7 +34,7 @@ const ProductsDesktop = (props) => {
                 setQuantity(quantity + 1)
                 props.removeLoader()
             } else if (action == '-') {
-                const res = await axios.post(`http://localhost:4000/cart/delete/${props.product.productId._id}`, {
+                const res = await axios.post(`${BASE_URL_1}/cart/delete/${props.product.productId._id}`, {
                     size: props.product.size
                 }, config)
                 props.setCart(res.data.cart)
@@ -70,7 +72,7 @@ const ProductsDesktop = (props) => {
                 <Typography style={{ ...textStyle, fontWeight: 500 }} m={2}>{props.product.productId.name}</Typography>
             </Link>
             <div style={{ width: '20%', margin: 'auto', padding: 10 }}>
-                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>Rs. {props.product.productId.price}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{formatAmount(props.product.productId.price)}</Typography>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '20%', margin: 'auto', padding: 10 }}>
                 <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>

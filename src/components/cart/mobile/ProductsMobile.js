@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import formatAmount from '../../../helpers/formatAmount'
 
 const ProductsMobile = (props) => {
     const [quantity, setQuantity] = useState(props.product.quantity || 1)
@@ -13,7 +14,7 @@ const ProductsMobile = (props) => {
     const navigate = useNavigate()
     const config = {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM5ZmU3MDJiMzZhOWMxNGFiMzY5NCIsImlhdCI6MTY2MTg1MzQ4MX0.jICcee3MryAKyYvx1Ve9uTe-jGcb6bcR8EXdTUFtERw`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGVmY2NjMDQ4MGRhYjllY2U5ZGY3NCIsImlhdCI6MTY2MTkyNjg3OH0.IOOtT5gzeuEq2hT5T7UpI4pxCkv9vgTP35Aye4PlUko`
         }
     }
 
@@ -21,7 +22,7 @@ const ProductsMobile = (props) => {
         props.addLoader()
         try {
             if (action == '+') {
-                const res = await axios.post(`http://localhost:4000/cart/add`, {
+                const res = await axios.post(`${BASE_URL_1}/cart/add`, {
                     productId: props.product.productId._id,
                     size: props.product.size,
                     quantity: 1
@@ -32,7 +33,7 @@ const ProductsMobile = (props) => {
                 setQuantity(quantity + 1)
                 props.removeLoader()
             } else if (action == '-') {
-                const res = await axios.post(`http://localhost:4000/cart/delete/${props.product.productId._id}`, {
+                const res = await axios.post(`${BASE_URL_1}/cart/delete/${props.product.productId._id}`, {
                     size: props.product.size
                 }, config)
                 props.setCart(res.data.cart)
@@ -70,7 +71,7 @@ const ProductsMobile = (props) => {
                 <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`, { replace: true })}>
                     <Typography style={{ ...textStyle, fontWeight: 500, textAlign: 'left' }} mx={1}>{props.product.productId.name}</Typography>
                 </Link>
-                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>Rs. {props.product.productId.price}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>{formatAmount(props.product.productId.price)}</Typography>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: 10 }}>
                     <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>
                         <div

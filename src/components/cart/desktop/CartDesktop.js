@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import textStyle from '../../../helpers/textStyle'
 import ProductsDesktop from './ProductsDesktop'
 import { useNavigate } from 'react-router-dom';
+import formatAmount from '../../../helpers/formatAmount';
 
 const CartDesktop = (props) => {
   const navigate = useNavigate()
@@ -13,6 +14,8 @@ const CartDesktop = (props) => {
     "&:hover": {
       backgroundColor: "#fc03cf",
     },
+    width: '25%',
+    fontSize: 16
   });
 
   return (
@@ -24,7 +27,6 @@ const CartDesktop = (props) => {
           <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Price</Typography>
           <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Quantity</Typography>
           <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Size</Typography>
-          {/* <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '6%', textAlign: 'center' }}></Typography> */}
         </div>
         {props.cart.products.length
           ? props.cart.products.map((p, key) => (
@@ -54,7 +56,7 @@ const CartDesktop = (props) => {
               onChange={(e) => props.setInstructions(e.target.value)}
             />
             <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20 }} my={2}>Apply Voucher</Typography>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
               <TextField
                 variant='outlined'
                 placeholder='Voucher Code'
@@ -73,20 +75,29 @@ const CartDesktop = (props) => {
             <div style={{ backgroundColor: '#E6E6E6', padding: 15 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>SUB TOTAL</Typography>
-                <Typography style={{ ...textStyle, fontWeight: 500 }}>Rs. {props.total}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>{formatAmount(props.total)}</Typography>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15 }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>DISCOUNT (if any)</Typography>
-                <Typography style={{ ...textStyle, fontWeight: 500 }}>-Rs. {props.discount}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>-{formatAmount(props.discount)}</Typography>
               </div>
               <hr style={{ backgroundColor: '#000000' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15 }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>TOTAL AMOUNT</Typography>
-                <Typography style={{ ...textStyle, fontWeight: 500 }}>Rs. {props.finalAmount}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>{formatAmount(props.finalAmount)}</Typography>
               </div>
             </div>
             <center>
-              <Link style={{ cursor: 'pointer' }}>
+              <Link style={{ cursor: 'pointer' }}
+                onClick={() => navigate('/checkout', {
+                  state: {
+                    cart: props.cart,
+                    instructions: props.instructions,
+                    total: props.total,
+                    discount: props.discount,
+                    finalAmount: props.finalAmount
+                  }
+                })}>
                 <div style={{ backgroundColor: '#FA861B', border: '1px solid #330C3E', width: '80%', padding: 10, marginTop: 15 }}>
                   <Typography style={{ ...textStyle, fontWeight: 500, color: '#F8F5CC', textAlign: 'center' }}>Proceed to Checkout</Typography>
                 </div>

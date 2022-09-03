@@ -10,6 +10,8 @@ import { useSnackbar } from "notistack";
 import { connect } from "react-redux";
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
 import axios from 'axios'
+import { BASE_URL_1, BASE_URL_2 } from "../constants/urls";
+import formatAmount from "../helpers/formatAmount";
 
 const ProductDetail = (props) => {
     const [product, setProduct] = useState();
@@ -20,14 +22,14 @@ const ProductDetail = (props) => {
 
     const config = {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM5ZmU3MDJiMzZhOWMxNGFiMzY5NCIsImlhdCI6MTY2MTc5NDQyN30.Q1OHlULJRwh9MD5awOjBFLhuwcUdvJYGifv_U__0uIw`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGVmY2NjMDQ4MGRhYjllY2U5ZGY3NCIsImlhdCI6MTY2MTkyNjg3OH0.IOOtT5gzeuEq2hT5T7UpI4pxCkv9vgTP35Aye4PlUko`
         }
     }
 
     const fetchProduct = async () => {
         props.addLoader()
         try {
-            const res = await axios.get(`http://localhost:5000/products/fetchDetails/${id}`)
+            const res = await axios.get(`${BASE_URL_2}/products/fetchDetails/${id}`)
             setProduct(res.data.product)
             props.removeLoader()
         } catch (err) {
@@ -49,7 +51,7 @@ const ProductDetail = (props) => {
         }
         props.addLoader()
         try {
-            await axios.post(`http://localhost:4000/cart/add`, {
+            await axios.post(`${BASE_URL_1}/cart/add`, {
                 productId: id,
                 quantity,
                 size
@@ -77,7 +79,7 @@ const ProductDetail = (props) => {
     const handleAddToWishlist = async () => {
         props.addLoader()
         try {
-            await axios.post(`http://localhost:4000/wishlist/add`, {
+            await axios.post(`${BASE_URL_1}/wishlist/add`, {
                 productId: id
             }, config)
             props.removeLoader()
@@ -120,7 +122,7 @@ const ProductDetail = (props) => {
                 <Grid container my={5}>
                     <Grid item xs={12} md={5}>
                         <center>
-                            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: isMobile ? '100%' : '80%' }}>
+                            <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 900 ? '100%' : '80%' }}>
                                 <div className="carousel-inner">
                                     <div className="carousel-item active">
                                         <img
@@ -162,13 +164,13 @@ const ProductDetail = (props) => {
                         >
                             Product by Bloom By Khushboo
                         </Typography>
-                        <div style={{ display: 'flex', flexDirection: 'row', marginTop: 60 }}>
+                        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: 60 }}>
                             <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 30 }}>
-                                Rs. {product.price}
+                                {formatAmount(product.price)}
                             </Typography>
                             {product.mrp !== product.price &&
-                                <Typography style={{ ...textStyle, fontSize: 30, color: '#928C8C', textDecoration: 'line-through' }} ml={2}>
-                                    {product.mrp}
+                                <Typography style={{ ...textStyle, fontSize: 20, color: '#928C8C', textDecoration: 'line-through' }} ml={2}>
+                                    {formatAmount(product.mrp)}
                                 </Typography>
                             }
                         </div>

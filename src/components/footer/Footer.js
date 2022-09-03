@@ -27,6 +27,13 @@ const Footer = () => {
             <Footer4 />
           </Grid>
         </BrowserView>
+        <TabletView>
+          <Grid container>
+            <Footer1 />
+            <Footer2 />
+            <Footer4 />
+          </Grid>
+        </TabletView>
         <MobileOnlyView>
           <Grid container>
             <Footer1 />

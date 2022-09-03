@@ -6,6 +6,7 @@ import { addLoader, removeLoader } from '../redux/services/actions/loaderActions
 import axios from 'axios'
 import CartDesktop from '../components/cart/desktop/CartDesktop'
 import CartMobile from '../components/cart/mobile/CartMobile'
+import { BASE_URL_1 } from '../constants/urls'
 
 const Cart = (props) => {
     const [instructions, setInstructions] = useState()
@@ -17,14 +18,14 @@ const Cart = (props) => {
     const { enqueueSnackbar } = useSnackbar()
     const config = {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGM5ZmU3MDJiMzZhOWMxNGFiMzY5NCIsImlhdCI6MTY2MTg1MzQ4MX0.jICcee3MryAKyYvx1Ve9uTe-jGcb6bcR8EXdTUFtERw`
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGVmY2NjMDQ4MGRhYjllY2U5ZGY3NCIsImlhdCI6MTY2MTkyNjg3OH0.IOOtT5gzeuEq2hT5T7UpI4pxCkv9vgTP35Aye4PlUko`
         }
     }
 
     const fetchCart = async () => {
         props.addLoader()
         try {
-            const res = await axios.get(`http://localhost:4000/cart/get`, config)
+            const res = await axios.get(`${BASE_URL_1}/cart/get`, config)
             setCart(res.data.cart)
             setTotal(res.data.cart.total)
             setFinalAmount(res.data.cart.total)
@@ -84,7 +85,7 @@ const Cart = (props) => {
                 }
             </MobileOnlyView>
             <TabletView>
-            {cart &&
+                {cart &&
                     <CartDesktop
                         cart={cart}
                         instructions={instructions}
