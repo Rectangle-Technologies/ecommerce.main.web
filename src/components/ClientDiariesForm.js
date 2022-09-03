@@ -8,6 +8,7 @@ import { useSnackbar } from "notistack";
 import DoubleTextComponent from "./DoubleText";
 import AddIcon from "@mui/icons-material/AddCircleTwoTone";
 import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
+import { clientDairyFeedback } from "../redux/services/actions/clientDiariesActions";
 
 const ClientDiariesForm = (props) => {
 	const [images, setImges] = useState([]);
@@ -34,7 +35,15 @@ const ClientDiariesForm = (props) => {
         },
         validationSchema: ClientDiariesSchema,
         onSubmit: (values, actions) => {
-            // props.addNewQuery(values, props.auth.token, enqueueSnackbar, actions.setSubmitting, actions.resetForm);
+            if (!images.length) {
+                enqueueSnackbar("Atleast one image is required", {
+                    autoHideDuration: 3000,
+                    variant: "error"
+                });
+                actions.setSubmitting(false);
+                return;
+            }
+            props.clientDairyFeedback(values, props.auth.token, images, enqueueSnackbar, actions.setSubmitting, actions.resetForm);
         }
     })
 
@@ -51,7 +60,7 @@ const ClientDiariesForm = (props) => {
     return (
         <>
             <DoubleTextComponent frontText="Add a review" backText="Want to be featured" />
-            <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none" }}>
+            <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: "5em" }}>
                 <FormikProvider value={formik}>
                     <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                         <Grid container spacing={0} style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}>
@@ -189,4 +198,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {})(ClientDiariesForm);
+export default connect(mapStateToProps, { clientDairyFeedback })(ClientDiariesForm);
