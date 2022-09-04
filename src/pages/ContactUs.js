@@ -11,6 +11,7 @@ import GoogleMap from "../components/GoogleMaps";
 import { connect } from "react-redux";
 import { addNewQuery } from "../redux/services/actions/contactActions";
 import { useSnackbar } from "notistack";
+import { isMobile } from "react-device-detect";
 
 const ContactUs = (props) => {
     const [progress, setProgress] = useState(0);
@@ -55,23 +56,22 @@ const ContactUs = (props) => {
                     <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="CONTACT US" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" />
                     <Grid container spacing={0} style={{ padding: "0px 10vw", justifyContent: "center", alignItems: "center" }}>
                         <Grid item xs={12} md={4}>
-                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <LocationOnOutlinedIcon style={{ fontSize: "56px" }} />
-                                <Typography style={{ fontSize: "20px", padding: "0px 20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} >Monte Carlo Fashions Limited
-                                    B-XXIX-106, G.T. Road, Sherpur,
-                                    Ludhiana-141003 Punjab</Typography>
+                            <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", padding: "10px 0px 0px 0px" }}>
+                                <PhoneInTalkOutlinedIcon style={{ fontSize: isMobile ? "30px" : "56px" }} />
+                                <Typography style={{ fontSize: isMobile ? "14px" : "20px", padding: isMobile ? "0px 0px 0px 10px" : "0px 20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} >+91 98765 43210</Typography>
                             </div>
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <PhoneInTalkOutlinedIcon style={{ fontSize: "56px" }} />
-                                <Typography style={{ fontSize: "20px", fontFamily: "Poppins", padding: "0px 20px", lineHeight: "30px", letterSpacing: "2%" }} >+91 98765 43210</Typography>
+                            <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "center", padding: "10px 0px 0px 0px" }}>
+                                <EmailOutlinedIcon style={{ fontSize: isMobile ? "30px" : "56px" }} />
+                                <Typography style={{ fontSize: isMobile ? "14px" : "20px", padding: isMobile ? "0px 0px 0px 10px" : "0px 20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} >bloomByKhushboo <Typography style={{ fontSize: isMobile ? "14px" : "20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} color={"black"}>&nbsp;@gmailcom</Typography></Typography>
                             </div>
                         </Grid>
                         <Grid item xs={12} md={4}>
-                            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
-                                <EmailOutlinedIcon style={{ fontSize: "56px" }} />
-                                <Typography style={{ fontSize: "20px", fontFamily: "Poppins", lineHeight: "30px", padding: "0px 20px", letterSpacing: "2%" }} >bloomByKhushboo <Typography style={{ fontSize: "20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} color={"black"}>&nbsp;@gmailcom</Typography></Typography>
+                            <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", padding: "10px 0px 0px 0px" }}>
+                                <LocationOnOutlinedIcon style={{ fontSize: isMobile ? "30px" : "56px" }} />
+                                <Typography style={{ fontSize: isMobile ? "14px" : "20px", padding: isMobile ? "0px 0px 0px 10px" : "0px 20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} >
+                                F-21, Sacred Heart World, Opposite of Sacred Heart Town, Wanowrei, Pune, Maharashtra</Typography>
                             </div>
                         </Grid>
                     </Grid>
