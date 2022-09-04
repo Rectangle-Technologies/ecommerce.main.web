@@ -44,6 +44,7 @@ const ClientDiariesForm = (props) => {
                 return;
             }
             props.clientDairyFeedback(values, props.auth.token, images, enqueueSnackbar, actions.setSubmitting, actions.resetForm);
+            setImges([]);
         }
     })
 

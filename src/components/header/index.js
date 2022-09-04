@@ -5,21 +5,24 @@ import FixedNotificationDesktop from "./desktop/FixedNotification";
 import FixedNotificationMobile from "./mobile/FixedNotification";
 import NavbarDesktop from "./desktop/Navbar";
 import NavbarMobile from "./mobile/Navbar";
+import Desktop from "../responsive/Desktop";
+import Tablet from "../responsive/Tablet";
+import Mobile from "../responsive/Mobile";
 
 const Header = (props) => {
     const { innerWidth: width, innerHeight: height } = window;
     return (
         <>
             {/* fix notification */}
-            <BrowserView>
+            <Desktop>
                 <FixedNotificationDesktop />
-            </BrowserView>
-            <TabletView>
-                <FixedNotificationDesktop />
-            </TabletView>
-            <MobileOnlyView>
+            </Desktop>
+            <Tablet>
                 <FixedNotificationMobile />
-            </MobileOnlyView>
+            </Tablet>
+            <Mobile>
+                <FixedNotificationMobile />
+            </Mobile>
 
 
             {/* NAVBAR */}

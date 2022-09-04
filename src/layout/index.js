@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header";
+import screen from "../utils/screen";
 
 const Layout = (props) => {
   return (
@@ -15,22 +16,28 @@ const Layout = (props) => {
       <div style={{ position: "fixed", right: 0, top: "50%", width: isMobile ? "10vw" : "4vw", transform: "translate(0%, -50%)" }} >
         <div style={{ position: "relative", top: "-50%" }}>
           <Grid container>
-            <Link href="https://www.facebook.com" rel="noopener" target="_blank">
             <Grid item xs={12}>
-              <img src="/fb.png" style={{ width: "100%" }} />
-            </Grid>
-            </Link>
-
-            <Grid item xs={12}>
-              <img src="/wa.png" style={{ width: "100%" }} />
+              <Link href="https://www.facebook.com" rel="noopener" target="_blank">
+                <img src="/fb.png" style={{ width: "100%" }} />
+              </Link>
             </Grid>
 
             <Grid item xs={12}>
-              <img src="/tw.png" style={{ width: "100%" }} />
+              <Link href="https://www.whatsapp.com" rel="noopener" target="_blank">
+                <img src="/wa.png" style={{ width: "100%" }} />
+              </Link>
             </Grid>
 
             <Grid item xs={12}>
-              <img src="/pn.png" style={{ width: "100%" }} />
+              <Link href="https://www.twitter.com" rel="noopener" target="_blank">
+                <img src="/tw.png" style={{ width: "100%" }} />
+              </Link>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Link href="https://www.pinterest.com" rel="noopener" target="_blank">
+                <img src="/pn.png" style={{ width: "100%" }} />
+              </Link>
             </Grid>
           </Grid>
         </div>
