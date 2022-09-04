@@ -8,7 +8,7 @@ export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
   dispatch(addLoader());
   try {
     const res = await axios.post(
-      `${BASE_URL_1}/auth/admin/login`,
+      `${BASE_URL_1}/auth/login`,
       data
     );
     enqueueSnackbar("Login Successful", {
@@ -22,7 +22,7 @@ export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
         user: res.data.user,
       },
     });
-    navigate("../dashboard", { replace: true });
+    navigate("/", { replace: true });
     dispatch(removeLoader());
   } catch (err) {
     console.log(err);

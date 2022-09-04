@@ -22,7 +22,7 @@ const ProductDetail = (props) => {
 
     const config = {
         headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMGVmY2NjMDQ4MGRhYjllY2U5ZGY3NCIsImlhdCI6MTY2MTkyNjg3OH0.IOOtT5gzeuEq2hT5T7UpI4pxCkv9vgTP35Aye4PlUko`
+            Authorization: `Bearer ${props.auth.token}`
         }
     }
 
@@ -124,14 +124,16 @@ const ProductDetail = (props) => {
                         <center>
                             <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 900 ? '100%' : '80%' }}>
                                 <div className="carousel-inner">
-                                    {product.imageUrls.map((url, index) => {return (
-                                    <div className={"carousel-item" + (index === 0 ? " active" : "")}>
-                                        <img
-                                            className="d-block w-100" key={index}
-                                            src={url}
-                                            alt={product.name}
-                                        />
-                                    </div>)})}
+                                    {product.imageUrls.map((url, index) => {
+                                        return (
+                                            <div className={"carousel-item" + (index === 0 ? " active" : "")}>
+                                                <img
+                                                    className="d-block w-100" key={index}
+                                                    src={url}
+                                                    alt={product.name}
+                                                />
+                                            </div>)
+                                    })}
                                 </div>
                                 <a className="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                                     <span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -385,10 +387,8 @@ const ProductDetail = (props) => {
     );
 };
 
-const mapStateToProps = state => {
-    return {
-        auth: state.auth
-    }
-}
+const mapStateToProps = state => ({
+    auth: state.auth
+})
 
 export default connect(mapStateToProps, { addLoader, removeLoader })(ProductDetail);

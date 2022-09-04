@@ -8,6 +8,7 @@ import Cart from './pages/Cart'
 import ClientDiariesComponent from "./components/ClientDiaries";
 import Checkout from "./pages/Checkout";
 import OrderStatus from "./pages/OrderStatus";
+import Login from "./pages/Login";
 
 const routes = [
   {
@@ -47,6 +48,10 @@ const routes = [
   {
     path: '/checkout',
     element: <Checkout />
+  },
+  {
+    path: 'login',
+    element: <Login />
   },
   {
     path: "*",

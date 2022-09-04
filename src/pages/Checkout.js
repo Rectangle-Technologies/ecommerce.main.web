@@ -83,7 +83,7 @@ const Checkout = (props) => {
                             <Grid key={key} container mt={3}>
                                 <Grid item xs={5} md={3} mx={2}>
                                     <img
-                                        src="https://i.pinimg.com/736x/33/66/50/336650d646d0f5d9e144e626323a3d42.jpg"
+                                        src={p.productId.imageUrls[0]}
                                         style={{ width: '100%', aspectRatio: 0.7 }}
                                     />
                                 </Grid>
