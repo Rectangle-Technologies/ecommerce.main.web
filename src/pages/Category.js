@@ -1,93 +1,51 @@
-import { Box, FormControl, InputLabel, Link, Menu, MenuItem, Select, Slider, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import DoubleText from '../components/DoubleText'
-import MenuIcon from '@mui/icons-material/Menu';
-import textStyle from '../helpers/textStyle';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-import formatAmount from '../helpers/formatAmount';
+import { useSnackbar } from 'notistack';
+import React, { useEffect, useState } from 'react'
+import CategoryDesktop from '../components/category/desktop/CategoryDesktop';
+import { connect } from 'react-redux';
+import { addLoader, removeLoader } from '../redux/services/actions/loaderActions';
+import axios from 'axios';
+import { BASE_URL_2 } from '../constants/urls';
+import { useParams } from 'react-router-dom';
 
-function valuetext(value) {
-    return formatAmount(value);
-}
+const Category = (props) => {
+    const [category, setCategory] = useState()
+    const [products, setProducts] = useState()
+    const { enqueueSnackbar } = useSnackbar()
+    const { id } = useParams()
 
-const Category = () => {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [value, setValue] = useState([500, 1500]);
-    const open = Boolean(anchorEl);
-    const marks = [
-        {
-            value: 0,
-            label: formatAmount('0')
-        },
-        {
-            value: 5000,
-            label: formatAmount('5000')
+    const fetchCategory = async () => {
+        props.addLoader()
+        try {
+            let res = await axios.get(`${BASE_URL_2}/products/category/${id}`)
+            setCategory(res.data.category)
+            res = await axios.get(`${BASE_URL_2}/products/fetchByCategory/${id}`)
+            setProducts(res.data.products)
+            props.removeLoader()
+        } catch (err) {
+            console.log(err)
+            props.removeLoader()
+            let message = 'Something went wrong'
+            if (err?.response?.data?.errors) {
+                message = err?.response?.data?.errors[0].msg
+            } else if (err?.response?.data?.message) {
+                message = err?.response?.data?.message
+            }
+            enqueueSnackbar(message, {
+                variant: 'error',
+                autoHideDuration: 3000
+            })
         }
-    ]
+    }
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+    useEffect(() => {
+        fetchCategory()
+    }, [id])
 
     return (
-        <div style={{ margin: 'auto', width: '80%' }}>
-            <DoubleText frontText='KURTIS' backText='' />
-            <hr style={{ backgroundColor: '#000000' }} />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <MenuIcon fontSize='small' />
-                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 20, fontStyle: 'medium' }} ml={1}>Refined By:</Typography>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', margin: 15 }}>
-                <Link style={{ cursor: 'pointer' }} onClick={handleClick}>
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between',
-                            padding: '10px 15px',
-                            border: '1px solid black',
-                            minWidth: 180,
-                            borderRadius: 10
-                        }}>
-                        <Typography style={{ ...textStyle, fontSize: 18, fontWeight: 500 }}>Price</Typography>
-                        <ArrowDropDownIcon />
-                    </div>
-                </Link>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                        style: {
-                            padding: 20
-                        }
-                    }}
-                >
-                    <MenuItem onClick={handleClose} style={{ backgroundColor: 'white' }}>
-                        <Box sx={{ width: 300 }}>
-                            <Slider
-                                getAriaLabel={() => 'Temperature range'}
-                                value={value}
-                                onChange={handleChange}
-                                valueLabelDisplay="auto"
-                                getAriaValueText={valuetext}
-                                min={0}
-                                max={5000}
-                                marks={marks}
-                            />
-                        </Box>
-                    </MenuItem>
-                </Menu>
-            </div>
-        </div>
+        <>
+            <CategoryDesktop category={category} products={products} setProducts={setProducts} />
+        </>
     )
 }
 
-export default Category
+export default connect(null, { addLoader, removeLoader })(Category)

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import textStyle from "../../helpers/textStyle";
 import TypographyLink from "../TypographyLink";
 
-const Footer2 = () => {
+const Footer2 = (props) => {
   const navigate = useNavigate()
   return (
     <Grid item xs={12} md={5.5} px={2}>
@@ -54,21 +54,11 @@ const Footer2 = () => {
           >
             Categories
           </Typography>
-          <TypographyLink style={textStyle} my={1}>
-            Full Sets
-          </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
-            Kurtis
-          </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
-            Jewellery
-          </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
-            Dress Material
-          </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
-            Sarees
-          </TypographyLink>
+          {props?.categories?.map((c, idx) => (
+            <TypographyLink key={idx} style={textStyle} my={1} onClick={() => navigate(`/category/${c._id}`, { replace: true })}>
+              {c.title}
+            </TypographyLink>
+          ))}
         </Grid>
         <Grid item xs={4} my={1}>
           <Typography
