@@ -28,8 +28,9 @@ const Checkout = (props) => {
     });
 
     useEffect(() => {
-        if (!location.state) {
+        if (!location.state || !props?.auth?.isAuthenticated) {
             navigate('/', { replace: true })
+            return
         }
     }, [])
 
@@ -165,6 +166,7 @@ const Checkout = (props) => {
                                     {...getFieldProps("mobile_no")}
                                     error={Boolean(touched.mobile_no && errors.mobile_no)}
                                     helperText={touched.mobile_no && errors.mobile_no}
+                                    value={props?.auth?.user?.contact}
                                 />
                                 <Typography style={{ ...textStyle, fontFamily: 'Playfair Display', fontWeight: 500, fontSize: 24, textDecoration: 'underline' }} my={3}>
                                     Shipping Details
@@ -176,11 +178,13 @@ const Checkout = (props) => {
                                             label='First Name'
                                             name="first_name"
                                             variant='outlined'
+                                            placeholder='First Name'
                                             type="text"
                                             id="first_name"
                                             {...getFieldProps("first_name")}
                                             error={Boolean(touched.first_name && errors.first_name)}
                                             helperText={touched.first_name && errors.first_name}
+                                            value={props?.auth?.user?.name.split(' ')[0]}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}>
@@ -194,6 +198,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("last_name")}
                                             error={Boolean(touched.last_name && errors.last_name)}
                                             helperText={touched.last_name && errors.last_name}
+                                            value={props?.auth?.user?.name.split(' ')[1]}
                                         />
                                     </Grid>
                                 </Grid>
@@ -208,6 +213,7 @@ const Checkout = (props) => {
                                         {...getFieldProps("address")}
                                         error={Boolean(touched.address && errors.address)}
                                         helperText={touched.address && errors.address}
+                                        value={props?.auth?.user?.address?.line1}
                                     />
                                 </div>
                                 <Grid container my={1} spacing={2}>
@@ -222,6 +228,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("city")}
                                             error={Boolean(touched.city && errors.city)}
                                             helperText={touched.city && errors.city}
+                                            value={props?.auth?.user?.address?.city}
                                         />
                                     </Grid>
                                     <Grid item xs={6} md={4}>
@@ -235,6 +242,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("state")}
                                             error={Boolean(touched.state && errors.state)}
                                             helperText={touched.state && errors.state}
+                                            value={props?.auth?.user?.address?.state}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -248,6 +256,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("pincode")}
                                             error={Boolean(touched.pincode && errors.pincode)}
                                             helperText={touched.pincode && errors.pincode}
+                                            value={props?.auth?.user?.address?.pincode}
                                         />
                                     </Grid>
                                 </Grid>
@@ -283,4 +292,10 @@ const Checkout = (props) => {
     )
 }
 
-export default connect(null, { addLoader, removeLoader })(Checkout)
+const mapStateToProps = state => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps, { addLoader, removeLoader })(Checkout)
