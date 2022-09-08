@@ -1,29 +1,20 @@
-import { Button, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import DoubleText from '../../DoubleText';
-import SortIcon from '@mui/icons-material/Sort';
-import textStyle from '../../../helpers/textStyle';
+import DoubleTextComponent from '../../DoubleText'
+import { Box, Button, Divider, Drawer, Grid, Link, List, ListItem } from '@mui/material';
 import PriceMenu from './PriceMenu';
 import SizeMenu from './SizeMenu';
-import { styled } from "@mui/material/styles";
-import ProductLayout from '../../ProductLayout';
-import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
 import { connect } from 'react-redux';
+import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { BASE_URL_2 } from '../../../constants/urls';
+import ProductLayout from '../../ProductLayout';
+import FiltersDrawer from './FiltersDrawer';
 
-const CategoryDesktop = (props) => {
-    const [priceRange, setPriceRange] = useState([0, 5000]);
+const CategoryMobile = (props) => {
+    const [priceRange, setPriceRange] = useState([0, 5000])
     const [sizes, setSizes] = useState([])
     const { enqueueSnackbar } = useSnackbar()
-    const CustomButton = styled(Button)({
-        textTransform: "none",
-        backgroundColor: "#eb31e2",
-        "&:hover": {
-            backgroundColor: "#fc03cf",
-        },
-    });
 
     const handleFilter = async () => {
         props.addLoader()
@@ -35,6 +26,7 @@ const CategoryDesktop = (props) => {
             })
             props.setProducts(res.data.products)
             props.removeLoader()
+            toggleDrawer()
         } catch (err) {
             props.removeLoader()
             console.log(err)
@@ -51,19 +43,42 @@ const CategoryDesktop = (props) => {
         }
     }
 
+    const list = () => (
+        <Box
+            sx={{ width: '65vw', margin: 2 }}
+            role="presentation"
+            onKeyDown={toggleDrawer}
+        >
+            <List>
+                <ListItem>
+                    <PriceMenu value={priceRange} setValue={setPriceRange} />
+                </ListItem>
+                <Divider />
+                <ListItem>
+                    <SizeMenu sizes={sizes} setSizes={setSizes} />
+                </ListItem>
+                <ListItem>
+                    <CustomButton variant='contained' onClick={handleFilter}>Apply</CustomButton>
+                </ListItem>
+            </List>
+        </Box >
+    )
+
+    const toggleDrawer = () => {
+        setIsOpen(!isOpen)
+    }
+
     return (
-        <div style={{ margin: 'auto', width: '80%' }}>
-            <DoubleText frontText={props?.category?.title} backText='' left='-130%' />
+        <div style={{ margin: 'auto', width: '90%' }}>
+            <DoubleTextComponent frontText={props?.category?.title} backText='' />
             <hr style={{ backgroundColor: '#000000' }} />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-                <SortIcon fontSize='small' />
-                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 20, fontStyle: 'medium' }} ml={1}>Refined By:</Typography>
-            </div>
-            <div style={{ display: 'flex', alignItems: 'center', margin: 15 }}>
-                <PriceMenu value={priceRange} setValue={setPriceRange} />
-                <SizeMenu sizes={sizes} setSizes={setSizes} />
-                <CustomButton variant='contained' sx={{ mx: 1 }} onClick={handleFilter}>Apply</CustomButton>
-            </div>
+            <FiltersDrawer
+                handleFilter={handleFilter}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+                sizes={sizes}
+                setSizes={setSizes}
+            />
             <div style={{ margin: 20 }}>
                 <Grid container spacing={6} style={{ padding: "0px 5vw 0px 5vw" }}>
                     {props?.products?.map((p, idx) => (
@@ -83,4 +98,4 @@ const CategoryDesktop = (props) => {
     )
 }
 
-export default connect(null, { addLoader, removeLoader })(CategoryDesktop)
+export default connect(null, { addLoader, removeLoader })(CategoryMobile)

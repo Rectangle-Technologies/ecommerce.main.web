@@ -6,6 +6,10 @@ import { addLoader, removeLoader } from '../redux/services/actions/loaderActions
 import axios from 'axios';
 import { BASE_URL_2 } from '../constants/urls';
 import { useParams } from 'react-router-dom';
+import CategoryMobile from '../components/category/mobile/CategoryMobile';
+import Desktop from '../components/responsive/Desktop'
+import Tablet from '../components/responsive/Tablet'
+import Mobile from '../components/responsive/Mobile'
 
 const Category = (props) => {
     const [category, setCategory] = useState()
@@ -22,7 +26,6 @@ const Category = (props) => {
             setProducts(res.data.products)
             props.removeLoader()
         } catch (err) {
-            console.log(err)
             props.removeLoader()
             let message = 'Something went wrong'
             if (err?.response?.data?.errors) {
@@ -43,7 +46,9 @@ const Category = (props) => {
 
     return (
         <>
-            <CategoryDesktop category={category} products={products} setProducts={setProducts} />
+            {/* <CategoryDesktop category={category} products={products} setProducts={setProducts} />
+                <CategoryDesktop category={category} products={products} setProducts={setProducts} /> */}
+            <CategoryMobile category={category} products={products} setProducts={setProducts} />
         </>
     )
 }

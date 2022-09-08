@@ -10,7 +10,7 @@ const ProductLayout = (props) => {
     return (
         <>
             <div style={{ position: "relative" }}>
-                <img style={{ aspectRatio: 0.65, width: "100%", objectFit: "cover", borderRadius: "5px" }} src="/BANNER1.jpeg" />
+                <img style={{ aspectRatio: 0.65, width: "100%", objectFit: "cover", borderRadius: "5px" }} src={props.imageUrl} />
                 {props.new && <div style={{ color: "white", width: "60px", height: "30px", position: "absolute", left: '10px', border: "1px solid white", borderRadius: "4px", top: "15px", display: "flex", "justifyContent": "center", alignItems: "center", ...newButton }}>
                     <center>
                         <Typography style={{ fontFamily: "Poppins", fontSize: "16px" }}>New</Typography>

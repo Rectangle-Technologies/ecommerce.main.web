@@ -1,10 +1,13 @@
 import { Box, Container, Grid } from "@mui/material";
-import { BrowserView, TabletView, MobileOnlyView } from "react-device-detect";
+import Desktop from '../responsive/Desktop'
+import Tablet from '../responsive/Desktop'
+import Mobile from '../responsive/Desktop'
 import React from "react";
 import Footer1 from "./Footer1";
 import Footer2 from "./Footer2";
 import Footer3 from "./Footer3";
 import Footer4 from "./Footer4";
+import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
 
 const Footer = (props) => {
   return (
