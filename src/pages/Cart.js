@@ -7,6 +7,7 @@ import axios from 'axios'
 import CartDesktop from '../components/cart/desktop/CartDesktop'
 import CartMobile from '../components/cart/mobile/CartMobile'
 import { BASE_URL_1 } from '../constants/urls'
+import { useNavigate } from 'react-router-dom'
 
 const Cart = (props) => {
     const [instructions, setInstructions] = useState()
@@ -16,6 +17,7 @@ const Cart = (props) => {
     const [discount, setDiscount] = useState(0)
     const [finalAmount, setFinalAmount] = useState(0)
     const { enqueueSnackbar } = useSnackbar()
+    const navigate = useNavigate()
     const config = {
         headers: {
             Authorization: `Bearer ${props.auth.token}`
@@ -46,6 +48,12 @@ const Cart = (props) => {
     }
 
     useEffect(() => {
+        if (!props?.auth?.isAuthenticated) {
+            navigate('/login', {
+                state: { navigateUrl: `/cart` }
+            })
+            return
+        }
         fetchCart()
     }, [])
     return (
