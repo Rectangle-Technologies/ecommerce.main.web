@@ -34,7 +34,7 @@ const Checkout = (props) => {
         }
     }, [])
 
-    const checkoutHandler = async () => {
+    const checkoutHandler = async (values) => {
         props.addLoader()
         try {
             const res = await axios.post(`${BASE_URL_3}/payment/createOrder`, {
@@ -43,10 +43,19 @@ const Checkout = (props) => {
             localStorage.setItem('order', JSON.stringify({
                 products: location?.state?.cart?.products,
                 amount: location?.state?.finalAmount,
-                instructions: location?.state?.instructions
+                instructions: location?.state?.instructions,
+                userDetails: {
+                    name: values.first_name + ' ' + values.last_name,
+                    contact: values.mobile_no,
+                    address: {
+                        line1: values.address,
+                        city: values.city,
+                        state: values.state,
+                        pincode: values.pincode
+                    }
+                }
             }))
             const options = {
-                // SECRET KEY: AYaj4UxyYjSJZZD3bHYUwEP3
                 key: res.data.data.key, // Enter the Key ID generated from the Dashboard
                 amount: res.data.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 currency: res.data.data.currency,
@@ -56,9 +65,9 @@ const Checkout = (props) => {
                 order_id: res.data.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                 callback_url: `${BASE_URL_3}/payment/verify`,
                 prefill: {
-                    name: "Gaurav Kumar",
-                    email: "gaurav.kumar@example.com",
-                    contact: "9999999999",
+                    name: props?.auth?.user?.name,
+                    email: props?.auth?.user?.email,
+                    contact: props?.auth?.user?.contact,
                 },
                 theme: {
                     color: "#3399cc",
@@ -85,18 +94,17 @@ const Checkout = (props) => {
 
     const formik = useFormik({
         initialValues: {
-            first_name: props?.auth?.user?.first_name || "",
-            last_name: props?.auth?.user?.last_name || "",
-            mobile_no: props?.auth?.user?.mobile_no || "",
-            address: props?.auth?.user?.address || "",
-            city: props?.auth?.user?.city || "",
-            state: props?.auth?.user?.state || "",
-            pincode: props?.auth?.user?.pincode || "",
+            first_name: props?.auth?.user?.name.split(' ')[0] || "",
+            last_name: props?.auth?.user?.name.split(' ')[1] || "",
+            mobile_no: props?.auth?.user?.contact || "",
+            address: props?.auth?.user?.address?.line1 || "",
+            city: props?.auth?.user?.address?.city || "",
+            state: props?.auth?.user?.address?.state || "",
+            pincode: props?.auth?.user?.address?.pincode || "",
         }, validationSchema: CheckoutSchema,
         onSubmit: (values, { setSubmitting, resetForm }) => {
-            console.log(values);
             // SAMYAK VALUES KE ANDAR DATA HAI FORM KA
-            checkoutHandler();
+            checkoutHandler(values);
         }
     })
 
@@ -166,7 +174,6 @@ const Checkout = (props) => {
                                     {...getFieldProps("mobile_no")}
                                     error={Boolean(touched.mobile_no && errors.mobile_no)}
                                     helperText={touched.mobile_no && errors.mobile_no}
-                                    value={props?.auth?.user?.contact}
                                 />
                                 <Typography style={{ ...textStyle, fontFamily: 'Playfair Display', fontWeight: 500, fontSize: 24, textDecoration: 'underline' }} my={3}>
                                     Shipping Details
@@ -184,7 +191,6 @@ const Checkout = (props) => {
                                             {...getFieldProps("first_name")}
                                             error={Boolean(touched.first_name && errors.first_name)}
                                             helperText={touched.first_name && errors.first_name}
-                                            value={props?.auth?.user?.name.split(' ')[0]}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}>
@@ -198,7 +204,6 @@ const Checkout = (props) => {
                                             {...getFieldProps("last_name")}
                                             error={Boolean(touched.last_name && errors.last_name)}
                                             helperText={touched.last_name && errors.last_name}
-                                            value={props?.auth?.user?.name.split(' ')[1]}
                                         />
                                     </Grid>
                                 </Grid>
@@ -213,7 +218,6 @@ const Checkout = (props) => {
                                         {...getFieldProps("address")}
                                         error={Boolean(touched.address && errors.address)}
                                         helperText={touched.address && errors.address}
-                                        value={props?.auth?.user?.address?.line1}
                                     />
                                 </div>
                                 <Grid container my={1} spacing={2}>
@@ -228,7 +232,6 @@ const Checkout = (props) => {
                                             {...getFieldProps("city")}
                                             error={Boolean(touched.city && errors.city)}
                                             helperText={touched.city && errors.city}
-                                            value={props?.auth?.user?.address?.city}
                                         />
                                     </Grid>
                                     <Grid item xs={6} md={4}>
@@ -242,7 +245,6 @@ const Checkout = (props) => {
                                             {...getFieldProps("state")}
                                             error={Boolean(touched.state && errors.state)}
                                             helperText={touched.state && errors.state}
-                                            value={props?.auth?.user?.address?.state}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -256,7 +258,6 @@ const Checkout = (props) => {
                                             {...getFieldProps("pincode")}
                                             error={Boolean(touched.pincode && errors.pincode)}
                                             helperText={touched.pincode && errors.pincode}
-                                            value={props?.auth?.user?.address?.pincode}
                                         />
                                     </Grid>
                                 </Grid>
