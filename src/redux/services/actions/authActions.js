@@ -22,7 +22,8 @@ export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
         user: res.data.user,
       },
     });
-    navigate("/", { replace: true });
+    const url = data.navigateUrl || '/'
+    navigate(url, { replace: true });
     dispatch(removeLoader());
   } catch (err) {
     console.log(err);

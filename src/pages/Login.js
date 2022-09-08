@@ -16,13 +16,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { connect } from "react-redux";
 import { login } from "../redux/services/actions/authActions";
 import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
 function Login(props) {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const location = useLocation()
 
     React.useEffect(() => {
         if (props.auth?.isAuthenticated) {
@@ -34,7 +35,7 @@ function Login(props) {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
         props.login(
-            { email: data.get("email"), password: data.get("password") },
+            { email: data.get("email"), password: data.get("password"), navigateUrl: location?.state?.navigateUrl },
             enqueueSnackbar,
             navigate,
         );
