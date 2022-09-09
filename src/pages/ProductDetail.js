@@ -17,6 +17,7 @@ const ProductDetail = (props) => {
     const [product, setProduct] = useState();
     const [quantity, setQuantity] = useState(1)
     const [size, setSize] = useState()
+    const [showMessage, setShowMessage] = useState(false)
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams()
     const navigate = useNavigate()
@@ -119,6 +120,17 @@ const ProductDetail = (props) => {
         }
     }
 
+    const handleSizeChange = (size, product) => {
+        if (product.type === 'ORDER' || size.stock > 0) {
+            setSize(size.title)
+        }
+        if (product.type === 'STOCK' && size.stock < 4) {
+            setShowMessage(true)
+        } else if (product.type === 'ORDER' || size.stock >= 4) {
+            setShowMessage(false)
+        }
+    }
+
     useEffect(() => {
         fetchProduct()
     }, [])
@@ -180,33 +192,53 @@ const ProductDetail = (props) => {
                         <Typography style={{ ...textStyle, fontFamily: "Roboto" }} my={2}>
                             Select size:
                         </Typography>
-                        <Box style={{ display: "flex", flexDirection: "row" }}>
-                            {product.sizes.map((s, key) => (
-                                <Link key={key} style={{ cursor: 'pointer' }} onClick={() => setSize(s.title)}>
-                                    <div
-                                        style={{
-                                            border: s.title === size ? "1px solid #eb31e2" : "1px solid #222222",
-                                            borderRadius: "50%",
-                                            width: 40,
-                                            height: 40,
-                                            padding: "6px",
-                                            margin: "0px 20px 0px 0px",
-                                        }}
+                        <div>
+                            <Box style={{ display: "flex", flexDirection: "row" }}>
+                                {product.sizes.map((s, key) => (
+                                    <Link
+                                        key={key}
+                                        style={{ cursor: product.type === 'ORDER' || s.stock > 0 ? 'pointer' : 'default' }}
+                                        onClick={() => handleSizeChange(s, product)}
                                     >
-                                        <Typography
+                                        <div
                                             style={{
-                                                ...textStyle,
-                                                fontFamily: "Roboto",
-                                                textAlign: "center",
-                                                color: s.title === size ? '#eb31e2' : '#222222'
+                                                border: product.type === 'ORDER' || s.stock > 0
+                                                    ?
+                                                    s.title === size
+                                                        ? "1px solid #eb31e2"
+                                                        : "1px solid #222222"
+                                                    : '1px solid #d2d4d6',
+                                                borderRadius: "50%",
+                                                width: 40,
+                                                height: 40,
+                                                padding: "6px",
+                                                margin: "0px 20px 0px 0px",
                                             }}
                                         >
-                                            {s.title}
-                                        </Typography>
-                                    </div>
-                                </Link>
-                            ))}
-                        </Box>
+                                            <Typography
+                                                style={{
+                                                    ...textStyle,
+                                                    fontFamily: "Roboto",
+                                                    textAlign: "center",
+                                                    color: product.type === 'ORDER' || s.stock > 0
+                                                        ?
+                                                        s.title === size
+                                                            ? "#eb31e2"
+                                                            : "#222222"
+                                                        : '#d2d4d6',
+                                                    textDecoration: product.type === 'ORDER' || s.stock > 0
+                                                        ? 'none'
+                                                        : 'line-through'
+                                                }}
+                                            >
+                                                {s.title}
+                                            </Typography>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </Box>
+                            {showMessage && <Typography my={1} style={{ ...textStyle, color: 'red' }}>Only few left!</Typography>}
+                        </div>
                         <Box style={{ display: "flex" }} my={5}>
                             <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>
                                 <div
