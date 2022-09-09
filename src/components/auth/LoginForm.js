@@ -45,6 +45,7 @@ const LoginForm = (props) => {
                         placeholder="Password"
                         type='password'
                         onChange={(e) => setLoginState({ ...loginState, password: e.target.value })}
+                        onKeyDown={handleLogin}
                     />
                 </div>
             </div>
