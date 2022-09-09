@@ -2,7 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import Collapsable from "./Collapsable";
 
-const Footer3 = () => {
+const Footer3 = (props) => {
   const list1 = [
     {
       name: "My Account",
@@ -29,28 +29,12 @@ const Footer3 = () => {
       url: ''
     },
   ];
-  const list2 = [
-    {
-      name: "Full Sets",
-      url: ''
-    },
-    {
-      name: "Kurtis",
-      url: ''
-    },
-    {
-      name: "Jewellery",
-      url: ''
-    },
-    {
-      name: "Dress Material",
-      url: ''
-    },
-    {
-      name: "Sarees",
-      url: ''
-    },
-  ];
+  const list2 = props?.categories?.map((category, idx) => {
+    return {
+      name: category.title,
+      url: `/category/${category._id}`
+    }
+  });
   const list3 = [
     {
       name: "Privacy Policy",

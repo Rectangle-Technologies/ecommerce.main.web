@@ -9,6 +9,7 @@ import ClientDiariesComponent from "./components/ClientDiaries";
 import Checkout from "./pages/Checkout";
 import OrderStatus from "./pages/OrderStatus";
 import Login from "./pages/Login";
+import Category from "./pages/Category";
 
 const routes = [
   {
@@ -42,6 +43,10 @@ const routes = [
       {
         path: '/orderstatus/:status',
         element: <OrderStatus />
+      },
+      {
+        path: '/category/:id',
+        element: <Category />
       }
     ],
   },

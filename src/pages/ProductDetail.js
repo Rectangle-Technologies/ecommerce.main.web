@@ -5,7 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import DoubleTextComponent from "../components/DoubleText";
 import ProductLayout from "../components/ProductLayout";
 import { isMobile } from "react-device-detect";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { connect } from "react-redux";
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
@@ -19,6 +19,7 @@ const ProductDetail = (props) => {
     const [size, setSize] = useState()
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const config = {
         headers: {
@@ -46,6 +47,12 @@ const ProductDetail = (props) => {
             enqueueSnackbar('Please select size', {
                 variant: 'error',
                 autoHideDuration: 3000
+            })
+            return
+        }
+        if (!props.auth.isAuthenticated) {
+            navigate('/login', {
+                state: { navigateUrl: `/product/${id}` }
             })
             return
         }

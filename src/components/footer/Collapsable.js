@@ -39,7 +39,7 @@ const Collapsable = (props) => {
         </Box>
       </Link>
       <Collapse in={isOpen}>
-        {props.list.map((item, key) => {
+        {props?.list?.map((item, key) => {
           return (
             <TypographyLink key={key} style={textStyle} my={1} onClick={() => navigate(`${item.url}`, { replace: true })}>
               {item.name}

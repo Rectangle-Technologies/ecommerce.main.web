@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import { connect, Provider } from "react-redux";
 import { removeLoader } from "./redux/services/actions/loaderActions";
-import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import { BrowserRouter as Router, useLocation, useRoutes } from "react-router-dom";
 import store from "./redux/store";
 import { SnackbarProvider } from "notistack";
 import Backdrop from "@mui/material/Backdrop";
@@ -27,6 +27,15 @@ class ReduxSetup extends Component {
     );
   }
 }
+
+const ScrollToTop = (props) => {
+  const location = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
+  return <>{props.children}</>
+};
 
 function RouterSetup(props) {
   return (
@@ -59,7 +68,9 @@ class App extends Component {
       <div className="bloom-boutique">
         <ReduxSetup>
           <Router>
-            <RouterUpgrade />
+            <ScrollToTop>
+              <RouterUpgrade />
+            </ScrollToTop>
           </Router>
         </ReduxSetup>
       </div>

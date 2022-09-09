@@ -1,12 +1,15 @@
 import { Box, Container, Grid } from "@mui/material";
-import { BrowserView, TabletView, MobileOnlyView } from "react-device-detect";
+import Desktop from '../responsive/Desktop'
+import Tablet from '../responsive/Desktop'
+import Mobile from '../responsive/Desktop'
 import React from "react";
 import Footer1 from "./Footer1";
 import Footer2 from "./Footer2";
 import Footer3 from "./Footer3";
 import Footer4 from "./Footer4";
+import { BrowserView, MobileOnlyView, TabletView } from "react-device-detect";
 
-const Footer = () => {
+const Footer = (props) => {
   return (
     <Box style={{ backgroundColor: "#e5e5e5" }} width="100%">
       <Container maxWidth="lg" sx={{ p: 4 }}>
@@ -23,21 +26,21 @@ const Footer = () => {
         <BrowserView>
           <Grid container>
             <Footer1 />
-            <Footer2 />
+            <Footer2 categories={props?.categories} />
             <Footer4 />
           </Grid>
         </BrowserView>
         <TabletView>
           <Grid container>
             <Footer1 />
-            <Footer2 />
+            <Footer2 categories={props?.categories} />
             <Footer4 />
           </Grid>
         </TabletView>
         <MobileOnlyView>
           <Grid container>
             <Footer1 />
-            <Footer3 />
+            <Footer3 categories={props?.categories} />
             <Footer4 />
           </Grid>
         </MobileOnlyView>
