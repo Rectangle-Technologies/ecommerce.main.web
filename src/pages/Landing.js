@@ -42,7 +42,7 @@ const Landing = (props) => {
       <DoubleTextComponent backText="What We Design" frontText="New Arrivals" />
       <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
         {products?.map((p, idx) => (
-          <Grid item xs={6} lg={3}>
+          <Grid key={idx} item xs={6} lg={3}>
             <ProductLayout
               liked={true}
               new={true}
