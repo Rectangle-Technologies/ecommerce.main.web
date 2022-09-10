@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Box, Divider, Grid, List, ListItem } from '@mui/material';
-import PriceMenu from './PriceMenu';
-import SizeMenu from './SizeMenu';
+import PriceMenu from '../../category/mobile/PriceMenu';
+import SizeMenu from '../../category/mobile/SizeMenu';
 import { connect } from 'react-redux';
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { BASE_URL_2 } from '../../../constants/urls';
 import ProductLayout from '../../ProductLayout';
-import FiltersDrawer from './FiltersDrawer';
+import FiltersDrawer from '../../category/mobile/FiltersDrawer';
 
 const CategoryMobile = (props) => {
     const [priceRange, setPriceRange] = useState([0, 5000])
@@ -19,9 +19,9 @@ const CategoryMobile = (props) => {
         props.addLoader()
         try {
             const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter`, {
-                categoryId: props?.category?._id,
                 priceRange: { min: priceRange[0], max: priceRange[1] },
-                sizes
+                sizes,
+                name: props.name
             })
             props.setProducts(res.data.products)
             props.removeLoader()

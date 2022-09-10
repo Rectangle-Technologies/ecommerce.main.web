@@ -11,6 +11,7 @@ import OrderStatus from "./pages/OrderStatus";
 import Login from "./pages/Login";
 import Category from "./pages/Category";
 import Wishlist from "./pages/Wishlist";
+import Search from "./pages/Search";
 
 const routes = [
   {
@@ -52,6 +53,10 @@ const routes = [
       {
         path: '/wishlist',
         element: <Wishlist />
+      },
+      {
+        path: 'search/:name',
+        element: <Search />
       }
     ],
   },

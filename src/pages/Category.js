@@ -46,9 +46,9 @@ const Category = (props) => {
 
     return (
         <>
-            <CategoryDesktop category={category} products={products} setProducts={setProducts} />
             {/* <CategoryDesktop category={category} products={products} setProducts={setProducts} /> */}
-            {/* <CategoryMobile category={category} products={products} setProducts={setProducts} /> */}
+            {/* <CategoryDesktop category={category} products={products} setProducts={setProducts} /> */}
+            <CategoryMobile category={category} products={products} setProducts={setProducts} />
         </>
     )
 }

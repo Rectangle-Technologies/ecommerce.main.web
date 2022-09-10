@@ -35,7 +35,7 @@ const FiltersDrawer = (props) => {
           <SizeMenu sizes={props?.sizes} setSizes={props?.setSizes} />
         </ListItem>
         <ListItem>
-          <CustomButton variant='contained' onClick={props?.handleFilter}>Apply</CustomButton>
+          <CustomButton variant='contained' onClick={() => props?.handleFilter(setIsOpen)}>Apply</CustomButton>
         </ListItem>
       </List>
     </Box >

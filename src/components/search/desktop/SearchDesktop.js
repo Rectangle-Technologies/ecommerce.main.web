@@ -2,8 +2,8 @@ import { Button, Grid, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import SortIcon from '@mui/icons-material/Sort';
 import textStyle from '../../../helpers/textStyle';
-import PriceMenu from './PriceMenu';
-import SizeMenu from './SizeMenu';
+import PriceMenu from '../../category/desktop/PriceMenu';
+import SizeMenu from '../../category/desktop/SizeMenu';
 import { styled } from "@mui/material/styles";
 import ProductLayout from '../../ProductLayout';
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
@@ -12,7 +12,7 @@ import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { BASE_URL_2 } from '../../../constants/urls';
 
-const CategoryDesktop = (props) => {
+const SearchDesktop = (props) => {
     const [priceRange, setPriceRange] = useState([0, 5000]);
     const [sizes, setSizes] = useState([])
     const { enqueueSnackbar } = useSnackbar()
@@ -28,9 +28,9 @@ const CategoryDesktop = (props) => {
         props.addLoader()
         try {
             const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter`, {
-                categoryId: props?.category?._id,
                 priceRange: { min: priceRange[0], max: priceRange[1] },
-                sizes
+                sizes,
+                name: props.name
             })
             props.setProducts(res.data.products)
             props.removeLoader()
@@ -52,23 +52,7 @@ const CategoryDesktop = (props) => {
 
     return (
         <div style={{ margin: 'auto', width: '80%' }}>
-            <div>
-                <Typography mt={4} style={{
-                    ...textStyle,
-                    fontFamily: 'Playfair Display',
-                    fontStyle: 'SemiBold',
-                    letterSpacing: '0.3rem',
-                    textAlign: 'center',
-                    fontWeight: 500,
-                    fontSize: window.innerWidth > 500 ? '40px' : '25px',
-                    lineHeight: '53px',
-                }}>
-                    {props?.category?.title?.toUpperCase()}
-                </Typography>
-                <div style={{ borderTop: '2px solid black', width: window.innerWidth > 500 ? '130px' : '80px', margin: 'auto', marginTop: 2, marginBottom: 50 }}></div>
-            </div>
-            <hr style={{ backgroundColor: '#000000' }} />
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', marginTop: 20 }}>
                 <SortIcon fontSize='small' />
                 <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 20, fontStyle: 'medium' }} ml={1}>Refined By:</Typography>
             </div>
@@ -96,4 +80,4 @@ const CategoryDesktop = (props) => {
     )
 }
 
-export default connect(null, { addLoader, removeLoader })(CategoryDesktop)
+export default connect(null, { addLoader, removeLoader })(SearchDesktop)
