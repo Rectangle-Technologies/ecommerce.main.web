@@ -14,7 +14,7 @@ const Footer3 = (props) => {
     },
     {
       name: "My Wishlist",
-      url: ''
+      url: '/wishlist'
     },
     {
       name: "View Cart",

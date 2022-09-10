@@ -28,7 +28,7 @@ const Footer2 = (props) => {
           <TypographyLink style={textStyle} my={1}>
             Track Order
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/wishlist', { replace: true })}>
             My Wishlist
           </TypographyLink>
           <TypographyLink style={textStyle} my={1} onClick={() => navigate('/cart', { replace: true })}>

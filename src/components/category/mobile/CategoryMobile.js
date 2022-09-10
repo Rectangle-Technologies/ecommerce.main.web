@@ -70,7 +70,21 @@ const CategoryMobile = (props) => {
 
     return (
         <div style={{ margin: 'auto', width: '90%' }}>
-            <DoubleTextComponent frontText={props?.category?.title} backText='' />
+            <div>
+                <Typography mt={4} style={{
+                    ...textStyle,
+                    fontFamily: 'Playfair Display',
+                    fontStyle: 'SemiBold',
+                    letterSpacing: '0.3rem',
+                    textAlign: 'center',
+                    fontWeight: 500,
+                    fontSize: window.innerWidth > 500 ? '40px' : '25px',
+                    lineHeight: '53px',
+                }}>
+                    {props?.category?.title?.toUpperCase()}
+                </Typography>
+                <div style={{ borderTop: '2px solid black', width: window.innerWidth > 500 ? '130px' : '80px', margin: 'auto', marginTop: 2, marginBottom: 50 }}></div>
+            </div>
             <hr style={{ backgroundColor: '#000000' }} />
             <FiltersDrawer
                 handleFilter={handleFilter}

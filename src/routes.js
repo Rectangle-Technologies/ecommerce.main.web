@@ -10,6 +10,7 @@ import Checkout from "./pages/Checkout";
 import OrderStatus from "./pages/OrderStatus";
 import Login from "./pages/Login";
 import Category from "./pages/Category";
+import Wishlist from "./pages/Wishlist";
 
 const routes = [
   {
@@ -47,6 +48,10 @@ const routes = [
       {
         path: '/category/:id',
         element: <Category />
+      },
+      {
+        path: '/wishlist',
+        element: <Wishlist />
       }
     ],
   },
