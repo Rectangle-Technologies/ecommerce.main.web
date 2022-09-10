@@ -15,6 +15,7 @@ import formatAmount from "../helpers/formatAmount";
 
 const ProductDetail = (props) => {
     const [product, setProduct] = useState();
+    const [newArrivals, setNewArrivals] = useState()
     const [quantity, setQuantity] = useState(1)
     const [size, setSize] = useState()
     const [showMessage, setShowMessage] = useState(false)
@@ -37,6 +38,27 @@ const ProductDetail = (props) => {
         } catch (err) {
             props.removeLoader()
             enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
+                variant: 'error',
+                autoHideDuration: 3000
+            })
+        }
+    }
+
+    const fetchNewArrivals = async () => {
+        props.addLoader()
+        try {
+            const res = await axios.get(`${BASE_URL_2}/products/latest`)
+            setNewArrivals(res.data.products.slice(0, 4))
+            props.removeLoader()
+        } catch (err) {
+            props.removeLoader()
+            let message = 'Something went wrong'
+            if (err?.response?.data?.errors) {
+                message = err?.response?.data?.errors[0].msg
+            } else if (err?.response?.data?.message) {
+                message = err?.response?.data?.message
+            }
+            enqueueSnackbar(message, {
                 variant: 'error',
                 autoHideDuration: 3000
             })
@@ -133,6 +155,7 @@ const ProductDetail = (props) => {
 
     useEffect(() => {
         fetchProduct()
+        fetchNewArrivals()
     }, [])
 
     return (
@@ -386,6 +409,7 @@ const ProductDetail = (props) => {
                     <DoubleTextComponent
                         backText="You might be interested"
                         frontText="Recommendations"
+                        left='-60%'
                     />
                     <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
                         <Grid item xs={6} lg={3}>
@@ -413,6 +437,24 @@ const ProductDetail = (props) => {
                         <Grid item xs={6} lg={3}>
                             <ProductLayout title="Blue kurti with embroided neck" mrp="523" />
                         </Grid>
+                    </Grid>
+                </div>
+                <div style={{ margin: 20 }}>
+                    <DoubleTextComponent backText="What We Design" frontText="New Arrivals" left='-60%' />
+                    <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
+                        {newArrivals?.map((p, idx) => (
+                            <Grid key={idx} item xs={6} lg={3}>
+                                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p._id}`)}>
+                                    <ProductLayout
+                                        liked={true}
+                                        new={true}
+                                        title={p.name}
+                                        mrp={p.price}
+                                        imageUrl={p.imageUrls[0]}
+                                    />
+                                </Link>
+                            </Grid>
+                        ))}
                     </Grid>
                 </div>
                 <div style={{ margin: 20 }}>

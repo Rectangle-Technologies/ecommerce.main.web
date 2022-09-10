@@ -53,7 +53,21 @@ const CategoryDesktop = (props) => {
 
     return (
         <div style={{ margin: 'auto', width: '80%' }}>
-            <DoubleText frontText={props?.category?.title} backText='' left='-130%' />
+            <div>
+                <Typography mt={4} style={{
+                    ...textStyle,
+                    fontFamily: 'Playfair Display',
+                    fontStyle: 'SemiBold',
+                    letterSpacing: '0.3rem',
+                    textAlign: 'center',
+                    fontWeight: 500,
+                    fontSize: window.innerWidth > 500 ? '40px' : '25px',
+                    lineHeight: '53px',
+                }}>
+                    {props?.category?.title?.toUpperCase()}
+                </Typography>
+                <div style={{ borderTop: '2px solid black', width: window.innerWidth > 500 ? '130px' : '80px', margin: 'auto', marginTop: 2, marginBottom: 50 }}></div>
+            </div>
             <hr style={{ backgroundColor: '#000000' }} />
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <SortIcon fontSize='small' />
