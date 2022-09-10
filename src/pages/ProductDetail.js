@@ -124,7 +124,7 @@ const ProductDetail = (props) => {
         if (product.type === 'ORDER' || size.stock > 0) {
             setSize(size.title)
         }
-        if (product.type === 'STOCK' && size.stock < 4) {
+        if (product.type === 'STOCK' && size.stock > 0 && size.stock < 4) {
             setShowMessage(true)
         } else if (product.type === 'ORDER' || size.stock >= 4) {
             setShowMessage(false)

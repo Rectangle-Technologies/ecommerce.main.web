@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Link } from "@mui/material";
 import axios from "axios";
 import { connect } from "react-redux";
 import React, { useEffect, useState } from "react";
@@ -8,9 +8,11 @@ import Caraousel from "../components/header/caraousel";
 import ProductLayout from "../components/ProductLayout";
 import { BASE_URL_2 } from "../constants/urls";
 import { addLoader, removeLoader } from "../redux/services/actions/loaderActions";
+import { useNavigate } from "react-router-dom";
 
 const Landing = (props) => {
   const [products, setProducts] = useState([])
+  const navigate = useNavigate()
 
   const fetchNewArrivals = async () => {
     props.addLoader()
@@ -43,13 +45,15 @@ const Landing = (props) => {
       <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
         {products?.map((p, idx) => (
           <Grid key={idx} item xs={6} lg={3}>
-            <ProductLayout
-              liked={true}
-              new={true}
-              title={p.name}
-              mrp={p.price}
-              imageUrl={p.imageUrls[0]}
-            />
+            <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p._id}`)}>
+              <ProductLayout
+                liked={true}
+                new={true}
+                title={p.name}
+                mrp={p.price}
+                imageUrl={p.imageUrls[0]}
+              />
+            </Link>
           </Grid>
         ))}
       </Grid>
