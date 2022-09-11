@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -6,8 +6,20 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import { Typography } from "@mui/material";
 import "./navbar.css";
 import { Link } from "react-router-dom";
+import { get } from "../../../utils/apiHelper";
+import { connect } from "react-redux";
 
 const NavbarDesktop = (props) => {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        get("http://localhost:5000/products/category/getall", props?.auth?.token)
+            .then((res) => {
+                setCategories(res.data.categories)
+            })
+            .catch((err) => { })
+    }, []);
+
     return (
         <div style={{
             borderBottom: "1px solid black",
@@ -26,20 +38,21 @@ const NavbarDesktop = (props) => {
                     <Link to="/" style={{ textDecoration: "none" }}>
                         <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
                     </Link>
-                    <Link to="/" style={{ textDecoration: "none" }}>
-                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Categories</Typography>
-                    </Link>
-                    <Link to="/" style={{ textDecoration: "none" }}>
-                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Flash Sale</Typography>
-                    </Link>
+                    {categories.map((category, index) => {
+                        return (<>
+                            <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }}>
+                                <Typography className="navbar_item" style={{ fontSize: 18 }} >{category.title}</Typography>
+                            </Link>
+                        </>)
+                    })}
+                </div>
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }} >
                     <Link to="/diaries" style={{ textDecoration: "none" }}>
                         <Typography className="navbar_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
                     </Link>
                     <Link to="/" style={{ textDecoration: "none" }}>
                         <Typography className="navbar_item" style={{ fontSize: 18 }} >My Account</Typography>
                     </Link>
-                </div>
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }} >
                     <Link to="/about" style={{ textDecoration: "none" }}>
                         <Typography className="navbar_item" style={{ fontSize: 18 }} >About us</Typography>
                     </Link>
@@ -67,4 +80,10 @@ const NavbarDesktop = (props) => {
     )
 }
 
-export default NavbarDesktop;
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps, {})(NavbarDesktop);
