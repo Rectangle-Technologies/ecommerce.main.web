@@ -103,7 +103,6 @@ const Checkout = (props) => {
             pincode: props?.auth?.user?.address?.pincode || "",
         }, validationSchema: CheckoutSchema,
         onSubmit: (values, { setSubmitting, resetForm }) => {
-            // SAMYAK VALUES KE ANDAR DATA HAI FORM KA
             checkoutHandler(values);
         }
     })
@@ -123,7 +122,7 @@ const Checkout = (props) => {
             <FormikProvider value={formik}>
                 <Form autoComplete='off' noValidate onSubmit={handleSubmit}>
                     {location?.state?.cart?.products?.length > 0 &&
-                        <Grid container>
+                        <Grid container style={{ height: '100vh' }}>
                             <Grid item xs={12} md={5} sx={{ backgroundColor: '#F8F5CC' }} p={4}>
                                 <center>
                                     <img src='./logo.png' style={{ width: '50%' }} />

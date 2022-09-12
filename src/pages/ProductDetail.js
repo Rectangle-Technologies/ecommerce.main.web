@@ -170,7 +170,7 @@ const ProductDetail = (props) => {
                 : <>
                     {product && <Container maxWidth="lg">
                         <Grid container my={5} p={window.innerWidth < 500 ? 0 : 3}>
-                            <Grid item xs={12} md={5}>
+                            <Grid item xs={12} md={5} my={2}>
                                 <center>
                                     <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 500 ? '100%' : '80%' }}>
                                         <div className="carousel-inner">
@@ -412,14 +412,14 @@ const ProductDetail = (props) => {
                                 </ul>
                             </Typography>}
                         </div>
-                        <div style={{ margin: 20 }}>
+                        <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
                             <DoubleTextComponent
                                 backText="You might be interested"
                                 frontText="Recommendations"
                                 left='-60%'
                             />
-                            <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
-                                <Grid item xs={6} lg={3}>
+                            <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
+                                <Grid item xs={6} md={3}>
                                     <ProductLayout
                                         liked={true}
                                         new={true}
@@ -427,30 +427,30 @@ const ProductDetail = (props) => {
                                         mrp="523"
                                     />
                                 </Grid>
-                                <Grid item xs={6} lg={3}>
+                                <Grid item xs={6} md={3}>
                                     <ProductLayout
                                         liked={true}
                                         title="Blue kurti with embroided neck"
                                         mrp="523"
                                     />
                                 </Grid>
-                                <Grid item xs={6} lg={3}>
+                                <Grid item xs={6} md={3}>
                                     <ProductLayout
                                         new={true}
                                         title="Blue kurti with embroided neck"
                                         mrp="523"
                                     />
                                 </Grid>
-                                <Grid item xs={6} lg={3}>
+                                <Grid item xs={6} md={3}>
                                     <ProductLayout title="Blue kurti with embroided neck" mrp="523" />
                                 </Grid>
                             </Grid>
                         </div>
-                        <div style={{ margin: 20 }}>
+                        <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
                             <DoubleTextComponent backText="What We Design" frontText="New Arrivals" left='-60%' />
-                            <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
+                            <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
                                 {newArrivals?.map((p, idx) => (
-                                    <Grid key={idx} item xs={6} lg={3}>
+                                    <Grid key={idx} item xs={6} md={3}>
                                         <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p._id}`)}>
                                             <ProductLayout
                                                 liked={true}

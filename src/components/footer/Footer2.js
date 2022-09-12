@@ -34,10 +34,10 @@ const Footer2 = (props) => {
           <TypographyLink style={textStyle} my={1} onClick={() => navigate('/cart', { replace: true })}>
             View Cart
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
-            Client Diaries
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/about', { replace: true })}>
+            About Us
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/contact', { replace: true })}>
             Contact Us
           </TypographyLink>
         </Grid>

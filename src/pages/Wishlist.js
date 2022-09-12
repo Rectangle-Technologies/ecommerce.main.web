@@ -77,26 +77,28 @@ const Wishlist = (props) => {
     return (
         <div style={{ marginTop: 20, width: window.innerWidth > 500 ? '60%' : '90%', margin: 'auto', padding: 10 }}>
             <Typography style={{ ...textStyle, fontWeight: 700, fontSize: 32, textAlign: 'center' }} my={2}>YOUR WISHLIST</Typography>
-            {wishlist?.length > 0 && wishlist.map((product, idx) => (
-                <Grid key={idx} container my={1}>
-                    <Grid item xs={3}>
-                        <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${product._id}`)}>
-                            <img src={product.imageUrls[0]} alt={product.name} style={{ width: '80%', aspectRatio: 0.7 }} />
-                        </Link>
+            {wishlist?.length > 0
+                ? wishlist.map((product, idx) => (
+                    <Grid key={idx} container my={1}>
+                        <Grid item xs={3}>
+                            <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${product._id}`)}>
+                                <img src={product.imageUrls[0]} alt={product.name} style={{ width: '80%', aspectRatio: 0.7 }} />
+                            </Link>
+                        </Grid>
+                        <Grid item xs={8}>
+                            <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${product._id}`)}>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 500 ? '25px' : '20px', textAlign: 'start' }} my={1}>{product.name}</Typography>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 500 ? '20px' : '16px' }} my={1}>{formatAmount(product.price)}</Typography>
+                            </Link>
+                        </Grid>
+                        <Grid item xs={1} sx={{ margin: 'auto' }}>
+                            <Link style={{ cursor: 'pointer' }} onClick={() => handleRemoveFromWishlist(product._id)}>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 500 ? '25px' : '20px', textAlign: 'center' }} my={1}>X</Typography>
+                            </Link>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={8}>
-                        <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${product._id}`)}>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 500 ? '25px' : '20px', textAlign: 'start' }} my={1}>{product.name}</Typography>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 500 ? '20px' : '16px' }} my={1}>{formatAmount(product.price)}</Typography>
-                        </Link>
-                    </Grid>
-                    <Grid item xs={1} sx={{ margin: 'auto' }}>
-                        <Link style={{ cursor: 'pointer' }} onClick={() => handleRemoveFromWishlist(product._id)}>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 500 ? '25px' : '20px', textAlign: 'center' }} my={1}>X</Typography>
-                        </Link>
-                    </Grid>
-                </Grid>
-            ))
+                ))
+                : <Typography style={{ ...textStyle, textAlign: 'center' }}>Your wishlist is empty</Typography>
             }
         </div >
     )

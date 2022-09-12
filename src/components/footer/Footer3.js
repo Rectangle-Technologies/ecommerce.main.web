@@ -21,12 +21,12 @@ const Footer3 = (props) => {
       url: '/cart'
     },
     {
-      name: "Client Diaries",
-      url: ''
+      name: "About Us",
+      url: '/about'
     },
     {
       name: "Contact Us",
-      url: ''
+      url: '/contact'
     },
   ];
   const list2 = props?.categories?.map((category, idx) => {

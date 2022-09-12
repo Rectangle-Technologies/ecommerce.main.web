@@ -82,7 +82,7 @@ const CategoryDesktop = (props) => {
             <div style={{ margin: 20 }}>
                 <Grid container spacing={6} style={{ padding: "0px 5vw 0px 5vw" }}>
                     {props?.products?.map((p, idx) => (
-                        <Grid key={idx} item xs={6} lg={3}>
+                        <Grid key={idx} item xs={6} md={3}>
                             <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?._id}`)}>
                                 <ProductLayout
                                     liked={true}
