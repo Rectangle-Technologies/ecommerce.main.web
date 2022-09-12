@@ -2,7 +2,7 @@ class StateLoader {
 
     loadState() {
         try {
-            const serializedState = localStorage.getItem("http://localhost:state");
+            const serializedState = localStorage.getItem("BloomByKhushbu");
 
 
             if (serializedState === null) {
@@ -29,7 +29,7 @@ class StateLoader {
             saveState.errors = {};
             // saveState.loading.isLoading = false;
             const serializedState = JSON.stringify(saveState);
-            localStorage.setItem("http://localhost:state", serializedState);
+            localStorage.setItem("BloomByKhushbu", serializedState);
             this.state = serializedState;
         }
         catch (err) {

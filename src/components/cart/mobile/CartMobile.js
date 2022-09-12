@@ -4,9 +4,11 @@ import textStyle from '../../../helpers/textStyle'
 import ProductsMobile from './ProductsMobile'
 import { useNavigate } from 'react-router-dom';
 import { styled } from "@mui/material/styles";
+import { useSnackbar } from 'notistack';
 
 const CartMobile = (props) => {
     const navigate = useNavigate()
+    const { enqueueSnackbar } = useSnackbar()
     const CustomButton = styled(Button)({
         textTransform: "none",
         backgroundColor: "#eb31e2",
@@ -14,6 +16,25 @@ const CartMobile = (props) => {
             backgroundColor: "#fc03cf",
         },
     });
+
+    const handleProceedToCheckout = () => {
+        if (props.cart.products.length <= 0) {
+            enqueueSnackbar('Cart is empty', {
+                variant: 'error',
+                autoHideDuration: 3000
+            })
+            return
+        }
+        navigate('/checkout', {
+            state: {
+                cart: props.cart,
+                instructions: props.instructions,
+                total: props.total,
+                discount: props.discount,
+                finalAmount: props.finalAmount
+            }
+        })
+    }
 
     return (
         <div style={{ margin: 20 }}>
@@ -69,23 +90,16 @@ const CartMobile = (props) => {
                         label='Voucher'
                         value={props.voucher}
                         onChange={(e) => props.setVoucher(e.target.value)}
+                        fullWidth
                     />
-                    <CustomButton variant="contained" size='small' sx={{ mx: 1 }}>
+                    <CustomButton variant="contained" size='small' sx={{ ml: 2 }}>
                         Apply
                     </CustomButton>
                 </div>
                 <center>
                     <Link
                         style={{ cursor: 'pointer' }}
-                        onClick={() => navigate('/checkout', {
-                            state: {
-                                cart: props.cart,
-                                instructions: props.instructions,
-                                total: props.total,
-                                discount: props.discount,
-                                finalAmount: props.finalAmount
-                            }
-                        })}>
+                        onClick={handleProceedToCheckout}>
                         <div style={{ backgroundColor: '#FA861B', border: '1px solid #330C3E', width: '80%', padding: 10, marginTop: 15 }}>
                             <Typography style={{ ...textStyle, fontWeight: 500, color: '#F8F5CC', textAlign: 'center' }}>Proceed to Checkout</Typography>
                         </div>

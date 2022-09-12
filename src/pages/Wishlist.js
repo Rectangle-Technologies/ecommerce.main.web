@@ -67,6 +67,10 @@ const Wishlist = (props) => {
     }
 
     useEffect(() => {
+        if (!props?.auth?.isAuthenticated) {
+            navigate('/login', { state: { navigateUrl: '/wishlist' } })
+            return
+        }
         fetchWishlist()
     }, [])
 

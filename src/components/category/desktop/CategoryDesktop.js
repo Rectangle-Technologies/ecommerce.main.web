@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Link, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import SortIcon from '@mui/icons-material/Sort';
 import textStyle from '../../../helpers/textStyle';
@@ -11,11 +11,13 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import { BASE_URL_2 } from '../../../constants/urls';
+import { useNavigate } from 'react-router-dom';
 
 const CategoryDesktop = (props) => {
     const [priceRange, setPriceRange] = useState([0, 5000]);
     const [sizes, setSizes] = useState([])
     const { enqueueSnackbar } = useSnackbar()
+    const navigate = useNavigate()
     const CustomButton = styled(Button)({
         textTransform: "none",
         backgroundColor: "#eb31e2",
@@ -81,13 +83,15 @@ const CategoryDesktop = (props) => {
                 <Grid container spacing={6} style={{ padding: "0px 5vw 0px 5vw" }}>
                     {props?.products?.map((p, idx) => (
                         <Grid key={idx} item xs={6} lg={3}>
-                            <ProductLayout
-                                liked={true}
-                                new={true}
-                                title={p?.name}
-                                mrp={p?.price}
-                                imageUrl={p?.imageUrls[0]}
-                            />
+                            <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?._id}`)}>
+                                <ProductLayout
+                                    liked={true}
+                                    new={true}
+                                    title={p?.name}
+                                    mrp={p?.price}
+                                    imageUrl={p?.imageUrls[0]}
+                                />
+                            </Link>
                         </Grid>
                     ))}
                 </Grid>

@@ -8,6 +8,9 @@ import CartDesktop from '../components/cart/desktop/CartDesktop'
 import CartMobile from '../components/cart/mobile/CartMobile'
 import { BASE_URL_1 } from '../constants/urls'
 import { useNavigate } from 'react-router-dom'
+import Desktop from '../components/responsive/Desktop'
+import Tablet from '../components/responsive/Tablet'
+import Mobile from '../components/responsive/Mobile'
 
 const Cart = (props) => {
     const [instructions, setInstructions] = useState()
@@ -58,7 +61,7 @@ const Cart = (props) => {
     }, [])
     return (
         <>
-            <BrowserView>
+            <Desktop>
                 {cart &&
                     <CartDesktop
                         cart={cart}
@@ -74,8 +77,8 @@ const Cart = (props) => {
                         setFinalAmount={setFinalAmount}
                     />
                 }
-            </BrowserView>
-            <MobileOnlyView>
+            </Desktop>
+            <Mobile>
                 {cart &&
                     <CartMobile
                         cart={cart}
@@ -91,8 +94,8 @@ const Cart = (props) => {
                         setFinalAmount={setFinalAmount}
                     />
                 }
-            </MobileOnlyView>
-            <TabletView>
+            </Mobile>
+            <Tablet>
                 {cart &&
                     <CartDesktop
                         cart={cart}
@@ -108,7 +111,7 @@ const Cart = (props) => {
                         setFinalAmount={setFinalAmount}
                     />
                 }
-            </TabletView>
+            </Tablet>
         </>
     )
 }

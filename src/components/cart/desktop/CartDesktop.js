@@ -5,9 +5,11 @@ import textStyle from '../../../helpers/textStyle'
 import ProductsDesktop from './ProductsDesktop'
 import { useNavigate } from 'react-router-dom';
 import formatAmount from '../../../helpers/formatAmount';
+import { useSnackbar } from 'notistack';
 
 const CartDesktop = (props) => {
   const navigate = useNavigate()
+  const { enqueueSnackbar } = useSnackbar()
   const CustomButton = styled(Button)({
     textTransform: "none",
     backgroundColor: "#eb31e2",
@@ -17,6 +19,25 @@ const CartDesktop = (props) => {
     width: '25%',
     fontSize: 16
   });
+
+  const handleProceedToCheckout = () => {
+    if (props.cart.products.length <= 0) {
+      enqueueSnackbar('Cart is empty', {
+        variant: 'error',
+        autoHideDuration: 3000
+      })
+      return
+    }
+    navigate('/checkout', {
+      state: {
+        cart: props.cart,
+        instructions: props.instructions,
+        total: props.total,
+        discount: props.discount,
+        finalAmount: props.finalAmount
+      }
+    })
+  }
 
   return (
     <div style={{ marginTop: 20 }}>
@@ -89,15 +110,7 @@ const CartDesktop = (props) => {
             </div>
             <center>
               <Link style={{ cursor: 'pointer' }}
-                onClick={() => navigate('/checkout', {
-                  state: {
-                    cart: props.cart,
-                    instructions: props.instructions,
-                    total: props.total,
-                    discount: props.discount,
-                    finalAmount: props.finalAmount
-                  }
-                })}>
+                onClick={handleProceedToCheckout}>
                 <div style={{ backgroundColor: '#FA861B', border: '1px solid #330C3E', width: '80%', padding: 10, marginTop: 15 }}>
                   <Typography style={{ ...textStyle, fontWeight: 500, color: '#F8F5CC', textAlign: 'center' }}>Proceed to Checkout</Typography>
                 </div>

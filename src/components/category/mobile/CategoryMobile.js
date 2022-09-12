@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Divider, Grid, List, ListItem } from '@mui/material';
+import { Box, Divider, Grid, List, ListItem, Typography } from '@mui/material';
 import PriceMenu from './PriceMenu';
 import SizeMenu from './SizeMenu';
 import { connect } from 'react-redux';
@@ -9,6 +9,7 @@ import { useSnackbar } from 'notistack';
 import { BASE_URL_2 } from '../../../constants/urls';
 import ProductLayout from '../../ProductLayout';
 import FiltersDrawer from './FiltersDrawer';
+import textStyle from '../../../helpers/textStyle';
 
 const CategoryMobile = (props) => {
     const [priceRange, setPriceRange] = useState([0, 5000])
@@ -44,6 +45,21 @@ const CategoryMobile = (props) => {
 
     return (
         <div style={{ margin: 'auto', width: '90%' }}>
+            <div>
+                <Typography mt={4} style={{
+                    ...textStyle,
+                    fontFamily: 'Playfair Display',
+                    fontStyle: 'SemiBold',
+                    letterSpacing: '0.3rem',
+                    textAlign: 'center',
+                    fontWeight: 500,
+                    fontSize: window.innerWidth > 500 ? '40px' : '25px',
+                    lineHeight: '53px',
+                }}>
+                    {props?.category?.title?.toUpperCase()}
+                </Typography>
+                <div style={{ borderTop: '2px solid black', width: window.innerWidth > 500 ? '130px' : '80px', margin: 'auto', marginTop: 2, marginBottom: 50 }}></div>
+            </div>
             <div style={{ marginTop: 20 }}>
                 <FiltersDrawer
                     handleFilter={handleFilter}

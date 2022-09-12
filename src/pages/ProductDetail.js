@@ -161,18 +161,18 @@ const ProductDetail = (props) => {
     useEffect(() => {
         fetchProduct()
         fetchNewArrivals()
-    }, [])
+    }, [id])
 
     return (
         <>
             {!launched ? <center><Typography>Product not launched yet</Typography>
-                <Typography>Come back latter at {(new Date(product.launch_time)).toDateString()} </Typography> </center>
+                <Typography>Come back later at {(new Date(product.launch_time)).toDateString()} </Typography> </center>
                 : <>
                     {product && <Container maxWidth="lg">
-                        <Grid container my={5}>
+                        <Grid container my={5} p={window.innerWidth < 500 ? 0 : 3}>
                             <Grid item xs={12} md={5}>
                                 <center>
-                                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 900 ? '100%' : '80%' }}>
+                                    <div id="carouselExampleControls" className="carousel slide" data-ride="carousel" style={{ width: window.innerWidth < 500 ? '100%' : '80%' }}>
                                         <div className="carousel-inner">
                                             {product.imageUrls.map((url, index) => {
                                                 return (
@@ -329,7 +329,7 @@ const ProductDetail = (props) => {
                                             </Typography>
                                         </div>
                                     </Link>
-                                    <Link style={{ cursor: 'pointer' }} onClick={handleAddToWishlist}>
+                                    <Link style={{ cursor: 'pointer', width: '90%' }} onClick={handleAddToWishlist}>
                                         <div
                                             style={{
                                                 display: "flex",
@@ -339,7 +339,6 @@ const ProductDetail = (props) => {
                                                 border: "1px solid #222222",
                                                 padding: "7px",
                                                 borderRadius: "30px",
-                                                width: '300px',
                                                 backgroundColor: "#F8F5CC",
                                             }}
                                         >

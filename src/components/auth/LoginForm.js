@@ -3,7 +3,7 @@ import { useSnackbar } from "notistack";
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../redux/services/actions/authActions';
-import { Link, TextField, Typography } from '@mui/material';
+import { Box, Link, TextField, Typography } from '@mui/material';
 import textStyle from '../../helpers/textStyle';
 
 const LoginForm = (props) => {
@@ -45,7 +45,6 @@ const LoginForm = (props) => {
                         placeholder="Password"
                         type='password'
                         onChange={(e) => setLoginState({ ...loginState, password: e.target.value })}
-                        onKeyDown={handleLogin}
                     />
                 </div>
             </div>
