@@ -1,4 +1,4 @@
-import { Button, Grid, Link, Typography } from '@mui/material'
+import { Button, Grid, Link, Pagination, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import SortIcon from '@mui/icons-material/Sort';
 import textStyle from '../../../helpers/textStyle';
@@ -52,6 +52,10 @@ const CategoryDesktop = (props) => {
         }
     }
 
+    const handlePageChange = (event, value) => {
+        props?.setPage(value)
+    }
+
     return (
         <div style={{ margin: 'auto', width: '80%' }}>
             <div>
@@ -79,8 +83,8 @@ const CategoryDesktop = (props) => {
                 <SizeMenu sizes={sizes} setSizes={setSizes} />
                 <CustomButton variant='contained' sx={{ mx: 1 }} onClick={handleFilter}>Apply</CustomButton>
             </div>
-            <div style={{ margin: 20 }}>
-                <Grid container spacing={6} style={{ padding: "0px 5vw 0px 5vw" }}>
+            <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
+                <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 5vw 0px 5vw" }}>
                     {props?.products?.map((p, idx) => (
                         <Grid key={idx} item xs={6} md={3}>
                             <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?._id}`)}>
@@ -95,6 +99,9 @@ const CategoryDesktop = (props) => {
                         </Grid>
                     ))}
                 </Grid>
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '15px 0px' }}>
+                    <Pagination count={props?.maxPages} page={props?.page} onChange={handlePageChange} />
+                </div>
             </div>
         </div>
     )

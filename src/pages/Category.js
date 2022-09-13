@@ -14,6 +14,9 @@ import Mobile from '../components/responsive/Mobile'
 const Category = (props) => {
     const [category, setCategory] = useState()
     const [products, setProducts] = useState()
+    const [page, setPage] = useState(1)
+    const [maxPages, setMaxPages] = useState(1)
+    const limit = 2
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams()
 
@@ -22,8 +25,9 @@ const Category = (props) => {
         try {
             let res = await axios.get(`${BASE_URL_2}/products/category/${id}`)
             setCategory(res.data.category)
-            res = await axios.get(`${BASE_URL_2}/products/fetchByCategory/${id}`)
+            res = await axios.get(`${BASE_URL_2}/products/fetchByCategory/${id}?page=${page}&limit=${limit}`)
             setProducts(res.data.products)
+            setMaxPages(Math.ceil(res.data.count / limit))
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
@@ -42,18 +46,39 @@ const Category = (props) => {
 
     useEffect(() => {
         fetchCategory()
-    }, [id])
+    }, [id, page])
 
     return (
         <>
             <Desktop>
-                <CategoryDesktop category={category} products={products} setProducts={setProducts} />
+                <CategoryDesktop
+                    category={category}
+                    products={products}
+                    setProducts={setProducts}
+                    page={page}
+                    setPage={setPage}
+                    maxPages={maxPages}
+                />
             </Desktop>
             <Tablet>
-                <CategoryDesktop category={category} products={products} setProducts={setProducts} />
+                <CategoryDesktop
+                    category={category}
+                    products={products}
+                    setProducts={setProducts}
+                    page={page}
+                    setPage={setPage}
+                    maxPages={maxPages}
+                />
             </Tablet>
             <Mobile>
-                <CategoryMobile category={category} products={products} setProducts={setProducts} />
+                <CategoryMobile
+                    category={category}
+                    products={products}
+                    setProducts={setProducts}
+                    page={page}
+                    setPage={setPage}
+                    maxPages={maxPages}
+                />
             </Mobile>
         </>
     )

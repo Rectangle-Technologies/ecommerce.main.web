@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Divider, Grid, List, ListItem, Typography } from '@mui/material';
+import { Box, Divider, Grid, List, ListItem, Pagination, Typography } from '@mui/material';
 import PriceMenu from './PriceMenu';
 import SizeMenu from './SizeMenu';
 import { connect } from 'react-redux';
@@ -43,6 +43,10 @@ const CategoryMobile = (props) => {
         }
     }
 
+    const handlePageChange = (event, value) => {
+        props?.setPage(value)
+    }
+
     return (
         <div style={{ margin: 'auto', width: '90%' }}>
             <div>
@@ -69,10 +73,10 @@ const CategoryMobile = (props) => {
                     setSizes={setSizes}
                 />
             </div>
-            <div style={{ margin: 20 }}>
-                <Grid container spacing={6} style={{ padding: "0px 5vw 0px 5vw" }}>
+            <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
+                <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 5vw 0px 5vw" }}>
                     {props?.products?.map((p, idx) => (
-                        <Grid key={idx} item xs={6} lg={3}>
+                        <Grid key={idx} item xs={6} md={3}>
                             <ProductLayout
                                 liked={true}
                                 new={true}
@@ -83,6 +87,9 @@ const CategoryMobile = (props) => {
                         </Grid>
                     ))}
                 </Grid>
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '15px 0px' }}>
+                    <Pagination count={props?.maxPages} page={props?.page} onChange={handlePageChange} />
+                </div>
             </div>
         </div>
     )
