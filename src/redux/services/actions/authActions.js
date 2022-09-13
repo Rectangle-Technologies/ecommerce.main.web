@@ -23,7 +23,7 @@ export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
       },
     });
     const url = data.navigateUrl || '/'
-    navigate(url, { replace: true });
+    navigate(url);
     dispatch(removeLoader());
   } catch (err) {
     console.log(err);

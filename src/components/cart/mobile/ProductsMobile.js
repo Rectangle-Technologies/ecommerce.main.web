@@ -61,14 +61,14 @@ const ProductsMobile = (props) => {
     return (
         <Grid container my={2}>
             <Grid item xs={5} mx={1}>
-                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`, { replace: true })}>
+                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`)}>
                     <img src={props?.product?.productId?.imageUrls[0]}
                         style={{ width: '100%', aspectRatio: 0.65 }}
                     />
                 </Link>
             </Grid>
             <Grid item xs={6}>
-                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`, { replace: true })}>
+                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`)}>
                     <Typography style={{ ...textStyle, fontWeight: 500, textAlign: 'left' }} mx={1}>{props.product.productId.name}</Typography>
                 </Link>
                 <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>{formatAmount(props.product.productId.price)}</Typography>

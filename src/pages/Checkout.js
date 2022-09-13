@@ -29,7 +29,7 @@ const Checkout = (props) => {
 
     useEffect(() => {
         if (!location.state || !props?.auth?.isAuthenticated) {
-            navigate('/', { replace: true })
+            navigate('/')
             return
         }
     }, [])
@@ -264,7 +264,7 @@ const Checkout = (props) => {
                                     <Grid item xs={12} md={6} my={2}>
                                         <Link
                                             style={{ display: 'flex', cursor: 'pointer' }}
-                                            onClick={() => navigate('/cart', { replace: true })}
+                                            onClick={() => navigate('/cart')}
                                         >
                                             <KeyboardArrowLeftIcon />
                                             <Typography style={{ ...textStyle, fontSize: 18 }} mx={1}>Return to Cart</Typography>

@@ -45,7 +45,7 @@ function Login(props) {
 
     React.useEffect(() => {
         if (props.auth?.isAuthenticated) {
-            navigate("/", { replace: true });
+            navigate("/");
         }
     }, []);
 

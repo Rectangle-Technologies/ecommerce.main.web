@@ -64,7 +64,7 @@ const ProductsDesktop = (props) => {
         <div style={{ display: 'flex' }}>
             <Link
                 style={{ cursor: 'pointer', display: 'flex', width: '40%', padding: 10 }}
-                onClick={() => navigate(`/product/${props.product.productId._id}`, { replace: true })}
+                onClick={() => navigate(`/product/${props.product.productId._id}`)}
             >
                 <img src={props?.product?.productId?.imageUrls[0]}
                     style={{ width: '20%', aspectRatio: 0.65 }}

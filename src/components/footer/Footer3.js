@@ -6,7 +6,7 @@ const Footer3 = (props) => {
   const list1 = [
     {
       name: "My Account",
-      url: ''
+      url: '/editdetails'
     },
     {
       name: "My Orders",

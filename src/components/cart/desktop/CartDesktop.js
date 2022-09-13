@@ -115,7 +115,7 @@ const CartDesktop = (props) => {
                   <Typography style={{ ...textStyle, fontWeight: 500, color: '#F8F5CC', textAlign: 'center' }}>Proceed to Checkout</Typography>
                 </div>
               </Link>
-              <Link style={{ cursor: 'pointer' }} onClick={() => navigate('/', { replace: true })}>
+              <Link style={{ cursor: 'pointer' }} onClick={() => navigate('/')}>
                 <div style={{ backgroundColor: '#F8F5CC', border: '1px solid #330C3E', width: '80%', padding: 10, marginTop: 15 }}>
                   <Typography style={{ ...textStyle, fontWeight: 500, color: '#330C3E', textAlign: 'center' }}>Continue Shopping</Typography>
                 </div>

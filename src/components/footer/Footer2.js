@@ -22,22 +22,22 @@ const Footer2 = (props) => {
           >
             Quick Links
           </Typography>
-          <TypographyLink style={textStyle} my={1}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/editdetails')}>
             My Account
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/orders', { replace: true })}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/orders')}>
             My Orders
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/wishlist', { replace: true })}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/wishlist')}>
             My Wishlist
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/cart', { replace: true })}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/cart')}>
             View Cart
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/about', { replace: true })}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/about')}>
             About Us
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/contact', { replace: true })}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/contact')}>
             Contact Us
           </TypographyLink>
         </Grid>
@@ -55,7 +55,7 @@ const Footer2 = (props) => {
             Categories
           </Typography>
           {props?.categories?.map((c, idx) => (
-            <TypographyLink key={idx} style={textStyle} my={1} onClick={() => navigate(`/category/${c._id}`, { replace: true })}>
+            <TypographyLink key={idx} style={textStyle} my={1} onClick={() => navigate(`/category/${c._id}`)}>
               {c.title}
             </TypographyLink>
           ))}

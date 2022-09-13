@@ -45,7 +45,7 @@ const OrderStatus = (props) => {
     }
 
     useEffect(() => {
-        if (!localStorage.getItem('order')) { navigate("/", { replace: true }) }
+        if (!localStorage.getItem('order')) { navigate("/") }
         else if (status === 'verified') {
             createOrder()
         }
