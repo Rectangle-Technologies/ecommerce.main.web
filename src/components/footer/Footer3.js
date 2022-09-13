@@ -9,8 +9,8 @@ const Footer3 = (props) => {
       url: ''
     },
     {
-      name: "Track Order",
-      url: ''
+      name: "My Orders",
+      url: '/orders'
     },
     {
       name: "My Wishlist",

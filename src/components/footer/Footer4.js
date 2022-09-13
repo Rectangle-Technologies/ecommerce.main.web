@@ -59,7 +59,7 @@ const Footer4 = () => {
       >
         Stay Connected:
       </Typography>
-      <Typography style={textStyle} my={1}>
+      <Typography style={{ ...textStyle, textAlign: 'justify' }} my={1}>
         Be the first to know about promotions and what's new at Bloom By
         Khushboo.
       </Typography>

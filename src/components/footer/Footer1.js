@@ -13,10 +13,10 @@ const Footer1 = () => {
     "F-21, Sacred Heart World, Opposite of Sacred Heart Town, Wanowrei, Pune, Maharashtra";
   return (
     <Grid item xs={12} md={3.5} my={1} px={2} mr={2}>
-      <Typography style={textStyle} my={1}>
+      <Typography style={{ ...textStyle, textAlign: 'justify' }} my={1}>
         {desc1}
       </Typography>
-      <Typography style={textStyle} my={1}>
+      <Typography style={{ ...textStyle, textAlign: 'justify' }} my={1}>
         {desc2}
       </Typography>
       <Typography style={{ ...textStyle, fontFamily: "Roboto" }} mt={3} mb={1}>
@@ -31,7 +31,7 @@ const Footer1 = () => {
         </Typography>{" "}
         {email}
       </Typography>
-      <Typography style={{ ...textStyle, fontFamily: "Roboto" }} my={1}>
+      <Typography style={{ ...textStyle, fontFamily: "Roboto", textAlign: 'justify' }} my={1}>
         <Typography fontWeight="600" display="inline" color="#330C3E">
           Address:{" "}
         </Typography>{" "}

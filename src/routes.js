@@ -13,6 +13,8 @@ import Category from "./pages/Category";
 import Wishlist from "./pages/Wishlist";
 import Search from "./pages/Search";
 import EditDetails from "./pages/EditDetails";
+import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails";
 
 const routes = [
   {
@@ -62,6 +64,14 @@ const routes = [
       {
         path: '/editdetails',
         element: <EditDetails />
+      },
+      {
+        path: '/orders',
+        element: <Orders />
+      },
+      {
+        path: '/order/:id',
+        element: <OrderDetails />
       }
     ],
   },
