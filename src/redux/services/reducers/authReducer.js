@@ -1,4 +1,4 @@
-import { LOGIN } from "../actions/type";
+import { LOGIN, UPDATE } from "../actions/type";
 
 const initialState = {
   isAuthenticated: false,
@@ -14,6 +14,11 @@ export default function (state = initialState, action) {
         token: action.payload.token,
         user: action.payload.user,
       };
+    case UPDATE:
+      return {
+        ...state,
+        user: action.payload.user
+      }
     default:
       return state;
   }

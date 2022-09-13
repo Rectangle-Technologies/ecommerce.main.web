@@ -1,15 +1,19 @@
 import React from 'react'
-import { Grid, InputAdornment, TextField, Typography } from '@mui/material'
+import { Button, Grid, InputAdornment, TextField, Typography } from '@mui/material'
 import textStyle from '../helpers/textStyle'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
+import { update } from '../redux/services/actions/authActions'
 import { useEffect } from 'react'
+import { styled } from "@mui/material/styles";
+import axios from 'axios'
+import { BASE_URL_1 } from '../constants/urls'
+import { useSnackbar } from 'notistack'
 
 const EditDetails = (props) => {
     const [email, setEmail] = useState(props?.auth?.user?.email)
-    // const [password, setPassword] = useState(props?.auth?.user?.password)
     const [firstName, setFirstName] = useState(props?.auth?.user?.name?.split(' ')[0])
     const [lastName, setLastName] = useState(props?.auth?.user?.name?.split(' ')[1])
     const [contact, setContact] = useState(props?.auth?.user?.contact)
@@ -18,6 +22,52 @@ const EditDetails = (props) => {
     const [state, setState] = useState(props?.auth?.user?.address?.state)
     const [pincode, setPincode] = useState(props?.auth?.user?.address?.pincode)
     const navigate = useNavigate()
+    const { enqueueSnackbar } = useSnackbar()
+    const config = {
+        headers: {
+            Authorization: `Bearer ${props.auth.token}`
+        }
+    }
+    const CustomButton = styled(Button)({
+        textTransform: "none",
+        backgroundColor: "#eb31e2",
+        "&:hover": {
+            backgroundColor: "#fc03cf",
+        },
+        fontSize: 16
+    });
+
+    const handleSubmit = async () => {
+        props.addLoader()
+        try {
+            const res = await axios.put(`${BASE_URL_1}/user/update`, {
+                firstName,
+                lastName,
+                contact,
+                email,
+                line1,
+                city,
+                state,
+                pincode
+            }, config)
+            props.update(res.data.user)
+            enqueueSnackbar('Details updated successfully', {
+                variant: 'success',
+                autoHideDuration: 3000
+            })
+            props.removeLoader()
+        } catch (err) {
+            props.removeLoader()
+            if (err?.response?.data?.status === "PRODUCT_NOT_LAUNCHED") {
+                setProduct(err.response.data.product)
+                setLaunched(false);
+            }
+            enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
+                variant: 'error',
+                autoHideDuration: 3000
+            })
+        }
+    }
 
     useEffect(() => {
         if (!props.auth.isAuthenticated) {
@@ -43,19 +93,6 @@ const EditDetails = (props) => {
                         value={email}
                     />
                 </div>
-                {/* <div style={{ marginBottom: 20 }}>
-                    <TextField
-                        fullWidth
-                        id='password'
-                        name='password'
-                        variant='outlined'
-                        label='Password'
-                        placeholder="Password"
-                        type='password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                    />
-                </div> */}
                 <Grid container spacing={2} mb={2}>
                     <Grid item xs={12} md={6}>
                         <TextField
@@ -155,6 +192,9 @@ const EditDetails = (props) => {
                     </Grid>
                 </Grid>
             </div>
+            <div style={{ width: '90%', maxWidth: '600px', margin: 'auto', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+                <CustomButton variant="contained" size='small' onClick={handleSubmit}>Edit Details</CustomButton>
+            </div>
         </div>
     )
 }
@@ -163,4 +203,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { addLoader, removeLoader })(EditDetails)
+export default connect(mapStateToProps, { addLoader, removeLoader, update })(EditDetails)

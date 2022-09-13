@@ -1,4 +1,4 @@
-import { LOGIN } from "./type";
+import { LOGIN, UPDATE } from "./type";
 import axios from "axios";
 import { addLoader } from "./loaderActions";
 import { removeLoader } from "./loaderActions";
@@ -39,3 +39,12 @@ export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
     );
   }
 };
+
+export const update = (data) => dispatch => {
+  dispatch({
+    type: UPDATE,
+    payload: {
+      user: data
+    }
+  })
+}
