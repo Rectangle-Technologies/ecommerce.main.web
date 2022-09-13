@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Category from "./pages/Category";
 import Wishlist from "./pages/Wishlist";
 import Search from "./pages/Search";
+import EditDetails from "./pages/EditDetails";
 
 const routes = [
   {
@@ -57,6 +58,10 @@ const routes = [
       {
         path: 'search/:name',
         element: <Search />
+      },
+      {
+        path: '/editdetails',
+        element: <EditDetails />
       }
     ],
   },

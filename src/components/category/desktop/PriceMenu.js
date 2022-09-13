@@ -40,12 +40,12 @@ const PriceMenu = (props) => {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'space-between',
-                        padding: '10px 15px',
+                        padding: '15px 15px',
                         border: '1px solid black',
                         minWidth: 180,
-                        borderRadius: 10
+                        borderRadius: 5
                     }}>
-                    <Typography style={{ ...textStyle, fontSize: 18, fontWeight: 500 }}>Price</Typography>
+                    <Typography style={{ ...textStyle, fontWeight: 500 }}>Price</Typography>
                     <ArrowDropDownIcon />
                 </div>
             </Link>

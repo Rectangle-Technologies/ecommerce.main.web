@@ -54,7 +54,7 @@ const Footer3 = (props) => {
     },
   ];
   return (
-    <Grid item xs={12} md={5}>
+    <Grid item xs={12} md={5} mx={2}>
       <Collapsable title="Quick Links" list={list1} />
       <Collapsable title="Categories" list={list2} />
       <Collapsable title="Policies" list={list3} />

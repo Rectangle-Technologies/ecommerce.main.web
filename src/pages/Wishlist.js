@@ -76,7 +76,7 @@ const Wishlist = (props) => {
 
     return (
         <div style={{ marginTop: 20, width: window.innerWidth > 500 ? '60%' : '90%', margin: 'auto', padding: 10 }}>
-            <Typography style={{ ...textStyle, fontWeight: 700, fontSize: 32, textAlign: 'center' }} my={2}>YOUR WISHLIST</Typography>
+            <Typography style={{ ...textStyle, fontWeight: 700, fontSize: window.innerWidth > 500 ? 32 : 26, textAlign: 'center' }} my={2}>YOUR WISHLIST</Typography>
             {wishlist?.length > 0
                 ? wishlist.map((product, idx) => (
                     <Grid key={idx} container my={1}>

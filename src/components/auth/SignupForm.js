@@ -36,7 +36,6 @@ const SignupForm = (props) => {
                 state,
                 pincode
             })
-            console.log(res.data)
             props.login(
                 { email, password, navigateUrl: props?.navigateUrl },
                 enqueueSnackbar,
@@ -71,6 +70,7 @@ const SignupForm = (props) => {
                         placeholder="Email"
                         type='text'
                         onChange={(e) => setEmail(e.target.value)}
+                        value={email}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -83,32 +83,41 @@ const SignupForm = (props) => {
                         placeholder="Password"
                         type='password'
                         onChange={(e) => setPassword(e.target.value)}
+                        value={password}
                     />
                 </div>
-                <div style={{ marginBottom: 20 }}>
-                    <TextField
-                        fullWidth
-                        id='first_name'
-                        name='first_name'
-                        variant='outlined'
-                        label='First Name'
-                        placeholder="First Name"
-                        type='text'
-                        onChange={(e) => setFirstName(e.target.value)}
-                    />
-                </div>
-                <div style={{ marginBottom: 20 }}>
-                    <TextField
-                        fullWidth
-                        id='last_name'
-                        name='last_name'
-                        variant='outlined'
-                        label='Last Name'
-                        placeholder="Last Name"
-                        type='text'
-                        onChange={(e) => setLastName(e.target.value)}
-                    />
-                </div>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                        <div style={{ marginBottom: 20 }}>
+                            <TextField
+                                fullWidth
+                                id='first_name'
+                                name='first_name'
+                                variant='outlined'
+                                label='First Name'
+                                placeholder="First Name"
+                                type='text'
+                                onChange={(e) => setFirstName(e.target.value)}
+                                value={firstName}
+                            />
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <div style={{ marginBottom: 20 }}>
+                            <TextField
+                                fullWidth
+                                id='last_name'
+                                name='last_name'
+                                variant='outlined'
+                                label='Last Name'
+                                placeholder="Last Name"
+                                type='text'
+                                onChange={(e) => setLastName(e.target.value)}
+                                value={lastName}
+                            />
+                        </div>
+                    </Grid>
+                </Grid>
                 <div style={{ marginBottom: 20 }}>
                     <TextField
                         fullWidth
@@ -122,6 +131,7 @@ const SignupForm = (props) => {
                         InputProps={{
                             startAdornment: <InputAdornment position="start">+91-</InputAdornment>,
                         }}
+                        value={contact}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -134,6 +144,7 @@ const SignupForm = (props) => {
                         placeholder="Address"
                         type='text'
                         onChange={(e) => setLine1(e.target.value)}
+                        value={line1}
                     />
                 </div>
                 <Grid container spacing={2}>
@@ -147,6 +158,7 @@ const SignupForm = (props) => {
                             placeholder="City"
                             type='text'
                             onChange={(e) => setCity(e.target.value)}
+                            value={city}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -159,6 +171,7 @@ const SignupForm = (props) => {
                             placeholder="State"
                             type='text'
                             onChange={(e) => setState(e.target.value)}
+                            value={state}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -171,6 +184,7 @@ const SignupForm = (props) => {
                             placeholder="Pincode"
                             type='text'
                             onChange={(e) => setPincode(e.target.value)}
+                            value={pincode}
                         />
                     </Grid>
                 </Grid>

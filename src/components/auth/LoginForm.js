@@ -33,6 +33,11 @@ const LoginForm = (props) => {
                         placeholder="Email"
                         type='text'
                         onChange={(e) => setLoginState({ ...loginState, email: e.target.value })}
+                        onKeyDown={e => {
+                            if (e.key === 'Enter') {
+                                handleLogin(e)
+                            }
+                        }}
                     />
                 </div>
                 <div style={{ marginTop: 20 }}>
@@ -45,6 +50,11 @@ const LoginForm = (props) => {
                         placeholder="Password"
                         type='password'
                         onChange={(e) => setLoginState({ ...loginState, password: e.target.value })}
+                        onKeyDown={e => {
+                            if (e.key === 'Enter') {
+                                handleLogin(e)
+                            }
+                        }}
                     />
                 </div>
             </div>

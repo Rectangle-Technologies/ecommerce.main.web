@@ -1,4 +1,4 @@
-import { Box, Chip, FormControl, Grid, InputLabel, Link, Menu, MenuItem, OutlinedInput, Select, Typography } from '@mui/material'
+import { Box, Chip, FormControl, Grid, InputLabel, Link, Menu, MenuItem, OutlinedInput, Select, TextField, Typography } from '@mui/material'
 import React from 'react'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { useState } from 'react';
@@ -64,6 +64,7 @@ const SizeMenu = (props) => {
         };
     }
     const theme = useTheme();
+
 
     const handleChange = (event) => {
         const {
@@ -142,7 +143,7 @@ const SizeMenu = (props) => {
                 </MenuItem>
             </Menu> */}
             <FormControl sx={{ m: 1, width: 200 }}>
-                <InputLabel id="demo-multiple-chip-label">Size</InputLabel>
+                <InputLabel id="demo-multiple-chip-label" sx={{ ...textStyle, fontWeight: 500 }}>Size</InputLabel>
                 <Select
                     labelId="demo-multiple-chip-label"
                     id="demo-multiple-chip"
@@ -158,6 +159,11 @@ const SizeMenu = (props) => {
                         </Box>
                     )}
                     MenuProps={MenuProps}
+                    inputProps={{
+                        sx: {
+                            border: '1px solid black',
+                        },
+                    }}
                 >
                     {sizes.map((size) => (
                         <MenuItem
