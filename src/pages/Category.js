@@ -14,9 +14,11 @@ import Mobile from '../components/responsive/Mobile'
 const Category = (props) => {
     const [category, setCategory] = useState()
     const [products, setProducts] = useState()
+    const [priceRange, setPriceRange] = useState([0, 5000]);
+    const [sizes, setSizes] = useState([])
     const [page, setPage] = useState(1)
     const [maxPages, setMaxPages] = useState(1)
-    const limit = 12
+    const limit = 1
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams()
 
@@ -25,7 +27,11 @@ const Category = (props) => {
         try {
             let res = await axios.get(`${BASE_URL_2}/products/category/${id}`)
             setCategory(res.data.category)
-            res = await axios.get(`${BASE_URL_2}/products/fetchByCategory/${id}?page=${page}&limit=${limit}`)
+            res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${page}&limit=${limit}`, {
+                categoryId: id,
+                priceRange: { min: priceRange[0], max: priceRange[1] },
+                sizes
+            })
             setProducts(res.data.products)
             setMaxPages(Math.ceil(res.data.count / limit))
             props.removeLoader()
@@ -58,6 +64,12 @@ const Category = (props) => {
                     page={page}
                     setPage={setPage}
                     maxPages={maxPages}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    sizes={sizes}
+                    setSizes={setSizes}
+                    setMaxPages={setMaxPages}
+                    limit={limit}
                 />
             </Desktop>
             <Tablet>
@@ -68,6 +80,12 @@ const Category = (props) => {
                     page={page}
                     setPage={setPage}
                     maxPages={maxPages}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    sizes={sizes}
+                    setSizes={setSizes}
+                    setMaxPages={setMaxPages}
+                    limit={limit}
                 />
             </Tablet>
             <Mobile>
@@ -78,6 +96,12 @@ const Category = (props) => {
                     page={page}
                     setPage={setPage}
                     maxPages={maxPages}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    sizes={sizes}
+                    setSizes={setSizes}
+                    setMaxPages={setMaxPages}
+                    limit={limit}
                 />
             </Mobile>
         </>

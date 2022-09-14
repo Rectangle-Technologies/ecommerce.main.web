@@ -14,8 +14,6 @@ import { BASE_URL_2 } from '../../../constants/urls';
 import { useNavigate } from 'react-router-dom';
 
 const CategoryDesktop = (props) => {
-    const [priceRange, setPriceRange] = useState([0, 5000]);
-    const [sizes, setSizes] = useState([])
     const { enqueueSnackbar } = useSnackbar()
     const navigate = useNavigate()
     const CustomButton = styled(Button)({
@@ -29,12 +27,13 @@ const CategoryDesktop = (props) => {
     const handleFilter = async () => {
         props.addLoader()
         try {
-            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter`, {
+            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${props?.page}&limit=${props?.limit}`, {
                 categoryId: props?.category?._id,
-                priceRange: { min: priceRange[0], max: priceRange[1] },
-                sizes
+                priceRange: { min: props?.priceRange[0], max: props?.priceRange[1] },
+                sizes: props?.sizes
             })
             props.setProducts(res.data.products)
+            props?.setMaxPages(Math.ceil(res.data.count) / props?.limit)
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
@@ -79,8 +78,8 @@ const CategoryDesktop = (props) => {
                 <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 20, fontStyle: 'medium' }} ml={1}>Refined By:</Typography>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', margin: 15 }}>
-                <PriceMenu value={priceRange} setValue={setPriceRange} />
-                <SizeMenu sizes={sizes} setSizes={setSizes} />
+                <PriceMenu value={props?.priceRange} setValue={props?.setPriceRange} />
+                <SizeMenu sizes={props?.sizes} setSizes={props?.setSizes} />
                 <CustomButton variant='contained' sx={{ mx: 1 }} onClick={handleFilter}>Apply</CustomButton>
             </div>
             <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>

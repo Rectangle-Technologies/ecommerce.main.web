@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from '@mui/material'
+import { Button, Grid, Pagination, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import SortIcon from '@mui/icons-material/Sort';
 import textStyle from '../../../helpers/textStyle';
@@ -13,8 +13,6 @@ import { useSnackbar } from 'notistack';
 import { BASE_URL_2 } from '../../../constants/urls';
 
 const SearchDesktop = (props) => {
-    const [priceRange, setPriceRange] = useState([0, 5000]);
-    const [sizes, setSizes] = useState([])
     const { enqueueSnackbar } = useSnackbar()
     const CustomButton = styled(Button)({
         textTransform: "none",
@@ -27,12 +25,13 @@ const SearchDesktop = (props) => {
     const handleFilter = async () => {
         props.addLoader()
         try {
-            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter`, {
-                priceRange: { min: priceRange[0], max: priceRange[1] },
-                sizes,
+            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${props?.page}&limit=${props?.limit}`, {
+                priceRange: { min: props?.priceRange[0], max: props?.priceRange[1] },
+                sizes: props?.sizes,
                 name: props.name
             })
             props.setProducts(res.data.products)
+            props?.setMaxPages(Math.ceil(res.data.count) / props?.limit)
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
@@ -49,6 +48,9 @@ const SearchDesktop = (props) => {
             })
         }
     }
+    const handlePageChange = (event, value) => {
+        props?.setPage(value)
+    }
 
     return (
         <div style={{ margin: 'auto', width: '80%' }}>
@@ -57,8 +59,8 @@ const SearchDesktop = (props) => {
                 <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 20, fontStyle: 'medium' }} ml={1}>Refined By:</Typography>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', margin: 15 }}>
-                <PriceMenu value={priceRange} setValue={setPriceRange} />
-                <SizeMenu sizes={sizes} setSizes={setSizes} />
+                <PriceMenu value={props?.priceRange} setValue={props?.setPriceRange} />
+                <SizeMenu sizes={props?.sizes} setSizes={props?.setSizes} />
                 <CustomButton variant='contained' sx={{ mx: 1 }} onClick={handleFilter}>Apply</CustomButton>
             </div>
             <div style={{ margin: 20 }}>
@@ -75,6 +77,9 @@ const SearchDesktop = (props) => {
                         </Grid>
                     ))}
                 </Grid>
+                <div style={{ display: 'flex', justifyContent: 'center', margin: '15px 0px' }}>
+                    <Pagination count={props?.maxPages} page={props?.page} onChange={handlePageChange} />
+                </div>
             </div>
         </div>
     )

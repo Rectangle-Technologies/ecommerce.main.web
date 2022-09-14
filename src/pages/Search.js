@@ -6,16 +6,29 @@ import axios from 'axios'
 import { BASE_URL_2 } from '../constants/urls'
 import SearchDesktop from '../components/search/desktop/SearchDesktop'
 import SearchMobile from '../components/search/mobile/SearchMobile'
+import Desktop from '../components/responsive/Desktop'
+import Tablet from '../components/responsive/Tablet'
+import Mobile from '../components/responsive/Mobile'
 
 const Search = (props) => {
     const { name } = useParams()
     const [products, setProducts] = useState()
+    const [page, setPage] = useState(1)
+    const [maxPages, setMaxPages] = useState(1)
+    const [priceRange, setPriceRange] = useState([0, 5000])
+    const [sizes, setSizes] = useState([])
+    const limit = 12
 
     const fetchProducts = async () => {
         props.addLoader()
         try {
-            const res = axios(`${BASE_URL_2}/products/get?search=${name}`)
-            setProducts((await res).data.products)
+            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${page}&limit=${limit}`, {
+                priceRange: { min: priceRange[0], max: priceRange[1] },
+                sizes,
+                name: name
+            })
+            setProducts(res.data.products)
+            setMaxPages(Math.ceil(res.data.count / limit))
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
@@ -34,12 +47,61 @@ const Search = (props) => {
 
     useEffect(() => {
         fetchProducts()
-    }, [])
+    }, [page, name])
 
     return (
         <>
-            <SearchDesktop products={products} setProducts={setProducts} name={name} />
-            {/* <SearchMobile products={products} setProducts={setProducts} name={name} /> */}
+            <Desktop>
+                <SearchDesktop
+                    products={products}
+                    setProducts={setProducts}
+                    name={name}
+                    page={page}
+                    setPage={setPage}
+                    maxPages={maxPages}
+                    setMaxPages={setMaxPages}
+                    limit={limit}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    sizes={sizes}
+                    setSizes={setSizes}
+                    fetchProducts={fetchProducts}
+                />
+            </Desktop>
+            <Tablet>
+                <SearchDesktop
+                    products={products}
+                    setProducts={setProducts}
+                    name={name}
+                    page={page}
+                    setPage={setPage}
+                    maxPages={maxPages}
+                    setMaxPages={setMaxPages}
+                    limit={limit}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    sizes={sizes}
+                    setSizes={setSizes}
+                    fetchProducts={fetchProducts}
+                />
+            </Tablet>
+            <Mobile>
+                <SearchMobile
+                    products={products}
+                    setProducts={setProducts}
+                    name={name}
+                    page={page}
+                    setPage={setPage}
+                    maxPages={maxPages}
+                    setMaxPages={setMaxPages}
+                    limit={limit}
+                    priceRange={priceRange}
+                    setPriceRange={setPriceRange}
+                    sizes={sizes}
+                    setSizes={setSizes}
+                    fetchProducts={fetchProducts}
+                />
+            </Mobile>
         </>
     )
 }

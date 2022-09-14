@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Divider, Grid, List, ListItem, Pagination, Typography } from '@mui/material';
-import PriceMenu from './PriceMenu';
-import SizeMenu from './SizeMenu';
+import { Grid, Pagination, Typography } from '@mui/material';
 import { connect } from 'react-redux';
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
 import axios from 'axios';
@@ -19,12 +17,13 @@ const CategoryMobile = (props) => {
     const handleFilter = async (setIsOpen) => {
         props.addLoader()
         try {
-            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter`, {
+            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${props?.page}&limit=${props?.limit}`, {
                 categoryId: props?.category?._id,
-                priceRange: { min: priceRange[0], max: priceRange[1] },
-                sizes
+                priceRange: { min: props?.priceRange[0], max: props?.priceRange[1] },
+                sizes: props?.sizes
             })
             props.setProducts(res.data.products)
+            props?.setMaxPages(Math.ceil(res.data.count) / props?.limit)
             props.removeLoader()
             setIsOpen(false)
         } catch (err) {
@@ -64,13 +63,13 @@ const CategoryMobile = (props) => {
                 </Typography>
                 <div style={{ borderTop: '2px solid black', width: window.innerWidth > 500 ? '130px' : '80px', margin: 'auto', marginTop: 2, marginBottom: 50 }}></div>
             </div>
-            <div style={{ margin: '15px 0px' }}>
+            <div style={{ marginBottom: '15px' }}>
                 <FiltersDrawer
                     handleFilter={handleFilter}
-                    priceRange={priceRange}
-                    setPriceRange={setPriceRange}
-                    sizes={sizes}
-                    setSizes={setSizes}
+                    priceRange={props?.priceRange}
+                    setPriceRange={props?.setPriceRange}
+                    sizes={props?.sizes}
+                    setSizes={props?.setSizes}
                 />
             </div>
             <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
