@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid, Link, Typography } from '@mui/material'
 import React from 'react'
 import textStyle from '../helpers/textStyle'
 import { connect } from 'react-redux'
@@ -6,7 +6,7 @@ import { addLoader, removeLoader } from '../redux/services/actions/loaderActions
 import { useState } from 'react'
 import axios from 'axios'
 import { BASE_URL_1 } from '../constants/urls'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useSnackbar } from 'notistack'
 import formatAmount from '../helpers/formatAmount'
@@ -16,6 +16,7 @@ const OrderDetails = (props) => {
     const [order, setOrder] = useState()
     const { id } = useParams()
     const { enqueueSnackbar } = useSnackbar()
+    const navigate = useNavigate()
     const config = {
         headers: {
             Authorization: `Bearer ${props.auth.token}`
@@ -64,25 +65,27 @@ const OrderDetails = (props) => {
             </Grid>
             <div style={{ width: window.innerWidth > 600 ? '70%' : '100%', margin: 'auto' }}>
                 {order?.products?.map((p, idx) => (
-                    <Grid container spacing={1} my={2} key={idx}>
-                        <Grid item xs={4} md={3}>
-                            <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.7 }} />
+                    <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?.productId?._id}`)}>
+                        <Grid container spacing={1} my={2} key={idx}>
+                            <Grid item xs={4} md={3}>
+                                <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.7 }} />
+                            </Grid>
+                            <Grid item xs={8} md={9}>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 20 : 16 }}>
+                                    {p?.productId?.name}
+                                </Typography>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 18 : 14 }} my={1}>
+                                    {formatAmount(p?.productId?.price)}
+                                </Typography>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 18 : 14 }} my={1}>
+                                    Size: {p?.size}
+                                </Typography>
+                                <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 18 : 14 }} my={1}>
+                                    Qty: {p?.quantity}
+                                </Typography>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={8} md={9}>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 20 : 16 }}>
-                                {p?.productId?.name}
-                            </Typography>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 18 : 14 }} my={1}>
-                                {formatAmount(p?.productId?.price)}
-                            </Typography>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 18 : 14 }} my={1}>
-                                Size: {p?.size}
-                            </Typography>
-                            <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 18 : 14 }} my={1}>
-                                Qty: {p?.quantity}
-                            </Typography>
-                        </Grid>
-                    </Grid>
+                    </Link>
                 ))}
             </div>
         </div>
