@@ -56,8 +56,8 @@ const NavbarMobile = (props) => {
                         <Link to="/diaries" style={{ textDecoration: "none" }} onClick={() => { setIsOpen(false) }}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
                         </Link>
-                        <Link to="/editdetails" style={{ textDecoration: "none" }} onClick={() => { setIsOpen(false) }}>
-                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >My Account</Typography>
+                        <Link to="/about" style={{ textDecoration: "none" }} onClick={() => { setIsOpen(false) }}>
+                            <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >About Us</Typography>
                         </Link>
                         <Link to="/contact" style={{ textDecoration: "none" }} onClick={() => { setIsOpen(false) }}>
                             <Typography className="navbar_mobile_item" style={{ fontSize: 18 }} >Contact us</Typography>
@@ -94,9 +94,17 @@ const NavbarMobile = (props) => {
 
             {/* important icons */}
             <div style={{ padding: "0px" }}>
-                <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
-                <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
-                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
+                <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
+                    setIsOpen(false)
+                }} />
+                <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
+                    navigate('/wishlist')
+                    setIsOpen(false)
+                }} />
+                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
+                    navigate('/cart')
+                    setIsOpen(false)
+                }} />
                 <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
                     handleProfileClick(e)
                     setIsOpen(false)
