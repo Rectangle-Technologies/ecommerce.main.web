@@ -23,7 +23,7 @@ const CategoryMobile = (props) => {
                 sizes: props?.sizes
             })
             props.setProducts(res.data.products)
-            props?.setMaxPages(Math.ceil(res.data.count) / props?.limit)
+            props?.setMaxPages(Math.ceil(res.data.count / props?.limit))
             props.removeLoader()
             setIsOpen(false)
         } catch (err) {

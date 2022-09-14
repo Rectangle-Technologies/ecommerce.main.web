@@ -22,6 +22,7 @@ const EditDetails = (props) => {
     const [state, setState] = useState(props?.auth?.user?.address?.state)
     const [pincode, setPincode] = useState(props?.auth?.user?.address?.pincode)
     const navigate = useNavigate()
+    const [disabled, setDisabled] = useState(true)
     const { enqueueSnackbar } = useSnackbar()
     const config = {
         headers: {
@@ -91,6 +92,7 @@ const EditDetails = (props) => {
                         type='text'
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
+                        disabled={disabled}
                     />
                 </div>
                 <Grid container spacing={2} mb={2}>
@@ -105,6 +107,7 @@ const EditDetails = (props) => {
                             type='text'
                             onChange={(e) => setFirstName(e.target.value)}
                             value={firstName}
+                            disabled={disabled}
                         />
                     </Grid>
                     <Grid item xs={12} md={6}>
@@ -118,6 +121,7 @@ const EditDetails = (props) => {
                             type='text'
                             onChange={(e) => setLastName(e.target.value)}
                             value={lastName}
+                            disabled={disabled}
                         />
                     </Grid>
                 </Grid>
@@ -135,6 +139,7 @@ const EditDetails = (props) => {
                             startAdornment: <InputAdornment position="start">+91-</InputAdornment>,
                         }}
                         value={contact}
+                        disabled={disabled}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -148,6 +153,7 @@ const EditDetails = (props) => {
                         type='text'
                         onChange={(e) => setLine1(e.target.value)}
                         value={line1}
+                        disabled={disabled}
                     />
                 </div>
                 <Grid container spacing={2} mb={4}>
@@ -162,6 +168,7 @@ const EditDetails = (props) => {
                             type='text'
                             onChange={(e) => setCity(e.target.value)}
                             value={city}
+                            disabled={disabled}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -175,6 +182,7 @@ const EditDetails = (props) => {
                             type='text'
                             onChange={(e) => setState(e.target.value)}
                             value={state}
+                            disabled={disabled}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -188,12 +196,16 @@ const EditDetails = (props) => {
                             type='text'
                             onChange={(e) => setPincode(e.target.value)}
                             value={pincode}
+                            disabled={disabled}
                         />
                     </Grid>
                 </Grid>
             </div>
             <div style={{ width: '90%', maxWidth: '600px', margin: 'auto', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
-                <CustomButton variant="contained" size='small' onClick={handleSubmit}>Edit Details</CustomButton>
+                {disabled
+                    ? <CustomButton variant="contained" size='small' onClick={() => setDisabled(false)}>Edit</CustomButton>
+                    : <CustomButton variant="contained" size='small' onClick={handleSubmit}>Save</CustomButton>
+                }
             </div>
         </div>
     )
