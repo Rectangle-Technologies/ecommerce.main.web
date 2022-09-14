@@ -3,14 +3,25 @@ import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Typography } from "@mui/material";
+import { Menu, MenuItem, Typography } from "@mui/material";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 const NavbarMobile = (props) => {
     const [isOpen, setIsOpen] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+    const navigate = useNavigate()
+
+    const handleProfileClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleProfileClose = () => {
+        setAnchorEl(null);
+    };
+
     return (
         <div style={{
             borderBottom: "1px solid black",
@@ -86,7 +97,29 @@ const NavbarMobile = (props) => {
                 <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
                 <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
                 <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
-                <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => { setIsOpen(false) }} />
+                <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
+                    handleProfileClick(e)
+                    setIsOpen(false)
+                }} />
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorEl}
+                    open={open}
+                    onClose={handleProfileClose}
+                >
+                    <MenuItem onClick={() => {
+                        handleProfileClose()
+                        navigate(`/editdetails`)
+                    }}>
+                        Profile
+                    </MenuItem>
+                    <MenuItem onClick={() => {
+                        handleProfileClose()
+                        navigate(`/orders`)
+                    }}>
+                        Orders
+                    </MenuItem>
+                </Menu>
             </div>
         </div>
     )
