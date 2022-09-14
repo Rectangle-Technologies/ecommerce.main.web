@@ -64,7 +64,7 @@ const CategoryMobile = (props) => {
                 </Typography>
                 <div style={{ borderTop: '2px solid black', width: window.innerWidth > 500 ? '130px' : '80px', margin: 'auto', marginTop: 2, marginBottom: 50 }}></div>
             </div>
-            <div style={{ marginTop: 20 }}>
+            <div style={{ margin: '15px 0px' }}>
                 <FiltersDrawer
                     handleFilter={handleFilter}
                     priceRange={priceRange}

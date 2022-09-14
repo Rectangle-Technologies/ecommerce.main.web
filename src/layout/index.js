@@ -40,7 +40,7 @@ const Layout = (props) => {
 
   return (
     <>
-      <Header />
+      <Header categories={categories} />
       <Outlet />
       <Footer categories={categories} />
       <div style={{ position: "fixed", right: 0, top: "50%", width: isMobile ? "10vw" : "4vw", transform: "translate(0%, -50%)" }} >

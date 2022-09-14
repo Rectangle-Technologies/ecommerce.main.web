@@ -27,19 +27,19 @@ const Header = (props) => {
 
             {/* NAVBAR */}
             <BrowserView>
-            {width > 900 
-                ? <NavbarDesktop />
-                : <NavbarMobile />
-            }
+                {width > 900
+                    ? <NavbarDesktop categories={props?.categories} />
+                    : <NavbarMobile categories={props?.categories} />
+                }
             </BrowserView>
             <TabletView>
-                {width > 900 
-                ? <NavbarDesktop />
-                : <NavbarMobile />
-            }
+                {width > 900
+                    ? <NavbarDesktop categories={props?.categories} />
+                    : <NavbarMobile categories={props?.categories} />
+                }
             </TabletView>
             <MobileOnlyView>
-                <NavbarMobile/>
+                <NavbarMobile categories={props?.categories} />
             </MobileOnlyView>
         </>
     )
