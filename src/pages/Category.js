@@ -18,7 +18,7 @@ const Category = (props) => {
     const [sizes, setSizes] = useState([])
     const [page, setPage] = useState(1)
     const [maxPages, setMaxPages] = useState(1)
-    const limit = 1
+    const limit = 12
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams()
 

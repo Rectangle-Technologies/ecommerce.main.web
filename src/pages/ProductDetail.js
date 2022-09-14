@@ -165,8 +165,8 @@ const ProductDetail = (props) => {
 
     return (
         <>
-            {!launched ? <center><Typography>Product not launched yet</Typography>
-                <Typography>Come back later at {(new Date(product.launch_time)).toDateString()} </Typography> </center>
+            {!launched ? <center><Typography style={{ ...textStyle, fontSize: 20 }}>Product not launched yet</Typography>
+                <Typography style={{ ...textStyle, fontSize: 20 }}>Come back later at {(new Date(product.launch_time)).toDateString()} </Typography> </center>
                 : <>
                     {product && <Container maxWidth="lg">
                         <Grid container my={5} p={window.innerWidth < 500 ? 0 : 3}>

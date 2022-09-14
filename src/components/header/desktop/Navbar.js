@@ -6,8 +6,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import { Menu, MenuItem, Typography } from "@mui/material";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import { get } from "../../../utils/apiHelper";
 import { connect } from "react-redux";
+import { logout } from "../../../redux/services/actions/authActions";
 
 const NavbarDesktop = (props) => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -91,6 +91,12 @@ const NavbarDesktop = (props) => {
                     }}>
                         Orders
                     </MenuItem>
+                    <MenuItem onClick={() => {
+                        props.logout()
+                        navigate(`/login`)
+                    }}>
+                        Logout
+                    </MenuItem>
                 </Menu>
             </div>
         </div>
@@ -103,4 +109,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {})(NavbarDesktop);
+export default connect(mapStateToProps, { logout })(NavbarDesktop);

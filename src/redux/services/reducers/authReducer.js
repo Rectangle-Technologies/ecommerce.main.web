@@ -1,4 +1,4 @@
-import { LOGIN, UPDATE } from "../actions/type";
+import { LOGIN, LOGOUT, UPDATE } from "../actions/type";
 
 const initialState = {
   isAuthenticated: false,
@@ -14,6 +14,8 @@ export default function (state = initialState, action) {
         token: action.payload.token,
         user: action.payload.user,
       };
+    case LOGOUT:
+      return initialState
     case UPDATE:
       return {
         ...state,

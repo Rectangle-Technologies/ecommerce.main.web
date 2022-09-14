@@ -8,6 +8,8 @@ import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import { connect } from "react-redux";
+import { logout } from "../../../redux/services/actions/authActions";
 
 const NavbarMobile = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -127,10 +129,16 @@ const NavbarMobile = (props) => {
                     }}>
                         Orders
                     </MenuItem>
+                    <MenuItem onClick={() => {
+                        props.logout()
+                        navigate(`/login`)
+                    }}>
+                        Logout
+                    </MenuItem>
                 </Menu>
             </div>
         </div>
     )
 }
 
-export default NavbarMobile;
+export default connect(null, { logout })(NavbarMobile);

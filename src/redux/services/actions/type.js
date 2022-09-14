@@ -1,6 +1,7 @@
 // Auth actions
 export const LOGIN = 'LOGIN';
 export const UPDATE = 'UPDATE'
+export const LOGOUT = 'LOGOUT'
 
 // Alert actions
 export const ALERT_SUCCESS = "ALERT_SUCCESS";
