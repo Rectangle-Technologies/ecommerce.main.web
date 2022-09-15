@@ -42,7 +42,7 @@ const Landing = (props) => {
     <>
       {/* <Caraousel /> */}
       <DoubleTextComponent backText="What We Design" frontText="New Arrivals" />
-      <Grid container spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
+      <Grid container spacing={window.innerWidth > 600 ? 6 : 3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
         {products?.map((p, idx) => (
           <Grid key={idx} item xs={6} md={3}>
             <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p._id}`)}>
