@@ -2,10 +2,11 @@ import { io } from "socket.io-client";
 const base_url = "ws://localhost:4000/";
 
 export default class SocketAPI {
-    constructor(userid, dispatch, navigate, snackbar) {
+    constructor(userid, token, dispatch, navigate, snackbar) {
         this.socket = null;
         this.type = "user";
         this.userid = userid;
+        this.token = token;
         this.isConnected = false;
         this.dispatch = dispatch;
         this.navigate = navigate;
@@ -17,7 +18,8 @@ export default class SocketAPI {
             this.socket = io(base_url, {
                 query: {
                     type: this.type,
-                    userid: this.userid
+                    userid: this.userid,
+                    token: this.token
                 },
                 transports: ["websocket"],
             });
