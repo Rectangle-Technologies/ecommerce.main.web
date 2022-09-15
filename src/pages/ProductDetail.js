@@ -176,7 +176,7 @@ const ProductDetail = (props) => {
                                         <div className="carousel-inner">
                                             {product.imageUrls.map((url, index) => {
                                                 return (
-                                                    <div className={"carousel-item" + (index === 0 ? " active" : "")}>
+                                                    <div className={"carousel-item" + (index === 0 ? " active" : "")} key={index}>
                                                         <img
                                                             className="d-block w-100" key={index}
                                                             src={url}

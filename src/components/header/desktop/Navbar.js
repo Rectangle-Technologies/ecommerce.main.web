@@ -63,11 +63,11 @@ const NavbarDesktop = (props) => {
                         <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
                     </Link>
                     {props?.categories?.map((category, index) => {
-                        return (<>
-                            <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }}>
+                        return (
+                            <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }} key={index}>
                                 <Typography className="navbar_item" style={{ fontSize: 18 }} >{category.title}</Typography>
                             </Link>
-                        </>)
+                        )
                     })}
                 </div>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: '6px' }} >

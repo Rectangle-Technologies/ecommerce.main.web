@@ -9,6 +9,9 @@ import { CircularProgress } from "@mui/material";
 import routes from "./routes";
 import "./App.css";
 
+const { io } = require("socket.io-client");
+const socket = io("http://localhost:4000");
+
 class ReduxSetup extends Component {
   render() {
     return (
