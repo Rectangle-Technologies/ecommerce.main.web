@@ -69,7 +69,7 @@ const NavbarDesktop = (props) => {
                             <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }}>
                                 <Typography className={url === `/category/${category._id}` ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }} >{category.title}</Typography>
                             </Link>
-                        </>)
+                        )
                     })}
                 </div>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: '6px' }} >
@@ -84,86 +84,86 @@ const NavbarDesktop = (props) => {
                     </Link>
                 </div>
             </div>
-            {/* important icons */}
-            <div style={{ padding: "10px" }}>
-                <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleSearchClick}>
-                    <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                </Link>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorElSearch}
-                    open={openSearch}
-                    onClose={handleSearchClose}
-                    PaperProps={{
-                        style: {
-                            width: '100%',
-                            maxWidth: '400px'
-                        }
-                    }}
-                >
-                    <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                        <Grid container spacing={1}>
-                            <Grid item xs={10}>
-                                <TextField
-                                    label='Search'
-                                    placeholder="Search"
-                                    name='search'
-                                    variant='outlined'
-                                    fullWidth
-                                    type='text'
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    value={search}
-                                />
+                {/* important icons */}
+                <div style={{ padding: "10px" }}>
+                    <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleSearchClick}>
+                        <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                    </Link>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorElSearch}
+                        open={openSearch}
+                        onClose={handleSearchClose}
+                        PaperProps={{
+                            style: {
+                                width: '100%',
+                                maxWidth: '400px'
+                            }
+                        }}
+                    >
+                        <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
+                            <Grid container spacing={1}>
+                                <Grid item xs={10}>
+                                    <TextField
+                                        label='Search'
+                                        placeholder="Search"
+                                        name='search'
+                                        variant='outlined'
+                                        fullWidth
+                                        type='text'
+                                        onChange={(e) => setSearch(e.target.value)}
+                                        value={search}
+                                    />
+                                </Grid>
+                                <Grid item xs={2} my={1}>
+                                    <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={2} my={1}>
-                                <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
-                            </Grid>
-                        </Grid>
-                    </MenuItem>
-                </Menu>
-                <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                    <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                </Link>
-                <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                    <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                </Link>
-                <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleProfileClick}>
-                    <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                </Link>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorElProfile}
-                    open={openProfile}
-                    onClose={handleProfileClose}
-                >
-                    <MenuItem onClick={() => {
-                        handleProfileClose()
-                        navigate(`/editdetails`)
-                    }}>
-                        Profile
-                    </MenuItem>
-                    <MenuItem onClick={() => {
-                        handleProfileClose()
-                        navigate(`/orders`)
-                    }}>
-                        Orders
-                    </MenuItem>
-                    <MenuItem onClick={() => {
-                        props.logout()
-                        navigate(`/login`)
-                    }}>
-                        Logout
-                    </MenuItem>
-                </Menu>
+                        </MenuItem>
+                    </Menu>
+                    <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                        <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                    </Link>
+                    <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                        <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                    </Link>
+                    <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleProfileClick}>
+                        <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                    </Link>
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorElProfile}
+                        open={openProfile}
+                        onClose={handleProfileClose}
+                    >
+                        <MenuItem onClick={() => {
+                            handleProfileClose()
+                            navigate(`/editdetails`)
+                        }}>
+                            Profile
+                        </MenuItem>
+                        <MenuItem onClick={() => {
+                            handleProfileClose()
+                            navigate(`/orders`)
+                        }}>
+                            Orders
+                        </MenuItem>
+                        <MenuItem onClick={() => {
+                            props.logout()
+                            navigate(`/login`)
+                        }}>
+                            Logout
+                        </MenuItem>
+                    </Menu>
+                </div>
             </div>
-        </div>
-    )
+            )
 }
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth
+                auth: state.auth
     }
 }
 
-export default connect(mapStateToProps, { logout })(NavbarDesktop);
+            export default connect(mapStateToProps, {logout})(NavbarDesktop);

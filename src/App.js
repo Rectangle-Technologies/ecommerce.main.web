@@ -8,6 +8,7 @@ import Backdrop from "@mui/material/Backdrop";
 import { CircularProgress } from "@mui/material";
 import routes from "./routes";
 import "./App.css";
+import Socket from "./components/Socket";
 
 class ReduxSetup extends Component {
   render() {
@@ -68,9 +69,11 @@ class App extends Component {
       <div className="bloom-boutique">
         <ReduxSetup>
           <Router>
-            <ScrollToTop>
-              <RouterUpgrade />
-            </ScrollToTop>
+            <Socket>
+              <ScrollToTop>
+                <RouterUpgrade />
+              </ScrollToTop>
+            </Socket>
           </Router>
         </ReduxSetup>
       </div>
