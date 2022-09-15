@@ -1,8 +1,9 @@
 import { Grid, Link, TextField, Typography } from '@mui/material'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import formatAmount from '../helpers/formatAmount'
 import textStyle from '../helpers/textStyle'
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import EditIcon from '@mui/icons-material/Edit';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { BASE_URL_3 } from '../constants/urls';
@@ -13,6 +14,7 @@ import * as Yup from "yup";
 import { Form, FormikProvider, useFormik } from 'formik';
 
 const Checkout = (props) => {
+    const [disabled, setDisabled] = useState(true)
     const location = useLocation()
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar();
@@ -173,10 +175,24 @@ const Checkout = (props) => {
                                     {...getFieldProps("mobile_no")}
                                     error={Boolean(touched.mobile_no && errors.mobile_no)}
                                     helperText={touched.mobile_no && errors.mobile_no}
+                                    disabled={disabled}
                                 />
-                                <Typography style={{ ...textStyle, fontFamily: 'Playfair Display', fontWeight: 500, fontSize: 24, textDecoration: 'underline' }} my={3}>
-                                    Shipping Details
-                                </Typography>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', margin: '20px 0px' }}>
+                                    <Typography style={{ ...textStyle, fontFamily: 'Playfair Display', fontWeight: 500, fontSize: 24, textDecoration: 'underline' }}>
+                                        Shipping Details
+                                    </Typography>
+                                    {disabled &&
+                                        <Link
+                                            style={{ display: 'flex', cursor: 'pointer' }}
+                                            onClick={() => setDisabled(false)}
+                                        >
+                                            <div style={{ display: 'flex', alignItems: 'center' }}>
+                                                <EditIcon fontSize='small' />
+                                                <Typography style={{ ...textStyle, fontSize: 18 }} mx={1}>Edit</Typography>
+                                            </div>
+                                        </Link>
+                                    }
+                                </div>
                                 <Grid container spacing={3}>
                                     <Grid item xs={12} md={6}>
                                         <TextField
@@ -190,6 +206,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("first_name")}
                                             error={Boolean(touched.first_name && errors.first_name)}
                                             helperText={touched.first_name && errors.first_name}
+                                            disabled={disabled}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={6}>
@@ -203,6 +220,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("last_name")}
                                             error={Boolean(touched.last_name && errors.last_name)}
                                             helperText={touched.last_name && errors.last_name}
+                                            disabled={disabled}
                                         />
                                     </Grid>
                                 </Grid>
@@ -217,6 +235,7 @@ const Checkout = (props) => {
                                         {...getFieldProps("address")}
                                         error={Boolean(touched.address && errors.address)}
                                         helperText={touched.address && errors.address}
+                                        disabled={disabled}
                                     />
                                 </div>
                                 <Grid container my={1} spacing={2}>
@@ -231,6 +250,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("city")}
                                             error={Boolean(touched.city && errors.city)}
                                             helperText={touched.city && errors.city}
+                                            disabled={disabled}
                                         />
                                     </Grid>
                                     <Grid item xs={6} md={4}>
@@ -244,6 +264,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("state")}
                                             error={Boolean(touched.state && errors.state)}
                                             helperText={touched.state && errors.state}
+                                            disabled={disabled}
                                         />
                                     </Grid>
                                     <Grid item xs={12} md={4}>
@@ -257,6 +278,7 @@ const Checkout = (props) => {
                                             {...getFieldProps("pincode")}
                                             error={Boolean(touched.pincode && errors.pincode)}
                                             helperText={touched.pincode && errors.pincode}
+                                            disabled={disabled}
                                         />
                                     </Grid>
                                 </Grid>
