@@ -8,9 +8,7 @@ import Backdrop from "@mui/material/Backdrop";
 import { CircularProgress } from "@mui/material";
 import routes from "./routes";
 import "./App.css";
-
-const { io } = require("socket.io-client");
-const socket = io("http://localhost:4000");
+import Socket from "./components/Socket";
 
 class ReduxSetup extends Component {
   render() {
@@ -71,9 +69,11 @@ class App extends Component {
       <div className="bloom-boutique">
         <ReduxSetup>
           <Router>
-            <ScrollToTop>
-              <RouterUpgrade />
-            </ScrollToTop>
+            <Socket>
+              <ScrollToTop>
+                <RouterUpgrade />
+              </ScrollToTop>
+            </Socket>
           </Router>
         </ReduxSetup>
       </div>

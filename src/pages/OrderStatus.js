@@ -22,7 +22,6 @@ const OrderStatus = (props) => {
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
 
-
     const createOrder = async () => {
         props.addLoader()
         try {
