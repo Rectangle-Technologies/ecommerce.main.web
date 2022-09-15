@@ -136,8 +136,8 @@ const NavbarMobile = (props) => {
                     }}
                 >
                     <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={9}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={10}>
                                 <TextField
                                     label='Search'
                                     placeholder="Search"
@@ -149,7 +149,7 @@ const NavbarMobile = (props) => {
                                     value={search}
                                 />
                             </Grid>
-                            <Grid item xs={3} my={1}>
+                            <Grid item xs={2} my={1}>
                                 <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
                             </Grid>
                         </Grid>

@@ -100,8 +100,8 @@ const NavbarDesktop = (props) => {
                     }}
                 >
                     <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={9}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={10}>
                                 <TextField
                                     label='Search'
                                     placeholder="Search"
@@ -113,13 +113,13 @@ const NavbarDesktop = (props) => {
                                     value={search}
                                 />
                             </Grid>
-                            <Grid item xs={3} my={1}>
+                            <Grid item xs={2} my={1}>
                                 <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
                             </Grid>
                         </Grid>
                     </MenuItem>
                 </Menu>
-                <Link to="/about" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
                     <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>
                 <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>

@@ -65,8 +65,8 @@ const OrderDetails = (props) => {
             </Grid>
             <div style={{ width: window.innerWidth > 600 ? '70%' : '100%', margin: 'auto' }}>
                 {order?.products?.map((p, idx) => (
-                    <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?.productId?._id}`)}>
-                        <Grid container spacing={1} my={2} key={idx}>
+                    <Link key={idx} style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?.productId?._id}`)}>
+                        <Grid container spacing={1} my={2}>
                             <Grid item xs={4} md={3}>
                                 <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.7 }} />
                             </Grid>
