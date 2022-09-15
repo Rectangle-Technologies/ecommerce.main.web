@@ -5,7 +5,7 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Button, Grid, Menu, MenuItem, TextField, Typography } from "@mui/material";
 import "./navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
 import { logout } from "../../../redux/services/actions/authActions";
 import { styled } from "@mui/material/styles";
@@ -17,6 +17,8 @@ const NavbarDesktop = (props) => {
     const openSearch = Boolean(anchorElSearch);
     const [search, setSearch] = useState()
     const navigate = useNavigate()
+    const location = useLocation()
+    const url = location.pathname
 
     const handleProfileClick = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -60,25 +62,25 @@ const NavbarDesktop = (props) => {
             <div style={{ display: "flex", flexDirection: "column" }} >
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
                     <Link to="/" style={{ textDecoration: "none" }}>
-                        <Typography className="navbar_item navbar_item_selected" style={{ fontSize: 18 }}>New-in</Typography>
+                        <Typography className={url === '/' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }}>New-in</Typography>
                     </Link>
                     {props?.categories?.map((category, index) => {
                         return (<>
                             <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }}>
-                                <Typography className="navbar_item" style={{ fontSize: 18 }} >{category.title}</Typography>
+                                <Typography className={url === `/category/${category._id}` ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }} >{category.title}</Typography>
                             </Link>
                         </>)
                     })}
                 </div>
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", marginTop: '6px' }} >
                     <Link to="/diaries" style={{ textDecoration: "none" }}>
-                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Client Diaries</Typography>
+                        <Typography className={url === '/diaries' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }} >Client Diaries</Typography>
                     </Link>
                     <Link to="/about" style={{ textDecoration: "none" }}>
-                        <Typography className="navbar_item" style={{ fontSize: 18 }} >About us</Typography>
+                        <Typography className={url === '/about' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }} >About us</Typography>
                     </Link>
                     <Link to="/contact" style={{ textDecoration: "none" }}>
-                        <Typography className="navbar_item" style={{ fontSize: 18 }} >Contact us</Typography>
+                        <Typography className={url === '/contact' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }} >Contact us</Typography>
                     </Link>
                 </div>
             </div>
