@@ -39,6 +39,10 @@ const ProductDetail = (props) => {
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
+            if (err?.response?.data?.status === "PRODUCT_NOT_LAUNCHED") {
+                setProduct(err.response.data.product)
+                setLaunched(false);
+            }
             let message = 'Something went wrong'
             if (err?.response?.data?.errors) {
                 message = err?.response?.data?.errors[0].msg

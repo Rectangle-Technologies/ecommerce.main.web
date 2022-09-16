@@ -23,7 +23,7 @@ const Search = (props) => {
     const fetchProducts = async () => {
         props.addLoader()
         try {
-            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${page}&limit=${limit}`, {
+            const res = await axios.post(`${BASE_URL_2}/products/fetchByFilter?page=${page}&limit=${limit}&empty=required`, {
                 priceRange: { min: priceRange[0], max: priceRange[1] },
                 sizes,
                 name: name
