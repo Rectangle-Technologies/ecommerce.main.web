@@ -65,7 +65,7 @@ const NavbarDesktop = (props) => {
                         <Typography className={url === '/' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }}>New-in</Typography>
                     </Link>
                     {props?.categories?.map((category, index) => {
-                        return (<>
+                        return (
                             <Link to={`/category/${category._id}`} style={{ textDecoration: "none" }}>
                                 <Typography className={url === `/category/${category._id}` ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }} >{category.title}</Typography>
                             </Link>
