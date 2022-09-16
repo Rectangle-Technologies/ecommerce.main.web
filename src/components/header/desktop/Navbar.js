@@ -84,52 +84,54 @@ const NavbarDesktop = (props) => {
                     </Link>
                 </div>
             </div>
-                {/* important icons */}
-                <div style={{ padding: "10px" }}>
-                    <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleSearchClick}>
-                        <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                    </Link>
-                    <Menu
-                        id="basic-menu"
-                        anchorEl={anchorElSearch}
-                        open={openSearch}
-                        onClose={handleSearchClose}
-                        PaperProps={{
-                            style: {
-                                width: '100%',
-                                maxWidth: '400px'
-                            }
-                        }}
-                    >
-                        <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                            <Grid container spacing={1}>
-                                <Grid item xs={10}>
-                                    <TextField
-                                        label='Search'
-                                        placeholder="Search"
-                                        name='search'
-                                        variant='outlined'
-                                        fullWidth
-                                        type='text'
-                                        onChange={(e) => setSearch(e.target.value)}
-                                        value={search}
-                                    />
-                                </Grid>
-                                <Grid item xs={2} my={1}>
-                                    <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
-                                </Grid>
+            {/* important icons */}
+            <div style={{ padding: "10px" }}>
+                <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleSearchClick}>
+                    <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                <Menu
+                    id="basic-menu"
+                    anchorEl={anchorElSearch}
+                    open={openSearch}
+                    onClose={handleSearchClose}
+                    PaperProps={{
+                        style: {
+                            width: '100%',
+                            maxWidth: '400px'
+                        }
+                    }}
+                >
+                    <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
+                        <Grid container spacing={1}>
+                            <Grid item xs={10}>
+                                <TextField
+                                    label='Search'
+                                    placeholder="Search"
+                                    name='search'
+                                    variant='outlined'
+                                    fullWidth
+                                    type='text'
+                                    onChange={(e) => setSearch(e.target.value)}
+                                    value={search}
+                                />
                             </Grid>
-                        </MenuItem>
-                    </Menu>
-                    <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                        <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                    </Link>
-                    <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                        <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                    </Link>
-                    <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleProfileClick}>
-                        <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
-                    </Link>
+                            <Grid item xs={2} my={1}>
+                                <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
+                            </Grid>
+                        </Grid>
+                    </MenuItem>
+                </Menu>
+                <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                    <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
+                    <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleProfileClick}>
+                    <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                </Link>
+                {props?.auth?.isAuthenticated
+                    ?
                     <Menu
                         id="basic-menu"
                         anchorEl={anchorElProfile}
@@ -155,15 +157,30 @@ const NavbarDesktop = (props) => {
                             Logout
                         </MenuItem>
                     </Menu>
-                </div>
+                    :
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorElProfile}
+                        open={openProfile}
+                        onClose={handleProfileClose}
+                    >
+                        <MenuItem onClick={() => {
+                            handleProfileClose()
+                            navigate(`/login`)
+                        }}>
+                            Login
+                        </MenuItem>
+                    </Menu>
+                }
             </div>
-            )
+        </div>
+    )
 }
 
 const mapStateToProps = (state) => {
     return {
-                auth: state.auth
+        auth: state.auth
     }
 }
 
-            export default connect(mapStateToProps, {logout})(NavbarDesktop);
+export default connect(mapStateToProps, { logout })(NavbarDesktop);
