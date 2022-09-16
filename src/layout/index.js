@@ -47,7 +47,7 @@ const Layout = (props) => {
         <div style={{ position: "relative", top: "-50%" }}>
           <Grid container>
             <Grid item xs={12}>
-              <Link href="https://www.facebook.com" rel="noopener" target="_blank">
+              <Link href="https://www.facebook.com/bloombykhushbu" rel="noopener" target="_blank">
                 <img src="/fb.png" style={{ width: "100%" }} />
               </Link>
             </Grid>
@@ -59,14 +59,14 @@ const Layout = (props) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Link href="https://www.twitter.com" rel="noopener" target="_blank">
-                <img src="/tw.png" style={{ width: "100%" }} />
+              <Link href="https://www.youtube.com" rel="noopener" target="_blank">
+                <img src="/yt.png" style={{ width: "100%" }} />
               </Link>
             </Grid>
 
             <Grid item xs={12}>
-              <Link href="https://www.pinterest.com" rel="noopener" target="_blank">
-                <img src="/pn.png" style={{ width: "100%" }} />
+              <Link href="https://www.instagram.com" rel="noopener" target="_blank">
+                <img src="/in.jpeg" style={{ width: "100%" }} />
               </Link>
             </Grid>
           </Grid>
