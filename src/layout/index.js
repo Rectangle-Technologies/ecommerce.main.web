@@ -53,7 +53,7 @@ const Layout = (props) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Link href="https://www.whatsapp.com" rel="noopener" target="_blank">
+              <Link href="https://wa.me/919586048530" rel="noopener" target="_blank">
                 <img src="/wa.png" style={{ width: "100%" }} />
               </Link>
             </Grid>
