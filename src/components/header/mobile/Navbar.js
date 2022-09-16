@@ -18,7 +18,7 @@ const NavbarMobile = (props) => {
     const openProfile = Boolean(anchorElProfile);
     const [anchorElSearch, setAnchorElSearch] = useState(null);
     const openSearch = Boolean(anchorElSearch);
-    const [search, setSearch] = useState()
+    const [search, setSearch] = useState('')
     const navigate = useNavigate()
 
     const handleProfileClick = (event) => {
@@ -137,7 +137,7 @@ const NavbarMobile = (props) => {
                 >
                     <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
                         <Grid container spacing={1}>
-                            <Grid item xs={10}>
+                            <Grid item xs={9.5}>
                                 <TextField
                                     label='Search'
                                     placeholder="Search"
@@ -167,34 +167,57 @@ const NavbarMobile = (props) => {
                     handleProfileClick(e)
                     setIsOpen(false)
                 }} />
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorElProfile}
-                    open={openProfile}
-                    onClose={handleProfileClose}
-                >
-                    <MenuItem onClick={() => {
-                        handleProfileClose()
-                        navigate(`/editdetails`)
-                    }}>
-                        Profile
-                    </MenuItem>
-                    <MenuItem onClick={() => {
-                        handleProfileClose()
-                        navigate(`/orders`)
-                    }}>
-                        Orders
-                    </MenuItem>
-                    <MenuItem onClick={() => {
-                        props.logout()
-                        navigate(`/login`)
-                    }}>
-                        Logout
-                    </MenuItem>
-                </Menu>
+                {props?.auth?.isAuthenticated
+                    ?
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorElProfile}
+                        open={openProfile}
+                        onClose={handleProfileClose}
+                    >
+                        <MenuItem onClick={() => {
+                            handleProfileClose()
+                            navigate(`/editdetails`)
+                        }}>
+                            Profile
+                        </MenuItem>
+                        <MenuItem onClick={() => {
+                            handleProfileClose()
+                            navigate(`/orders`)
+                        }}>
+                            Orders
+                        </MenuItem>
+                        <MenuItem onClick={() => {
+                            props.logout()
+                            navigate(`/login`)
+                        }}>
+                            Logout
+                        </MenuItem>
+                    </Menu>
+                    :
+                    <Menu
+                        id="basic-menu"
+                        anchorEl={anchorElProfile}
+                        open={openProfile}
+                        onClose={handleProfileClose}
+                    >
+                        <MenuItem onClick={() => {
+                            handleProfileClose()
+                            navigate(`/login`)
+                        }}>
+                            Login
+                        </MenuItem>
+                    </Menu>
+                }
             </div>
         </div>
     )
 }
 
-export default connect(null, { logout })(NavbarMobile);
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps, { logout })(NavbarMobile);
