@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Button, Grid, Menu, MenuItem, TextField, Typography } from "@mui/material";
+import { Badge, Menu, MenuItem, Typography } from "@mui/material";
 import "./navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
@@ -16,6 +16,12 @@ const NavbarDesktop = (props) => {
     const navigate = useNavigate()
     const location = useLocation()
     const url = location.pathname
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: 10,
+            top: -25,
+        },
+    }));
 
     const handleProfileClick = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -71,7 +77,9 @@ const NavbarDesktop = (props) => {
                     <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>
                 <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                    <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                    <StyledBadge badgeContent={props?.auth?.user?.cartTotal} color='primary'>
+                        <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40, margin: '-34px 0px' }} />
+                    </StyledBadge>
                 </Link>
                 <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleProfileClick}>
                     <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />

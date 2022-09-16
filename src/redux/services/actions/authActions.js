@@ -15,6 +15,7 @@ export const login = (data, enqueueSnackbar, navigate) => async (dispatch) => {
       variant: "success",
       autoHideDuration: 3000,
     });
+    console.log(res.data.user)
     dispatch({
       type: LOGIN,
       payload: {

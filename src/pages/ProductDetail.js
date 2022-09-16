@@ -9,6 +9,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { connect } from "react-redux";
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
+import { updateCart } from "../redux/services/actions/cartActions";
 import axios from 'axios'
 import { BASE_URL_1, BASE_URL_2 } from "../constants/urls";
 import formatAmount from "../helpers/formatAmount";
@@ -88,11 +89,12 @@ const ProductDetail = (props) => {
         }
         props.addLoader()
         try {
-            await axios.post(`${BASE_URL_1}/cart/add`, {
+            const res = await axios.post(`${BASE_URL_1}/cart/add`, {
                 productId: id,
                 quantity,
                 size
             }, config)
+            props.updateCart(res.data.cartTotal)
             props.removeLoader()
             enqueueSnackbar('Product added to cart', {
                 variant: 'success',
@@ -481,4 +483,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { addLoader, removeLoader })(ProductDetail);
+export default connect(mapStateToProps, { addLoader, removeLoader, updateCart })(ProductDetail);

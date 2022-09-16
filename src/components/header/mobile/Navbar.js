@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Button, Grid, Menu, MenuItem, TextField, Typography } from "@mui/material";
+import { Badge, Button, Menu, MenuItem, Typography } from "@mui/material";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -17,6 +17,12 @@ const NavbarMobile = (props) => {
     const [anchorElProfile, setAnchorElProfile] = useState(null);
     const openProfile = Boolean(anchorElProfile);
     const navigate = useNavigate()
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: 2,
+            top: -20,
+        },
+    }));
 
     const handleProfileClick = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -114,10 +120,12 @@ const NavbarMobile = (props) => {
                     navigate('/wishlist')
                     setIsOpen(false)
                 }} />
-                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
-                    navigate('/cart')
-                    setIsOpen(false)
-                }} />
+                <StyledBadge badgeContent={props?.auth?.user?.cartTotal} color='primary'>
+                    <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25, margin: '-20px 0px' }} onClick={() => {
+                        navigate('/cart')
+                        setIsOpen(false)
+                    }} />
+                </StyledBadge>
                 <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
                     handleProfileClick(e)
                     setIsOpen(false)
