@@ -13,9 +13,6 @@ import { styled } from "@mui/material/styles";
 const NavbarDesktop = (props) => {
     const [anchorElProfile, setAnchorElProfile] = useState(null);
     const openProfile = Boolean(anchorElProfile);
-    const [anchorElSearch, setAnchorElSearch] = useState(null);
-    const openSearch = Boolean(anchorElSearch);
-    const [search, setSearch] = useState()
     const navigate = useNavigate()
     const location = useLocation()
     const url = location.pathname
@@ -26,25 +23,6 @@ const NavbarDesktop = (props) => {
     const handleProfileClose = () => {
         setAnchorElProfile(null);
     };
-    const handleSearchClick = (event) => {
-        setAnchorElSearch(event.currentTarget);
-    };
-    const handleSearchClose = () => {
-        setAnchorElSearch(null);
-    };
-    const handleSearch = () => {
-        navigate(`/search/${search}`)
-        setAnchorElSearch(null);
-    }
-
-    const CustomButton = styled(Button)({
-        textTransform: "none",
-        backgroundColor: "#eb31e2",
-        "&:hover": {
-            backgroundColor: "#fc03cf",
-        },
-        fontSize: 16
-    });
 
     return (
         <div style={{
@@ -86,41 +64,9 @@ const NavbarDesktop = (props) => {
             </div>
             {/* important icons */}
             <div style={{ padding: "10px" }}>
-                <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleSearchClick}>
+                <Link to="/search" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
                     <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorElSearch}
-                    open={openSearch}
-                    onClose={handleSearchClose}
-                    PaperProps={{
-                        style: {
-                            width: '100%',
-                            maxWidth: '400px'
-                        }
-                    }}
-                >
-                    <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                        <Grid container spacing={1}>
-                            <Grid item xs={10}>
-                                <TextField
-                                    label='Search'
-                                    placeholder="Search"
-                                    name='search'
-                                    variant='outlined'
-                                    fullWidth
-                                    type='text'
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    value={search}
-                                />
-                            </Grid>
-                            <Grid item xs={2} my={1}>
-                                <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
-                            </Grid>
-                        </Grid>
-                    </MenuItem>
-                </Menu>
                 <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
                     <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>

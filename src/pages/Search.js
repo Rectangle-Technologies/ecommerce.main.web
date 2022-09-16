@@ -11,12 +11,13 @@ import Tablet from '../components/responsive/Tablet'
 import Mobile from '../components/responsive/Mobile'
 
 const Search = (props) => {
-    const { name } = useParams()
+    const [name, setName] = useState('')
     const [products, setProducts] = useState()
     const [page, setPage] = useState(1)
     const [maxPages, setMaxPages] = useState(1)
     const [priceRange, setPriceRange] = useState([0, 5000])
     const [sizes, setSizes] = useState([])
+    const [isFirstTime, setIsFirstTime] = useState(true)
     const limit = 12
 
     const fetchProducts = async () => {
@@ -46,8 +47,12 @@ const Search = (props) => {
     }
 
     useEffect(() => {
-        fetchProducts()
-    }, [page, name])
+        if (isFirstTime) {
+            setIsFirstTime(false)
+        } else {
+            fetchProducts()
+        }
+    }, [page])
 
     return (
         <>
@@ -56,6 +61,7 @@ const Search = (props) => {
                     products={products}
                     setProducts={setProducts}
                     name={name}
+                    setName={setName}
                     page={page}
                     setPage={setPage}
                     maxPages={maxPages}
@@ -73,6 +79,7 @@ const Search = (props) => {
                     products={products}
                     setProducts={setProducts}
                     name={name}
+                    setName={setName}
                     page={page}
                     setPage={setPage}
                     maxPages={maxPages}
@@ -90,6 +97,7 @@ const Search = (props) => {
                     products={products}
                     setProducts={setProducts}
                     name={name}
+                    setName={setName}
                     page={page}
                     setPage={setPage}
                     maxPages={maxPages}

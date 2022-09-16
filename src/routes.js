@@ -58,7 +58,7 @@ const routes = [
         element: <Wishlist />
       },
       {
-        path: 'search/:name',
+        path: 'search',
         element: <Search />
       },
       {
