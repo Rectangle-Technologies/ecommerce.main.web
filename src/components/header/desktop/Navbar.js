@@ -20,6 +20,7 @@ const NavbarDesktop = (props) => {
         '& .MuiBadge-badge': {
             right: 10,
             top: -25,
+            backgroundColor: "#eb31e2"
         },
     }));
 

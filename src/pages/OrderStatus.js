@@ -1,17 +1,19 @@
 import { Grid, Link, Typography } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import textStyle from '../helpers/textStyle'
 import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions'
+import { updateCart } from '../redux/services/actions/cartActions'
 import axios from 'axios'
 import { BASE_URL_1 } from '../constants/urls'
 import { useSnackbar } from 'notistack'
-import ProductsDesktop from '../components/cart/desktop/ProductsDesktop'
 import formatAmount from '../helpers/formatAmount'
 
 const OrderStatus = (props) => {
     const { status } = useParams()
+    const [searchParams, setSearchParams] = useSearchParams()
+    const paymentId = searchParams.get('paymentId')
     const data = JSON.parse(localStorage.getItem('order'))
     const [order, setOrder] = useState()
     const config = {
@@ -21,17 +23,22 @@ const OrderStatus = (props) => {
     }
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(true)
 
     const createOrder = async () => {
         props.addLoader()
         try {
             const res = await axios.post(`${BASE_URL_1}/order/create`, data, config)
             setOrder(res.data.order)
+            props.updateCart(0)
             localStorage.removeItem('order')
             props.removeLoader();
+            setIsLoading(false)
         } catch (err) {
             console.log(err);
             props.removeLoader()
+            localStorage.removeItem('order')
+            setIsLoading(false)
             let message = 'Something went wrong'
             if (err?.response?.data?.errors) {
                 message = err?.response?.data?.errors[0].msg
@@ -45,30 +52,11 @@ const OrderStatus = (props) => {
         }
     }
 
-    // const fetchOrder = async () => {
-    //     props.addLoader()
-    //     try {
-    //         const res = await axios.get(`${BASE_URL_1}/order/fetch/63205345923684517b10bf47`, config)
-    //         setOrder(res.data.order)
-    //         props.removeLoader()
-    //     } catch (err) {
-    //         console.log(err);
-    //         props.removeLoader()
-    //         let message = 'Something went wrong'
-    //         if (err?.response?.data?.errors) {
-    //             message = err?.response?.data?.errors[0].msg
-    //         } else if (err?.response?.data?.message) {
-    //             message = err?.response?.data?.message
-    //         }
-    //         enqueueSnackbar(message, {
-    //             variant: 'error',
-    //             autoHideDuration: 3000
-    //         })
-    //     }
-    // }
-
     useEffect(() => {
-        if (!localStorage.getItem('order')) { navigate("/") }
+        if (!localStorage.getItem('order')) {
+            setIsLoading(false)
+            navigate("/")
+        }
         else if (status === 'verified') {
             createOrder()
         }
@@ -76,7 +64,8 @@ const OrderStatus = (props) => {
 
     return (
         <div style={{ margin: 20, padding: window.innerWidth > 600 ? 20 : 0, width: '80%', margin: 'auto' }}>
-            {status === "verified"
+            {!isLoading &&
+                status === "verified"
                 ?
                 order
                     ?
@@ -117,7 +106,7 @@ const OrderStatus = (props) => {
                                 <Link key={idx} style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?.productId?._id}`)}>
                                     <Grid container spacing={1} my={2}>
                                         <Grid item xs={4.5} md={2}>
-                                            <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '90%' : '100%', aspectRatio: 0.7 }} />
+                                            <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '90%' : '100%', aspectRatio: 0.65 }} />
                                         </Grid>
                                         <Grid item xs={7.5} md={10}>
                                             <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 24 : 16 }}>
@@ -141,7 +130,7 @@ const OrderStatus = (props) => {
                     :
                     <>
                         <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 36 : 30, fontWeight: 600 }} mt={5}>SORRY, COULDN'T PLACE THE ORDER :(</Typography>
-                        <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 26 : 20 }} my={2}>Your amount will be refunded. Please try again later</Typography>
+                        <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 26 : 20 }} my={2}>Please contact us to initiate refund. Payment Id: {paymentId}</Typography>
                     </>
                 :
                 <>
@@ -149,27 +138,6 @@ const OrderStatus = (props) => {
                     <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 26 : 20 }} my={2}>Something went wrong with the payment. Please try again</Typography>
                 </>
             }
-            {/* {order?.products?.length > 0 &&
-                <div style={{ marginTop: 20, border: '1px solid #928C8C', width: '80%', margin: 'auto' }}>
-                    <div style={{ display: 'flex', backgroundColor: '#F8F5CC', padding: 15 }}>
-                        <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '40%' }}>Product</Typography>
-                        <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Price</Typography>
-                        <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Quantity</Typography>
-                        <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, width: '20%', textAlign: 'center' }}>Size</Typography>
-                    </div>
-                    {order?.products?.map((p, key) => (
-                        <ProductsDesktop
-                            key={key}
-                            product={p}
-                            setCart={props.setCart}
-                            setTotal={props.setTotal}
-                            setFinalAmount={props.setFinalAmount}
-                            discount={props.discount}
-                        />
-                    ))
-                    }
-                </div>
-            } */}
         </div>
     )
 }
@@ -178,4 +146,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { addLoader, removeLoader })(OrderStatus)
+export default connect(mapStateToProps, { addLoader, removeLoader, updateCart })(OrderStatus)

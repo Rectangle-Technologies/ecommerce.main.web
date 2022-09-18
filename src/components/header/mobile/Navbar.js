@@ -21,6 +21,7 @@ const NavbarMobile = (props) => {
         '& .MuiBadge-badge': {
             right: 2,
             top: -20,
+            backgroundColor: "#eb31e2"
         },
     }));
 
