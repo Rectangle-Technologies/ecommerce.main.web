@@ -1,12 +1,10 @@
 import { Grid, Link } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { isMobile } from "react-device-detect";
 import { connect } from "react-redux";
 import { addLoader, removeLoader } from "../redux/services/actions/loaderActions";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/footer/Footer";
 import Header from "../components/header";
-import screen from "../utils/screen";
 import axios from "axios";
 import { BASE_URL_2 } from "../constants/urls";
 
@@ -43,7 +41,7 @@ const Layout = (props) => {
       <Header categories={categories} />
       <Outlet />
       <Footer categories={categories} />
-      <div style={{ position: "fixed", right: 0, top: "50%", width: isMobile ? "10vw" : "4vw", transform: "translate(0%, -50%)" }} >
+      <div style={{ position: "fixed", right: 0, top: "50%", width: Math.min(window.innerWidth, window.innerHeight) > 950 ? "10vw" : "4vw", transform: "translate(0%, -50%)" }} >
         <div style={{ position: "relative", top: "-50%" }}>
           <Grid container>
             <Grid item xs={12}>

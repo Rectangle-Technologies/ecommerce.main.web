@@ -8,17 +8,20 @@ import axios from 'axios'
 import { BASE_URL_1 } from '../constants/urls'
 import { useSnackbar } from 'notistack'
 import ProductsDesktop from '../components/cart/desktop/ProductsDesktop'
-import formatAmount from '../helpers/formatAmount'
+import formatAmount from '../helpers/formatAmount';
+import { SocketContext } from '../components/Socket'
 
 const OrderStatus = (props) => {
     const { status } = useParams()
     const data = JSON.parse(localStorage.getItem('order'))
     const [order, setOrder] = useState()
+    const { socket } = React.useContext(SocketContext);
     const config = {
         headers: {
             Authorization: `Bearer ${props.auth.token}`
         }
     }
+
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
 
@@ -29,6 +32,7 @@ const OrderStatus = (props) => {
             setOrder(res.data.order)
             localStorage.removeItem('order')
             props.removeLoader();
+            socket.emit("orderCreated", {order: res.data.order})
         } catch (err) {
             console.log(err);
             props.removeLoader()
