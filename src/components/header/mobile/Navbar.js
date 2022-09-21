@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Button, Grid, Menu, MenuItem, TextField, Typography } from "@mui/material";
+import { Badge, Button, Menu, MenuItem, Typography } from "@mui/material";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,10 +16,14 @@ const NavbarMobile = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [anchorElProfile, setAnchorElProfile] = useState(null);
     const openProfile = Boolean(anchorElProfile);
-    const [anchorElSearch, setAnchorElSearch] = useState(null);
-    const openSearch = Boolean(anchorElSearch);
-    const [search, setSearch] = useState('')
     const navigate = useNavigate()
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: 2,
+            top: -20,
+            backgroundColor: "#eb31e2"
+        },
+    }));
 
     const handleProfileClick = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -27,16 +31,6 @@ const NavbarMobile = (props) => {
     const handleProfileClose = () => {
         setAnchorElProfile(null);
     };
-    const handleSearchClick = (event) => {
-        setAnchorElSearch(event.currentTarget);
-    };
-    const handleSearchClose = () => {
-        setAnchorElSearch(null);
-    };
-    const handleSearch = () => {
-        navigate(`/search/${search}`)
-        setAnchorElSearch(null);
-    }
 
     const CustomButton = styled(Button)({
         textTransform: "none",
@@ -120,49 +114,19 @@ const NavbarMobile = (props) => {
             {/* important icons */}
             <div style={{ padding: "0px" }}>
                 <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
-                    handleSearchClick(e)
+                    navigate('/search')
                     setIsOpen(false)
                 }} />
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorElSearch}
-                    open={openSearch}
-                    onClose={handleSearchClose}
-                    PaperProps={{
-                        style: {
-                            width: '90%',
-                            maxWidth: '400px'
-                        }
-                    }}
-                >
-                    <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                        <Grid container spacing={1}>
-                            <Grid item xs={9.5}>
-                                <TextField
-                                    label='Search'
-                                    placeholder="Search"
-                                    name='search'
-                                    variant='outlined'
-                                    fullWidth
-                                    type='text'
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    value={search}
-                                />
-                            </Grid>
-                            <Grid item xs={2} my={1}>
-                                <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
-                            </Grid>
-                        </Grid>
-                    </MenuItem>
-                </Menu>
                 <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
                     navigate('/wishlist')
                     setIsOpen(false)
                 }} />
-                <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
-                    navigate('/cart')
-                    setIsOpen(false)
-                }} />
+                <StyledBadge badgeContent={props?.auth?.user?.cartTotal} color='primary'>
+                    <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25, margin: '-20px 0px' }} onClick={() => {
+                        navigate('/cart')
+                        setIsOpen(false)
+                    }} />
+                </StyledBadge>
                 <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
                     handleProfileClick(e)
                     setIsOpen(false)

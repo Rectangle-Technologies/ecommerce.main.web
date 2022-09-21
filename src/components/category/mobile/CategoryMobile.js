@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Grid, Pagination, Typography } from '@mui/material';
+import { Grid, Link, Pagination, Typography } from '@mui/material';
 import { connect } from 'react-redux';
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
 import axios from 'axios';
@@ -8,11 +8,13 @@ import { BASE_URL_2 } from '../../../constants/urls';
 import ProductLayout from '../../ProductLayout';
 import FiltersDrawer from './FiltersDrawer';
 import textStyle from '../../../helpers/textStyle';
+import { useNavigate } from 'react-router-dom';
 
 const CategoryMobile = (props) => {
     const [priceRange, setPriceRange] = useState([0, 5000])
     const [sizes, setSizes] = useState([])
     const { enqueueSnackbar } = useSnackbar()
+    const navigate = useNavigate()
 
     const handleFilter = async (setIsOpen) => {
         props.addLoader()
@@ -76,13 +78,15 @@ const CategoryMobile = (props) => {
                 <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 5vw 0px 5vw" }}>
                     {props?.products?.map((p, idx) => (
                         <Grid key={idx} item xs={6} md={3}>
-                            <ProductLayout
-                                liked={true}
-                                new={true}
-                                title={p?.name}
-                                mrp={p?.price}
-                                imageUrl={p?.imageUrls[0]}
-                            />
+                            <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?._id}`)}>
+                                <ProductLayout
+                                    liked={true}
+                                    new={true}
+                                    title={p?.name}
+                                    mrp={p?.price}
+                                    imageUrl={p?.imageUrls[0]}
+                                />
+                            </Link>
                         </Grid>
                     ))}
                 </Grid>

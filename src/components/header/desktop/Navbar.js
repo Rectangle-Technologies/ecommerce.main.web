@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import SearchIcon from '@mui/icons-material/Search';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Button, Grid, Menu, MenuItem, TextField, Typography } from "@mui/material";
+import { Badge, Menu, MenuItem, Typography } from "@mui/material";
 import "./navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { connect } from "react-redux";
@@ -13,12 +13,16 @@ import { styled } from "@mui/material/styles";
 const NavbarDesktop = (props) => {
     const [anchorElProfile, setAnchorElProfile] = useState(null);
     const openProfile = Boolean(anchorElProfile);
-    const [anchorElSearch, setAnchorElSearch] = useState(null);
-    const openSearch = Boolean(anchorElSearch);
-    const [search, setSearch] = useState()
     const navigate = useNavigate()
     const location = useLocation()
     const url = location.pathname
+    const StyledBadge = styled(Badge)(({ theme }) => ({
+        '& .MuiBadge-badge': {
+            right: 10,
+            top: -25,
+            backgroundColor: "#eb31e2"
+        },
+    }));
 
     const handleProfileClick = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -26,25 +30,6 @@ const NavbarDesktop = (props) => {
     const handleProfileClose = () => {
         setAnchorElProfile(null);
     };
-    const handleSearchClick = (event) => {
-        setAnchorElSearch(event.currentTarget);
-    };
-    const handleSearchClose = () => {
-        setAnchorElSearch(null);
-    };
-    const handleSearch = () => {
-        navigate(`/search/${search}`)
-        setAnchorElSearch(null);
-    }
-
-    const CustomButton = styled(Button)({
-        textTransform: "none",
-        backgroundColor: "#eb31e2",
-        "&:hover": {
-            backgroundColor: "#fc03cf",
-        },
-        fontSize: 16
-    });
 
     return (
         <div style={{
@@ -86,46 +71,16 @@ const NavbarDesktop = (props) => {
             </div>
             {/* important icons */}
             <div style={{ padding: "10px" }}>
-                <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleSearchClick}>
+                <Link to="/search" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
                     <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>
-                <Menu
-                    id="basic-menu"
-                    anchorEl={anchorElSearch}
-                    open={openSearch}
-                    onClose={handleSearchClose}
-                    PaperProps={{
-                        style: {
-                            width: '100%',
-                            maxWidth: '400px'
-                        }
-                    }}
-                >
-                    <MenuItem disableRipple style={{ backgroundColor: 'white' }}>
-                        <Grid container spacing={1}>
-                            <Grid item xs={10}>
-                                <TextField
-                                    label='Search'
-                                    placeholder="Search"
-                                    name='search'
-                                    variant='outlined'
-                                    fullWidth
-                                    type='text'
-                                    onChange={(e) => setSearch(e.target.value)}
-                                    value={search}
-                                />
-                            </Grid>
-                            <Grid item xs={2} my={1}>
-                                <CustomButton variant="contained" onClick={handleSearch} fullWidth>Go</CustomButton>
-                            </Grid>
-                        </Grid>
-                    </MenuItem>
-                </Menu>
                 <Link to="/wishlist" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
                     <FavoriteBorderIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>
                 <Link to="/cart" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
-                    <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
+                    <StyledBadge badgeContent={props?.auth?.user?.cartTotal} color='primary'>
+                        <ShoppingCartOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40, margin: '-34px 0px' }} />
+                    </StyledBadge>
                 </Link>
                 <Link to="#" style={{ textDecoration: "none", cursor: "pointer", color: "black" }} onClick={handleProfileClick}>
                     <PersonOutlineOutlinedIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />

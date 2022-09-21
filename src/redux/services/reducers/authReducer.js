@@ -1,4 +1,4 @@
-import { LOGIN, LOGOUT, UPDATE } from "../actions/type";
+import { LOGIN, LOGOUT, UPDATE, UPDATE_CART } from "../actions/type";
 
 const initialState = {
   isAuthenticated: false,
@@ -20,6 +20,14 @@ export default function (state = initialState, action) {
       return {
         ...state,
         user: action.payload.user
+      }
+    case UPDATE_CART:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          cartTotal: action.payload.value
+        }
       }
     default:
       return state;

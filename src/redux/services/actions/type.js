@@ -14,3 +14,6 @@ export const GET_ERRORS = "GET_ERRORS";
 // Loading actions
 export const SET_LOADING_TRUE = "SET_LOADING_TRUE";
 export const SET_LOADING_FALSE = "SET_LOADING_FALSE";
+
+// Cart Actions
+export const UPDATE_CART = 'UPDATE_CART'

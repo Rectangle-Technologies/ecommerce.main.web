@@ -5,9 +5,11 @@ import React, { useState } from 'react'
 import textStyle from '../../../helpers/textStyle'
 import { connect } from 'react-redux'
 import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions'
+import { updateCart } from '../../../redux/services/actions/cartActions'
 import { useNavigate } from 'react-router-dom'
 import { BASE_URL_1 } from '../../../constants/urls'
 import formatAmount from '../../../helpers/formatAmount'
+import { useEffect } from 'react'
 
 const ProductsDesktop = (props) => {
     const [quantity, setQuantity] = useState(props.product.quantity || 1)
@@ -32,6 +34,7 @@ const ProductsDesktop = (props) => {
                 props.setTotal(res.data.cart.total)
                 props.setFinalAmount(res.data.cart.total - props.discount)
                 setQuantity(quantity + 1)
+                props.updateCart(res.data.cartTotal)
                 props.removeLoader()
             } else if (action == '-') {
                 const res = await axios.post(`${BASE_URL_1}/cart/delete/${props.product.productId._id}`, {
@@ -43,6 +46,7 @@ const ProductsDesktop = (props) => {
                 if (quantity > 1) {
                     setQuantity(quantity - 1)
                 }
+                props.updateCart(res.data.cartTotal)
                 props.removeLoader()
             }
         } catch (err) {
@@ -80,9 +84,9 @@ const ProductsDesktop = (props) => {
                     <div
                         style={{
                             border: "1px solid #222222",
-                            width: 40,
-                            height: 40,
-                            padding: "6px",
+                            width: window.innerWidth > 950 ? 40 : 30,
+                            height: window.innerWidth > 950 ? 40 : 30,
+                            padding: window.innerWidth > 950 ? 6 : 3,
                         }}
                     >
                         <Typography
@@ -99,9 +103,9 @@ const ProductsDesktop = (props) => {
                 <div
                     style={{
                         border: "1px solid #222222",
-                        width: 40,
-                        height: 40,
-                        padding: "6px",
+                        width: window.innerWidth > 950 ? 40 : 30,
+                        height: window.innerWidth > 950 ? 40 : 30,
+                        padding: window.innerWidth > 950 ? 6 : 3,
                     }}
                 >
                     <Typography
@@ -118,9 +122,9 @@ const ProductsDesktop = (props) => {
                     <div
                         style={{
                             border: "1px solid #222222",
-                            width: 40,
-                            height: 40,
-                            padding: "6px",
+                            width: window.innerWidth > 950 ? 40 : 30,
+                            height: window.innerWidth > 950 ? 40 : 30,
+                            padding: window.innerWidth > 950 ? 6 : 3,
                         }}
                     >
                         <Typography
@@ -146,4 +150,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, { addLoader, removeLoader })(ProductsDesktop)
+export default connect(mapStateToProps, { addLoader, removeLoader, updateCart })(ProductsDesktop)

@@ -68,7 +68,7 @@ const OrderDetails = (props) => {
                     <Link key={idx} style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${p?.productId?._id}`)}>
                         <Grid container spacing={1} my={2}>
                             <Grid item xs={4} md={3}>
-                                <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.7 }} />
+                                <img src={p?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.65 }} />
                             </Grid>
                             <Grid item xs={8} md={9}>
                                 <Typography style={{ ...textStyle, fontSize: window.innerWidth > 600 ? 20 : 16 }}>

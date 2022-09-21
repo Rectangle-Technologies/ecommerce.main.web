@@ -73,7 +73,7 @@ const Orders = (props) => {
                                     <Typography style={textStyle} component='div'>Status: <Box display='inline' color='#eb31e2'>{capitalizeFirstLetter(order?.status)}</Box> </Typography>
                                     <Grid key={idx} container my={1}>
                                         <Grid item xs={3} mr={1}>
-                                            <img src={order?.products[0]?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.7 }} />
+                                            <img src={order?.products[0]?.productId?.imageUrls[0]} style={{ width: window.innerWidth > 600 ? '80%' : '100%', aspectRatio: 0.65 }} />
                                         </Grid>
                                         <Grid item xs={8}>
                                             <Typography style={{ ...textStyle, textAlign: 'right' }}>
