@@ -16,6 +16,7 @@ import Search from "./pages/Search";
 import EditDetails from "./pages/EditDetails";
 import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
+import Exchange from "./pages/Exchange";
 
 const routes = [
   {
@@ -49,6 +50,10 @@ const routes = [
       {
         path: "/collab",
         element: <Collab />,
+      },
+      {
+        path: "/exchange",
+        element: <Exchange />,
       },
       {
         path: '/orderstatus/:status',
