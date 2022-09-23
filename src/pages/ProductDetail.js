@@ -420,26 +420,28 @@ const ProductDetail = (props) => {
                                 </ul>
                             </Typography>}
                         </div>
-                        <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
-                            <DoubleTextComponent
-                                backText="You might be interested"
-                                frontText="Recommendations"
-                                left='-60%'
-                            />
-                            <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
-                                {product.recommendations?.map((recommendation, index) => {
-                                    return (<Grid item xs={6} md={3} key={index}>
-                                        <ProductLayout
-                                            imageUrl={recommendation.imageUrl}
-                                            liked={true}
-                                            new={true}
-                                            title={recommendation.name}
-                                            mrp={recommendation._id.price}
-                                        />
-                                    </Grid>)
-                                })}
-                            </Grid>
-                        </div>
+                        {product?.recommendations?.length > 0 &&
+                            <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
+                                <DoubleTextComponent
+                                    backText="You might be interested"
+                                    frontText="Recommendations"
+                                    left='-60%'
+                                />
+                                <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
+                                    {product.recommendations?.map((recommendation, index) => {
+                                        return (<Grid item xs={6} md={3} key={index}>
+                                            <ProductLayout
+                                                imageUrl={recommendation.imageUrl}
+                                                liked={true}
+                                                new={true}
+                                                title={recommendation.name}
+                                                mrp={recommendation._id.price}
+                                            />
+                                        </Grid>)
+                                    })}
+                                </Grid>
+                            </div>
+                        }
                         <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
                             <DoubleTextComponent backText="What We Design" frontText="New Arrivals" left='-60%' />
                             <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
