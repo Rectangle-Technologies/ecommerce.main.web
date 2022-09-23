@@ -71,6 +71,7 @@ const Cart = (props) => {
                         setVoucher={setVoucher}
                         total={total}
                         discount={discount}
+                        setDiscount={setDiscount}
                         finalAmount={finalAmount}
                         setCart={setCart}
                         setTotal={setTotal}
@@ -88,6 +89,7 @@ const Cart = (props) => {
                         setVoucher={setVoucher}
                         total={total}
                         discount={discount}
+                        setDiscount={setDiscount}
                         finalAmount={finalAmount}
                         setCart={setCart}
                         setTotal={setTotal}
@@ -105,6 +107,7 @@ const Cart = (props) => {
                         setVoucher={setVoucher}
                         total={total}
                         discount={discount}
+                        setDiscount={setDiscount}
                         finalAmount={finalAmount}
                         setCart={setCart}
                         setTotal={setTotal}

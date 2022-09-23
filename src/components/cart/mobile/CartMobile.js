@@ -5,10 +5,19 @@ import ProductsMobile from './ProductsMobile'
 import { useNavigate } from 'react-router-dom';
 import { styled } from "@mui/material/styles";
 import { useSnackbar } from 'notistack';
+import { connect } from 'react-redux'
+import { addLoader, removeLoader } from '../../../redux/services/actions/loaderActions';
+import axios from 'axios';
+import { BASE_URL_1 } from '../../../constants/urls';
 
 const CartMobile = (props) => {
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
+    const config = {
+        headers: {
+            Authorization: `Bearer ${props.auth.token}`
+        }
+    }
     const CustomButton = styled(Button)({
         textTransform: "none",
         backgroundColor: "#eb31e2",
@@ -34,6 +43,35 @@ const CartMobile = (props) => {
                 finalAmount: props.finalAmount
             }
         })
+    }
+
+    const calculateDiscount = async () => {
+        props.addLoader()
+        try {
+            const res = await axios.post(`${BASE_URL_1}/voucher/calculate`, {
+                name: props.voucher, orderAmount: props.total
+            }, config)
+            props.setDiscount(res.data.discount)
+            props.setFinalAmount(props.total - res.data.discount)
+            props.removeLoader()
+            enqueueSnackbar('Discount applied', {
+                variant: 'success',
+                autoHideDuration: 3000
+            })
+        } catch (err) {
+            console.log(err)
+            props.removeLoader()
+            let message = 'Something went wrong'
+            if (err?.response?.data?.errors) {
+                message = err?.response?.data?.errors[0].msg
+            } else if (err?.response?.data?.message) {
+                message = err?.response?.data?.message
+            }
+            enqueueSnackbar(message, {
+                variant: 'error',
+                autoHideDuration: 3000
+            })
+        }
     }
 
     return (
@@ -92,7 +130,7 @@ const CartMobile = (props) => {
                         onChange={(e) => props.setVoucher(e.target.value)}
                         fullWidth
                     />
-                    <CustomButton variant="contained" size='small' sx={{ ml: 2 }}>
+                    <CustomButton variant="contained" size='small' sx={{ ml: 2 }} onClick={calculateDiscount}>
                         Apply
                     </CustomButton>
                 </div>
@@ -115,4 +153,8 @@ const CartMobile = (props) => {
     )
 }
 
-export default CartMobile
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps, { addLoader, removeLoader })(CartMobile)
