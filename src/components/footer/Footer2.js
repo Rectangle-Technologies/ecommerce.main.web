@@ -22,14 +22,8 @@ const Footer2 = (props) => {
           >
             Quick Links
           </Typography>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/editdetails')}>
-            My Account
-          </TypographyLink>
           <TypographyLink style={textStyle} my={1} onClick={() => navigate('/orders')}>
             My Orders
-          </TypographyLink>
-          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/wishlist')}>
-            My Wishlist
           </TypographyLink>
           <TypographyLink style={textStyle} my={1} onClick={() => navigate('/cart')}>
             View Cart
@@ -39,6 +33,12 @@ const Footer2 = (props) => {
           </TypographyLink>
           <TypographyLink style={textStyle} my={1} onClick={() => navigate('/contact')}>
             Contact Us
+          </TypographyLink>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/exchange')}>
+            Return Request
+          </TypographyLink>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate('/collab')}>
+            Collaborate With Us
           </TypographyLink>
         </Grid>
         <Grid item xs={4} my={1}>

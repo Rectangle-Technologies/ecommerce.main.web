@@ -52,8 +52,8 @@ const CollaborateComponent = (props) => {
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
                     <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="COLLABORATE WITH US" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" />
-                    <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none" }}>
-                        <Grid container spacing={0} style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "5em" }}>
+                    <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: '2em' }}>
+                        <Grid container spacing={0} style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "1em" }}>
                             <Grid item xs={12} md={6}>
                                 <img src="/contact.jpeg" style={{ width: "100%", objectFit: "cover", height: "100%" }} />
                             </Grid>
@@ -149,7 +149,7 @@ const CollaborateComponent = (props) => {
                                 </center>
                             </Grid>
                         </Grid>
-                        <LinearProgress variant="determinate" value={progress} style={{  }} />
+                        <LinearProgress variant="determinate" value={progress} style={{}} />
                     </Paper>
                     {/* <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="VISIT US" underline={true} frontTextFontFamily="Poppins" backText="Come and explore" /> */}
                 </Form>
