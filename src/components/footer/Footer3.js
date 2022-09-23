@@ -5,16 +5,8 @@ import Collapsable from "./Collapsable";
 const Footer3 = (props) => {
   const list1 = [
     {
-      name: "My Account",
-      url: '/editdetails'
-    },
-    {
       name: "My Orders",
       url: '/orders'
-    },
-    {
-      name: "My Wishlist",
-      url: '/wishlist'
     },
     {
       name: "View Cart",
@@ -27,6 +19,14 @@ const Footer3 = (props) => {
     {
       name: "Contact Us",
       url: '/contact'
+    },
+    {
+      name: "Return Request",
+      url: '/exchange'
+    },
+    {
+      name: "Collaborate With Us",
+      url: '/collab'
     },
   ];
   const list2 = props?.categories?.map((category, idx) => {
