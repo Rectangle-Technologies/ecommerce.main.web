@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import Layout from "./layout";
 import AboutPage from "./pages/About";
 import ContactUs from "./pages/ContactUs";
+import Collab from "./pages/Collab";
 import Landing from "./pages/Landing";
 import ProductDetail from "./pages/ProductDetail";
 import Cart from './pages/Cart'
@@ -15,6 +16,7 @@ import Search from "./pages/Search";
 import EditDetails from "./pages/EditDetails";
 import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
+import Exchange from "./pages/Exchange";
 
 const routes = [
   {
@@ -44,6 +46,14 @@ const routes = [
       {
         path: "/contact",
         element: <ContactUs />,
+      },
+      {
+        path: "/collab",
+        element: <Collab />,
+      },
+      {
+        path: "/exchange",
+        element: <Exchange />,
       },
       {
         path: '/orderstatus/:status',

@@ -8,7 +8,9 @@ import { updateCart } from '../redux/services/actions/cartActions'
 import axios from 'axios'
 import { BASE_URL_1 } from '../constants/urls'
 import { useSnackbar } from 'notistack'
-import formatAmount from '../helpers/formatAmount'
+import ProductsDesktop from '../components/cart/desktop/ProductsDesktop'
+import formatAmount from '../helpers/formatAmount';
+import { SocketContext } from '../components/Socket'
 
 const OrderStatus = (props) => {
     const { status } = useParams()
@@ -16,11 +18,13 @@ const OrderStatus = (props) => {
     const paymentId = searchParams.get('paymentId')
     const data = JSON.parse(localStorage.getItem('order'))
     const [order, setOrder] = useState()
+    const { socket } = React.useContext(SocketContext);
     const config = {
         headers: {
             Authorization: `Bearer ${props.auth.token}`
         }
     }
+
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(true)
@@ -33,6 +37,7 @@ const OrderStatus = (props) => {
             props.updateCart(0)
             localStorage.removeItem('order')
             props.removeLoader();
+            socket.emit("orderCreated", {order: res.data.order})
             setIsLoading(false)
         } catch (err) {
             console.log(err);
