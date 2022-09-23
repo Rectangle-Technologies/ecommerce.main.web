@@ -427,31 +427,17 @@ const ProductDetail = (props) => {
                                 left='-60%'
                             />
                             <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
-                                <Grid item xs={6} md={3}>
-                                    <ProductLayout
-                                        liked={true}
-                                        new={true}
-                                        title="Blue kurti with embroided neck"
-                                        mrp="523"
-                                    />
-                                </Grid>
-                                <Grid item xs={6} md={3}>
-                                    <ProductLayout
-                                        liked={true}
-                                        title="Blue kurti with embroided neck"
-                                        mrp="523"
-                                    />
-                                </Grid>
-                                <Grid item xs={6} md={3}>
-                                    <ProductLayout
-                                        new={true}
-                                        title="Blue kurti with embroided neck"
-                                        mrp="523"
-                                    />
-                                </Grid>
-                                <Grid item xs={6} md={3}>
-                                    <ProductLayout title="Blue kurti with embroided neck" mrp="523" />
-                                </Grid>
+                                {product.recommendations?.map((recommendation, index) => {
+                                    return (<Grid item xs={6} md={3} key={index}>
+                                        <ProductLayout
+                                            imageUrl={recommendation.imageUrl}
+                                            liked={true}
+                                            new={true}
+                                            title={recommendation.name}
+                                            mrp={recommendation._id.price}
+                                        />
+                                    </Grid>)
+                                })}
                             </Grid>
                         </div>
                         <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
