@@ -11,19 +11,75 @@ import { styled } from "@mui/material/styles";
 import axios from 'axios'
 import { BASE_URL_1 } from '../constants/urls'
 import { useSnackbar } from 'notistack'
+import { useFormik, Form, FormikProvider } from "formik";
+import * as Yup from "yup";
 
 const EditDetails = (props) => {
-    const [email, setEmail] = useState(props?.auth?.user?.email)
-    const [firstName, setFirstName] = useState(props?.auth?.user?.name?.split(' ')[0])
-    const [lastName, setLastName] = useState(props?.auth?.user?.name?.split(' ')[1])
-    const [contact, setContact] = useState(props?.auth?.user?.contact)
-    const [line1, setLine1] = useState(props?.auth?.user?.address?.line1)
-    const [city, setCity] = useState(props?.auth?.user?.address?.city)
-    const [state, setState] = useState(props?.auth?.user?.address?.state)
-    const [pincode, setPincode] = useState(props?.auth?.user?.address?.pincode)
     const navigate = useNavigate()
     const [disabled, setDisabled] = useState(true)
     const { enqueueSnackbar } = useSnackbar()
+
+    const Schema = Yup.object().shape({
+        email: Yup.string().required("Email is required"),
+        password: Yup.string().required("Password is required"),
+        firstName: Yup.string().required("First name is required"),
+        lastName: Yup.string().required("Last name is required"),
+        contact: Yup.string().required("contact is required"),
+        line1: Yup.string().required("Address is required"),
+        city: Yup.string().required("city is required"),
+        state: Yup.string().required("state is required"),
+        pincode: Yup.string().required("pincode is required")
+    });
+
+    console.log(props.auth)
+
+    const formik = useFormik({
+        initialValues: {
+            email: props?.auth?.user?.email || "",
+            password: props?.auth?.user?.password || "",
+            firstName: props?.auth?.user?.name?.split(' ')[0] || "",
+            lastName: props?.auth?.user?.name?.split(' ')[1] || "",
+            contact: props?.auth?.user?.contact || "",
+            line1: props?.auth?.user?.address?.line1 || "",
+            city: props?.auth?.user?.address?.city || "",
+            state: props?.auth?.user?.address?.state || "",
+            pincode: props?.auth?.user?.address?.pincode || ""
+        },
+        validationSchema: Schema,
+        onSubmit: async (values, action) => {
+            props.addLoader()
+            try {
+                const res = await axios.put(`${BASE_URL_1}/user/update`, values, config)
+                props.update(res.data.user)
+                enqueueSnackbar('Details updated successfully', {
+                    variant: 'success',
+                    autoHideDuration: 3000
+                })
+                props.removeLoader()
+            } catch (err) {
+                props.removeLoader()
+                if (err?.response?.data?.status === "PRODUCT_NOT_LAUNCHED") {
+                    setProduct(err.response.data.product)
+                    setLaunched(false);
+                }
+                enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
+                    variant: 'error',
+                    autoHideDuration: 3000
+                })
+            }
+        }
+    })
+
+    const {
+        errors,
+        values,
+        touched,
+        handleSubmit,
+        isSubmitting,
+        getFieldProps,
+        setSubmitting,
+    } = formik;
+
     const config = {
         headers: {
             Authorization: `Bearer ${props.auth.token}`
@@ -38,38 +94,6 @@ const EditDetails = (props) => {
         fontSize: 16
     });
 
-    const handleSubmit = async () => {
-        props.addLoader()
-        try {
-            const res = await axios.put(`${BASE_URL_1}/user/update`, {
-                firstName,
-                lastName,
-                contact,
-                email,
-                line1,
-                city,
-                state,
-                pincode
-            }, config)
-            props.update(res.data.user)
-            enqueueSnackbar('Details updated successfully', {
-                variant: 'success',
-                autoHideDuration: 3000
-            })
-            props.removeLoader()
-        } catch (err) {
-            props.removeLoader()
-            if (err?.response?.data?.status === "PRODUCT_NOT_LAUNCHED") {
-                setProduct(err.response.data.product)
-                setLaunched(false);
-            }
-            enqueueSnackbar(err?.response?.data?.message || 'Something went wrong', {
-                variant: 'error',
-                autoHideDuration: 3000
-            })
-        }
-    }
-
     useEffect(() => {
         if (!props.auth.isAuthenticated) {
             navigate('/login', { state: { navigateUrl: '/editdetails' } })
@@ -81,6 +105,42 @@ const EditDetails = (props) => {
         <div>
             <Typography style={{ ...textStyle, fontWeight: 700, fontSize: window.innerWidth > 500 ? 32 : 26, textAlign: 'center' }} my={2}>YOUR DETAILS</Typography>
             <div style={{ width: '90%', maxWidth: '600px', margin: 'auto' }}>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={6}>
+                        <div style={{ marginBottom: 20 }}>
+                            <TextField
+                                fullWidth
+                                id='first_name'
+                                name='first_name'
+                                variant='outlined'
+                                label='First Name'
+                                placeholder="First Name"
+                                type='text'
+                                value={values.firstName}
+                                {...getFieldProps("firstName")}
+                                error={Boolean(touched.firstName && errors.firstName)}
+                                helperText={touched.firstName && errors.firstName}
+                            />
+                        </div>
+                    </Grid>
+                    <Grid item xs={12} md={6}>
+                        <div style={{ marginBottom: 20 }}>
+                            <TextField
+                                fullWidth
+                                id='last_name'
+                                name='last_name'
+                                variant='outlined'
+                                label='Last Name'
+                                placeholder="Last Name"
+                                type='text'
+                                value={values.lastName}
+                                {...getFieldProps("lastName")}
+                                error={Boolean(touched.lastName && errors.lastName)}
+                                helperText={touched.lastName && errors.lastName}
+                            />
+                        </div>
+                    </Grid>
+                </Grid>
                 <div style={{ marginBottom: 20 }}>
                     <TextField
                         fullWidth
@@ -90,41 +150,27 @@ const EditDetails = (props) => {
                         label='Email'
                         placeholder="Email"
                         type='text'
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                        disabled={disabled}
+                        value={values.email}
+                        {...getFieldProps("email")}
+                        error={Boolean(touched.email && errors.email)}
+                        helperText={touched.email && errors.email}
                     />
                 </div>
-                <Grid container spacing={2} mb={2}>
-                    <Grid item xs={12} md={6}>
-                        <TextField
-                            fullWidth
-                            id='first_name'
-                            name='first_name'
-                            variant='outlined'
-                            label='First Name'
-                            placeholder="First Name"
-                            type='text'
-                            onChange={(e) => setFirstName(e.target.value)}
-                            value={firstName}
-                            disabled={disabled}
-                        />
-                    </Grid>
-                    <Grid item xs={12} md={6}>
-                        <TextField
-                            fullWidth
-                            id='last_name'
-                            name='last_name'
-                            variant='outlined'
-                            label='Last Name'
-                            placeholder="Last Name"
-                            type='text'
-                            onChange={(e) => setLastName(e.target.value)}
-                            value={lastName}
-                            disabled={disabled}
-                        />
-                    </Grid>
-                </Grid>
+                <div style={{ marginBottom: 20 }}>
+                    <TextField
+                        fullWidth
+                        id='password'
+                        name='password'
+                        variant='outlined'
+                        label='Password'
+                        placeholder="Password"
+                        type='password'
+                        value={values.password}
+                        {...getFieldProps("password")}
+                        error={Boolean(touched.password && errors.password)}
+                        helperText={touched.password && errors.password}
+                    />
+                </div>
                 <div style={{ marginBottom: 20 }}>
                     <TextField
                         fullWidth
@@ -134,12 +180,13 @@ const EditDetails = (props) => {
                         label='Contact'
                         placeholder="Contact"
                         type='text'
-                        onChange={(e) => setContact(e.target.value)}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">+91-</InputAdornment>,
                         }}
-                        value={contact}
-                        disabled={disabled}
+                        value={values.contact}
+                        {...getFieldProps("contact")}
+                        error={Boolean(touched.contact && errors.contact)}
+                        helperText={touched.contact && errors.contact}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -151,12 +198,13 @@ const EditDetails = (props) => {
                         label='Address'
                         placeholder="Address"
                         type='text'
-                        onChange={(e) => setLine1(e.target.value)}
-                        value={line1}
-                        disabled={disabled}
+                        value={values.line1}
+                        {...getFieldProps("line1")}
+                        error={Boolean(touched.line1 && errors.line1)}
+                        helperText={touched.line1 && errors.line1}
                     />
                 </div>
-                <Grid container spacing={2} mb={4}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} md={4}>
                         <TextField
                             fullWidth
@@ -166,9 +214,10 @@ const EditDetails = (props) => {
                             label='City'
                             placeholder="City"
                             type='text'
-                            onChange={(e) => setCity(e.target.value)}
-                            value={city}
-                            disabled={disabled}
+                            value={values.city}
+                            {...getFieldProps("city")}
+                            error={Boolean(touched.city && errors.city)}
+                            helperText={touched.city && errors.city}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -180,9 +229,10 @@ const EditDetails = (props) => {
                             label='State'
                             placeholder="State"
                             type='text'
-                            onChange={(e) => setState(e.target.value)}
-                            value={state}
-                            disabled={disabled}
+                            value={values.state}
+                            {...getFieldProps("state")}
+                            error={Boolean(touched.state && errors.state)}
+                            helperText={touched.state && errors.state}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -194,9 +244,10 @@ const EditDetails = (props) => {
                             label='Pincode'
                             placeholder="Pincode"
                             type='text'
-                            onChange={(e) => setPincode(e.target.value)}
-                            value={pincode}
-                            disabled={disabled}
+                            value={values.pincode}
+                            {...getFieldProps("pincode")}
+                            error={Boolean(touched.pincode && errors.pincode)}
+                            helperText={touched.pincode && errors.pincode}
                         />
                     </Grid>
                 </Grid>
