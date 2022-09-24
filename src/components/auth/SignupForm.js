@@ -8,6 +8,8 @@ import { addLoader, removeLoader } from '../../redux/services/actions/loaderActi
 import { login } from '../../redux/services/actions/authActions'
 import { useNavigate } from 'react-router-dom'
 import { useSnackbar } from 'notistack'
+import { useFormik, Form, FormikProvider } from "formik";
+import * as Yup from "yup";
 
 const SignupForm = (props) => {
     const [email, setEmail] = useState()
@@ -22,70 +24,70 @@ const SignupForm = (props) => {
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
 
-    const handleSubmit = async () => {
-        props.addLoader()
-        try {
-            const res = await axios.post(`${BASE_URL_1}/auth/signup`, {
-                email,
-                password,
-                firstName,
-                lastName,
-                contact,
-                line1,
-                city,
-                state,
-                pincode
-            })
-            props.login(
-                { email, password, navigateUrl: props?.navigateUrl },
-                enqueueSnackbar,
-                navigate,
-            );
-            props.removeLoader()
-        } catch (err) {
-            props.removeLoader()
-            let message = 'Something went wrong'
-            if (err?.response?.data?.errors) {
-                message = err?.response?.data?.errors[0].msg
-            } else if (err?.response?.data?.message) {
-                message = err?.response?.data?.message
+    const Schema = Yup.object().shape({
+        email: Yup.string().required("Email is required"),
+        password: Yup.string().required("Password is required"),
+        firstName: Yup.string().required("First name is required"),
+        lastName: Yup.string().required("Last name is required"),
+        contact: Yup.string().required("contact is required"),
+        line1: Yup.string().required("Address is required"),
+        city: Yup.string().required("city is required"),
+        state: Yup.string().required("state is required"),
+        pincode: Yup.string().required("pincode is required")
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            email: "",
+            password: "",
+            firstName: "",
+            lastName: "",
+            contact: "",
+            line1: "",
+            city: "",
+            state: "",
+            pincode: ""
+        },
+        validationSchema: Schema,
+        onSubmit: async (values, action) => {
+            props.addLoader()
+            try {
+                const res = await axios.post(`${BASE_URL_1}/auth/signup`, values)
+                props.login(
+                    { email: values.email, password: values.password, navigateUrl: props?.navigateUrl },
+                    enqueueSnackbar,
+                    navigate,
+                );
+                props.removeLoader()
+            } catch (err) {
+                props.removeLoader()
+                let message = 'Something went wrong'
+                if (err?.response?.data?.errors) {
+                    message = err?.response?.data?.errors[0].msg
+                } else if (err?.response?.data?.message) {
+                    message = err?.response?.data?.message
+                }
+                enqueueSnackbar(message, {
+                    variant: 'error',
+                    autoHideDuration: 3000
+                })
             }
-            enqueueSnackbar(message, {
-                variant: 'error',
-                autoHideDuration: 3000
-            })
         }
-    }
+    })
+
+    const {
+        errors,
+        values,
+        touched,
+        handleSubmit,
+        isSubmitting,
+        getFieldProps,
+        setSubmitting,
+    } = formik;
 
     return (
         <>
             <div style={{ margin: 'auto', padding: window.innerWidth > 400 ? 10 : 1 }}>
-                <div style={{ marginBottom: 20 }}>
-                    <TextField
-                        fullWidth
-                        id='email'
-                        name='email'
-                        variant='outlined'
-                        label='Email'
-                        placeholder="Email"
-                        type='text'
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                    />
-                </div>
-                <div style={{ marginBottom: 20 }}>
-                    <TextField
-                        fullWidth
-                        id='password'
-                        name='password'
-                        variant='outlined'
-                        label='Password'
-                        placeholder="Password"
-                        type='password'
-                        onChange={(e) => setPassword(e.target.value)}
-                        value={password}
-                    />
-                </div>
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={6}>
                         <div style={{ marginBottom: 20 }}>
@@ -97,8 +99,10 @@ const SignupForm = (props) => {
                                 label='First Name'
                                 placeholder="First Name"
                                 type='text'
-                                onChange={(e) => setFirstName(e.target.value)}
-                                value={firstName}
+                                value={values.firstName}
+                                {...getFieldProps("firstName")}
+                                error={Boolean(touched.firstName && errors.firstName)}
+                                helperText={touched.firstName && errors.firstName}
                             />
                         </div>
                     </Grid>
@@ -112,12 +116,44 @@ const SignupForm = (props) => {
                                 label='Last Name'
                                 placeholder="Last Name"
                                 type='text'
-                                onChange={(e) => setLastName(e.target.value)}
-                                value={lastName}
+                                value={values.lastName}
+                                {...getFieldProps("lastName")}
+                                error={Boolean(touched.lastName && errors.lastName)}
+                                helperText={touched.lastName && errors.lastName}
                             />
                         </div>
                     </Grid>
                 </Grid>
+                <div style={{ marginBottom: 20 }}>
+                    <TextField
+                        fullWidth
+                        id='email'
+                        name='email'
+                        variant='outlined'
+                        label='Email'
+                        placeholder="Email"
+                        type='text'
+                        value={values.email}
+                        {...getFieldProps("email")}
+                        error={Boolean(touched.email && errors.email)}
+                        helperText={touched.email && errors.email}
+                    />
+                </div>
+                <div style={{ marginBottom: 20 }}>
+                    <TextField
+                        fullWidth
+                        id='password'
+                        name='password'
+                        variant='outlined'
+                        label='Password'
+                        placeholder="Password"
+                        type='password'
+                        value={values.password}
+                        {...getFieldProps("password")}
+                        error={Boolean(touched.password && errors.password)}
+                        helperText={touched.password && errors.password}
+                    />
+                </div>
                 <div style={{ marginBottom: 20 }}>
                     <TextField
                         fullWidth
@@ -127,11 +163,13 @@ const SignupForm = (props) => {
                         label='Contact'
                         placeholder="Contact"
                         type='text'
-                        onChange={(e) => setContact(e.target.value)}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">+91-</InputAdornment>,
                         }}
-                        value={contact}
+                        value={values.contact}
+                        {...getFieldProps("contact")}
+                        error={Boolean(touched.contact && errors.contact)}
+                        helperText={touched.contact && errors.contact}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -143,8 +181,10 @@ const SignupForm = (props) => {
                         label='Address'
                         placeholder="Address"
                         type='text'
-                        onChange={(e) => setLine1(e.target.value)}
-                        value={line1}
+                        value={values.line1}
+                        {...getFieldProps("line1")}
+                        error={Boolean(touched.line1 && errors.line1)}
+                        helperText={touched.line1 && errors.line1}
                     />
                 </div>
                 <Grid container spacing={2}>
@@ -157,8 +197,10 @@ const SignupForm = (props) => {
                             label='City'
                             placeholder="City"
                             type='text'
-                            onChange={(e) => setCity(e.target.value)}
-                            value={city}
+                            value={values.city}
+                            {...getFieldProps("city")}
+                            error={Boolean(touched.city && errors.city)}
+                            helperText={touched.city && errors.city}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -170,8 +212,10 @@ const SignupForm = (props) => {
                             label='State'
                             placeholder="State"
                             type='text'
-                            onChange={(e) => setState(e.target.value)}
-                            value={state}
+                            value={values.state}
+                            {...getFieldProps("state")}
+                            error={Boolean(touched.state && errors.state)}
+                            helperText={touched.state && errors.state}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -183,8 +227,10 @@ const SignupForm = (props) => {
                             label='Pincode'
                             placeholder="Pincode"
                             type='text'
-                            onChange={(e) => setPincode(e.target.value)}
-                            value={pincode}
+                            value={values.pincode}
+                            {...getFieldProps("pincode")}
+                            error={Boolean(touched.pincode && errors.pincode)}
+                            helperText={touched.pincode && errors.pincode}
                         />
                     </Grid>
                 </Grid>
