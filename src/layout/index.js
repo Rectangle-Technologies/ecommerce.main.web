@@ -41,7 +41,7 @@ const Layout = (props) => {
       <Header categories={categories} />
       <Outlet />
       <Footer categories={categories} />
-      <div style={{ position: "fixed", right: 0, top: "50%", width: Math.min(window.innerWidth, window.innerHeight) > 950 ? "10vw" : "4vw", transform: "translate(0%, -50%)" }} >
+      <div style={{ position: "fixed", right: 0, top: "50%", width: Math.min(window.innerWidth, window.innerHeight) > 950 ? "8em" : "2.5em", transform: "translate(0%, -50%)" }} >
         <div style={{ position: "relative", top: "-50%" }}>
           <Grid container>
             <Grid item xs={12}>
