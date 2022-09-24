@@ -43,7 +43,8 @@ const CartDesktop = (props) => {
         instructions: props.instructions,
         total: props.total,
         discount: props.discount,
-        finalAmount: props.finalAmount
+        finalAmount: props.finalAmount,
+        voucherName: props.voucher
       }
     })
   }

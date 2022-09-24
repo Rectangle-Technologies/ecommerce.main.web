@@ -55,7 +55,8 @@ const Checkout = (props) => {
                         state: values.state,
                         pincode: values.pincode
                     }
-                }
+                },
+                voucherName: location?.state?.voucherName
             }))
             const options = {
                 key: res.data.data.key, // Enter the Key ID generated from the Dashboard
