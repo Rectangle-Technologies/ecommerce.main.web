@@ -12,15 +12,6 @@ import { useFormik, Form, FormikProvider } from "formik";
 import * as Yup from "yup";
 
 const SignupForm = (props) => {
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
-    const [firstName, setFirstName] = useState()
-    const [lastName, setLastName] = useState()
-    const [contact, setContact] = useState()
-    const [line1, setLine1] = useState()
-    const [city, setCity] = useState()
-    const [state, setState] = useState()
-    const [pincode, setPincode] = useState()
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
 
@@ -71,6 +62,7 @@ const SignupForm = (props) => {
                     variant: 'error',
                     autoHideDuration: 3000
                 })
+                action.setSubmitting(false);
             }
         }
     })
