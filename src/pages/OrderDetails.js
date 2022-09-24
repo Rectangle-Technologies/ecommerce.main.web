@@ -55,6 +55,7 @@ const OrderDetails = (props) => {
                     <Typography style={{ ...textStyle, fontSize: '18px' }}>{address}</Typography>
                     <Typography style={{ ...textStyle, fontSize: '18px' }}>+91 - {order?.user?.contact}</Typography>
                     <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} my={3}>Total: {formatAmount(order?.amount)}</Typography>
+                    {order?.voucher && <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} my={3}>Voucher: {order?.voucher?.name}</Typography>}
                     <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} my={3}>Placed On: {new Date(order?.createdAt).toLocaleString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' })}</Typography>
                 </Grid>
                 <Grid item xs={12} md={6}>
