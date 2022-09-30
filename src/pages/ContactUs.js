@@ -53,7 +53,7 @@ const ContactUs = (props) => {
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="CONTACT US" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" />
+                    <DoubleText frontTextTopDistance={window.innerWidth < 500 ? "8vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '12vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="CONTACT US" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" marginTop='1.5vw' />
                     <Grid container spacing={0} style={{ padding: "0px 10vw", justifyContent: "center", alignItems: "center" }}>
                         <Grid item xs={12} md={4}>
                             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", padding: "10px 0px 0px 0px" }}>
@@ -71,18 +71,18 @@ const ContactUs = (props) => {
                             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", padding: "10px 0px 0px 0px" }}>
                                 <LocationOnOutlinedIcon style={{ fontSize: isMobile ? "30px" : "56px" }} />
                                 <Typography style={{ fontSize: isMobile ? "14px" : "20px", padding: isMobile ? "0px 0px 0px 10px" : "0px 20px", fontFamily: "Poppins", lineHeight: "30px", letterSpacing: "2%" }} >
-                                F-21, Sacred Heart World, Opposite of Sacred Heart Town, Wanowrei, Pune, Maharashtra</Typography>
+                                    F-21, Sacred Heart World, Opposite of Sacred Heart Town, Wanowrei, Pune, Maharashtra</Typography>
                             </div>
                         </Grid>
                     </Grid>
-                    <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none" }}>
+                    <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: '2em' }}>
                         <Grid container spacing={0} style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "5em" }}>
                             <Grid item xs={12} md={6}>
                                 <img src="/contact.jpeg" style={{ width: "100%", objectFit: "cover", height: "100%" }} />
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <center>
-                                    <Typography style={{ fontFamily: "Poppins", fontWeight: "700", fontSize: "40px", lineHeight: "60px", marginTop: "20px" }}>GET IN TOUCH</Typography>
+                                    <Typography style={{ fontFamily: "Poppins", fontWeight: "700", fontSize: window.innerWidth < 500 ? '25px' : "40px", lineHeight: "60px", marginTop: "20px" }}>GET IN TOUCH</Typography>
                                     <Grid container spacing={3} style={{ padding: "20px" }}>
                                         <Grid item xs={12}>
                                             <TextField
@@ -171,9 +171,9 @@ const ContactUs = (props) => {
                                 </center>
                             </Grid>
                         </Grid>
-                        <LinearProgress variant="determinate" value={progress} style={{  }} />
+                        <LinearProgress variant="determinate" value={progress} style={{}} />
                     </Paper>
-                    <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="VISIT US" underline={true} frontTextFontFamily="Poppins" backText="Come and explore" />
+                    {/* <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="VISIT US" underline={true} frontTextFontFamily="Poppins" backText="Come and explore" /> */}
                 </Form>
             </FormikProvider>
         </>

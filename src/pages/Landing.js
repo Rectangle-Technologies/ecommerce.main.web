@@ -64,7 +64,7 @@ const Landing = (props) => {
   return (
     <>
       {/* <Caraousel /> */}
-      <DoubleTextComponent backText="What We Design" frontText="New Arrivals" />
+      <DoubleTextComponent backText="What We Design" frontText="New Arrivals" marginTop='1.5vw' />
       <Grid container spacing={window.innerWidth > 600 ? 6 : 3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
         {products?.map((p, idx) => (
           <Grid key={idx} item xs={6} md={3}>
@@ -85,7 +85,7 @@ const Landing = (props) => {
         {categories?.map((category, idx) => (
           <Grid item xs={6} md={3} key={idx}>
             <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/category/${category?._id}`)}>
-              <CategoriesLayout image="/1.jpeg" title={category?.title} />
+              <CategoriesLayout image={category?.imageUrl} title={category?.title} />
             </Link>
           </Grid>
         ))}

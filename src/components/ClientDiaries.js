@@ -25,7 +25,7 @@ const ClientDiariesComponent = (props) => {
 
     return (
         <>
-            <DoubleTextComponent frontText="Client Diaries" backText="What our Client says" />
+            <DoubleTextComponent frontTextTopDistance={window.innerWidth < 500 ? "3.5vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '8vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="Client Diaries" backText="What our Client says" />
             <Grid container spacing={3} style={{ padding: "0px 8vw", marginBottom: "4em" }}>
                 {feedbacks.map((feedback, index) => {
                     return (<Grid item xs={12} md={4} key={index}>

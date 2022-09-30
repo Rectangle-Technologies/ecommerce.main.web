@@ -49,7 +49,7 @@ const ExchangeComponent = (props) => {
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <DoubleText frontTextTopDistance="5.5vw" backTextFontSize="8vw" frontTextFontSize="3.2vw" frontText="EXCHANGE REQUEST" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" />
+                    <DoubleText frontTextTopDistance={window.innerWidth < 500 ? "8vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '12vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4vw' : "3.2vw"} frontText="EXCHANGE REQUEST" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" marginTop='1vw' />
                     <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: '2em' }}>
                         <Grid container spacing={0} style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "1em" }}>
                             <Grid item xs={12} md={6}>
@@ -57,7 +57,7 @@ const ExchangeComponent = (props) => {
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <center>
-                                    <Typography style={{ fontFamily: "Poppins", fontWeight: "700", fontSize: "40px", lineHeight: "60px", marginTop: "20px" }}>GET IN TOUCH</Typography>
+                                    <Typography style={{ fontFamily: "Poppins", fontWeight: "700", fontSize: window.innerWidth < 500 ? '25px' : "40px", lineHeight: "60px", marginTop: "20px" }}>GET IN TOUCH</Typography>
                                     <Grid container spacing={3} style={{ padding: "20px" }}>
                                         <Grid item xs={12}>
                                             <TextField

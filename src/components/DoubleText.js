@@ -10,8 +10,8 @@ const DoubleTextComponent = (props) => {
           position: "relative",
           width: "100vw",
           height: "12vw",
-          marginTop: "4.5vw",
-          marginBottom: "3.2vw",
+          marginTop: props.marginTop || "3.5vw",
+          marginBottom: props.marginBottom || "3.2vw",
         }}
       >
         <div style={{ position: "absolute", left: "50%" }}>

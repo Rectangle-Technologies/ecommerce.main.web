@@ -11,15 +11,15 @@ import DeleteRoundedIcon from "@mui/icons-material/DeleteRounded";
 import { clientDairyFeedback } from "../redux/services/actions/clientDiariesActions";
 
 const ClientDiariesForm = (props) => {
-	const [images, setImges] = useState([]);
+    const [images, setImges] = useState([]);
     const [progress, setProgress] = useState(0);
     const { enqueueSnackbar } = useSnackbar();
 
-	const handleProductImageDelete = (index) => {
-		const temp = images;
-		temp.splice(index, 1);
-		setImges([...temp]);
-	};
+    const handleProductImageDelete = (index) => {
+        const temp = images;
+        temp.splice(index, 1);
+        setImges([...temp]);
+    };
 
     const ClientDiariesSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
@@ -60,7 +60,7 @@ const ClientDiariesForm = (props) => {
 
     return (
         <>
-            <DoubleTextComponent frontText="Add a review" backText="Want to be featured" />
+            <DoubleTextComponent frontTextTopDistance={window.innerWidth < 500 ? "3.5vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '8vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="Add a review" backText="Want to be featured" />
             <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: "5em" }}>
                 <FormikProvider value={formik}>
                     <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
@@ -68,10 +68,10 @@ const ClientDiariesForm = (props) => {
 
                             <Grid item xs={12} md={6}>
                                 <center>
-                                    <Typography style={{ fontFamily: "Poppins", fontWeight: "700", fontSize: "40px", lineHeight: "60px", marginTop: "20px" }}>GIVE RATING</Typography>
+                                    <Typography style={{ fontFamily: "Poppins", fontWeight: "700", fontSize: window.innerWidth < 500 ? '25px' : "40px", lineHeight: "60px", marginTop: "20px" }}>GIVE RATING</Typography>
                                     <Grid container spacing={3} style={{ padding: "20px" }}>
-                                        
-                                    <Grid item xs={12}>
+
+                                        <Grid item xs={12}>
                                             <Rating value={values.rating} precision={0.5} size="large" onChange={(e, newValue) => {
                                                 formik.setFieldValue('rating', newValue);
                                             }} />
@@ -79,9 +79,9 @@ const ClientDiariesForm = (props) => {
                                         <Grid item xs={12} style={{ display: "flex", flexDirection: "row", alignItems: "center" }}>
                                             <Typography style={{ fontFamily: "Poppins", paddingRight: "2em" }} >Add Images</Typography>
                                             <Fab size="small" color="primary" onClick={(e) => {
-                                                    document.getElementById("product_images").click();
-                                                }}>
-                                            <AddIcon />
+                                                document.getElementById("product_images").click();
+                                            }}>
+                                                <AddIcon />
                                             </Fab>
                                             <input
                                                 type="file"
@@ -92,46 +92,46 @@ const ClientDiariesForm = (props) => {
                                                     setImges([...e.target.files]);
                                                 }}
                                             />
-                                            
+
                                         </Grid>
                                         <Grid item xs={12}>
-                                        {images.map((item, index) => (
-									<ImageListItem key={item.name}>
-										<div
-											style={{
-												position: "relative",
-												overflow: "hidden",
-												borderRadius: 8,
-											}}
-										>
-											<Fab
-												size="medium"
-												style={{
-													position: "absolute",
-													backgroundColor: "#f44336",
-													top: -8,
-													right: -8,
-													color: "#fff",
-												}}
-												aria-label="add"
-												onClick={(e) => {
-													handleProductImageDelete(index);
-												}}
-											>
-												<DeleteRoundedIcon />
-											</Fab>
-											<img
-												src={`${URL.createObjectURL(item)}`}
-												srcSet={`${URL.createObjectURL(item)}`}
-												alt="Products"
-												loading="lazy"
-												style={{
-													width: "100%",
-												}}
-											/>
-										</div>
-									</ImageListItem>
-								))}
+                                            {images.map((item, index) => (
+                                                <ImageListItem key={item.name}>
+                                                    <div
+                                                        style={{
+                                                            position: "relative",
+                                                            overflow: "hidden",
+                                                            borderRadius: 8,
+                                                        }}
+                                                    >
+                                                        <Fab
+                                                            size="medium"
+                                                            style={{
+                                                                position: "absolute",
+                                                                backgroundColor: "#f44336",
+                                                                top: -8,
+                                                                right: -8,
+                                                                color: "#fff",
+                                                            }}
+                                                            aria-label="add"
+                                                            onClick={(e) => {
+                                                                handleProductImageDelete(index);
+                                                            }}
+                                                        >
+                                                            <DeleteRoundedIcon />
+                                                        </Fab>
+                                                        <img
+                                                            src={`${URL.createObjectURL(item)}`}
+                                                            srcSet={`${URL.createObjectURL(item)}`}
+                                                            alt="Products"
+                                                            loading="lazy"
+                                                            style={{
+                                                                width: "100%",
+                                                            }}
+                                                        />
+                                                    </div>
+                                                </ImageListItem>
+                                            ))}
                                         </Grid>
                                         <Grid item xs={12}>
                                             <TextField
