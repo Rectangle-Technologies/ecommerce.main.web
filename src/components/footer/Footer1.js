@@ -4,16 +4,16 @@ import textStyle from "../../helpers/textStyle";
 
 const Footer1 = () => {
   const desc1 =
-    "Bloom is India's most-loved online fashion store featuring new products every day!";
+    "STORE TIMINGS:";
   const desc2 =
-    "Established In Year 20XX And Catering More Than 5 Lac Customers In Year.";
+    "MON-SAT- 11 AM TO 7 PM (IST)";
   const contact = "+91 - 8983355550 / 9975663656";
   const email = "bloomboutique@gmail.com";
   const address =
-    "F-21, Sacred Heart World, Opposite of Sacred Heart Town, Wanowrei, Pune, Maharashtra";
+    "F-21, Sacred World Mall, Wanewadi, Jagtap Chock, Pune - 411040";
   return (
     <Grid item xs={12} md={3.5} my={1} px={2} mr={2}>
-      <Typography style={{ ...textStyle, textAlign: 'justify' }} my={1}>
+      <Typography style={{ ...textStyle, textAlign: 'justify', fontWeight: 600 }} my={1}>
         {desc1}
       </Typography>
       <Typography style={{ ...textStyle, textAlign: 'justify' }} my={1}>

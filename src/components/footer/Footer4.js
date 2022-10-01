@@ -5,6 +5,7 @@ import {
   IconButton,
   TextField,
   Button,
+  Link,
 } from "@mui/material";
 import React from "react";
 import textStyle from "../../helpers/textStyle";
@@ -37,15 +38,21 @@ const Footer4 = () => {
         Follow us on:
       </Typography>
       <Box style={{ display: "flex", flexDirection: "row" }}>
-        <IconButton color="primary" onClick={() => (window.location.href = "https://www.facebook.com/")} >
-          <FacebookIcon />
-        </IconButton>
-        <IconButton color="secondary">
-          <InstagramIcon />
-        </IconButton>
-        <IconButton color="error">
-          <YouTubeIcon />
-        </IconButton>
+        <Link href='https://www.facebook.com/Bloom-boutique-805278062837758/' rel="noopener" target="_blank">
+          <IconButton color="primary">
+            <FacebookIcon />
+          </IconButton>
+        </Link>
+        <Link href='https://www.instagram.com/bloom_by_khushbu/' rel="noopener" target="_blank">
+          <IconButton color="secondary">
+            <InstagramIcon />
+          </IconButton>
+        </Link>
+        <Link href='https://www.youtube.com/channel/UCU4Pe-yOh1BrfeZGYhX062Q' rel="noopener" target="_blank">
+          <IconButton color="error">
+            <YouTubeIcon />
+          </IconButton>
+        </Link>
       </Box>
       <Typography
         style={{
