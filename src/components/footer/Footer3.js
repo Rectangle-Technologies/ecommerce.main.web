@@ -41,8 +41,8 @@ const Footer3 = (props) => {
       url: ''
     },
     {
-      name: "Refund Policy",
-      url: ''
+      name: "Return Policy",
+      url: 'return'
     },
     {
       name: "Shipping Policy",

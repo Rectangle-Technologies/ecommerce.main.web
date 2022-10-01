@@ -17,6 +17,7 @@ import EditDetails from "./pages/EditDetails";
 import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
 import Exchange from "./pages/Exchange";
+import ReturnPolicy from "./pages/ReturnPolicy";
 
 const routes = [
   {
@@ -82,6 +83,10 @@ const routes = [
       {
         path: '/order/:id',
         element: <OrderDetails />
+      },
+      {
+        path: 'return',
+        element: <ReturnPolicy />
       }
     ],
   },

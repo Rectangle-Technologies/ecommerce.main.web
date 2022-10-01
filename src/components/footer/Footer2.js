@@ -76,8 +76,8 @@ const Footer2 = (props) => {
           <TypographyLink style={textStyle} my={1}>
             Privacy Policy
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
-            Refund Policy
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate(`/return`)}>
+            Return Policy
           </TypographyLink>
           <TypographyLink style={textStyle} my={1}>
             Shipping Policy
