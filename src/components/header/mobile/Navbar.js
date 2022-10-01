@@ -53,10 +53,14 @@ const NavbarMobile = (props) => {
         }}>
 
             {/* toggle menu */}
-            <MenuIcon onClick={() => { setIsOpen(!isOpen) }} style={{ border: "1px solid black", padding: "5px", borderRadius: "5px", marginLeft: "15px" }} />
+            <div style={{ width: '20%' }}>
+                <MenuIcon onClick={() => { setIsOpen(!isOpen) }} style={{ border: "1px solid black", padding: "5px", borderRadius: "5px", marginLeft: "15px" }} />
+            </div>
 
             {/* logo section */}
-            <img src="/logo.png" style={{ maxHeight: "100%", aspectRatio: 2.2 }} />
+            <Link to="/" style={{ textDecoration: "none", width: '30%' }} onClick={() => { setIsOpen(false) }}>
+                <img src="/logo.png" style={{ maxHeight: "100%", width: '80%' }} />
+            </Link>
 
             {/* important links */}
             {isOpen &&
@@ -112,22 +116,22 @@ const NavbarMobile = (props) => {
                     </div></>}
 
             {/* important icons */}
-            <div style={{ padding: "0px" }}>
-                <SearchIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
+            <div style={{ padding: "0px", width: '30%' }}>
+                <SearchIcon style={{ padding: "0px 2px 0px 2px", fontSize: 25 }} onClick={(e) => {
                     navigate('/search')
                     setIsOpen(false)
                 }} />
-                <FavoriteBorderIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={() => {
+                <FavoriteBorderIcon style={{ padding: "0px 2px 0px 2px", fontSize: 25 }} onClick={() => {
                     navigate('/wishlist')
                     setIsOpen(false)
                 }} />
                 <StyledBadge badgeContent={props?.auth?.user?.cartTotal} color='primary'>
-                    <ShoppingCartOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25, margin: '-20px 0px' }} onClick={() => {
+                    <ShoppingCartOutlinedIcon style={{ padding: "0px 2px 0px 2px", fontSize: 25, margin: '-20px 0px' }} onClick={() => {
                         navigate('/cart')
                         setIsOpen(false)
                     }} />
                 </StyledBadge>
-                <PersonOutlineOutlinedIcon style={{ padding: "0px 3px 0px 3px", fontSize: 25 }} onClick={(e) => {
+                <PersonOutlineOutlinedIcon style={{ padding: "0px 2px 0px 2px", fontSize: 25 }} onClick={(e) => {
                     handleProfileClick(e)
                     setIsOpen(false)
                 }} />

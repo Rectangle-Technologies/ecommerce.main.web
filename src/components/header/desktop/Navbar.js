@@ -42,9 +42,11 @@ const NavbarDesktop = (props) => {
             alignItems: "center"
         }}>
             {/* logo section */}
-            <img src="/logo.png" style={{ maxHeight: "100%", aspectRatio: 2.2 }} />
+            <Link to="/" style={{ textDecoration: "none", width: '20%' }}>
+                <img src="/logo.png" style={{ width: '80%' }} />
+            </Link>
             {/* important links */}
-            <div style={{ display: "flex", flexDirection: "column" }} >
+            <div style={{ display: "flex", flexDirection: "column", width: '45%' }} >
                 <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
                     <Link to="/" style={{ textDecoration: "none" }}>
                         <Typography className={url === '/' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }}>New-in</Typography>
@@ -70,7 +72,7 @@ const NavbarDesktop = (props) => {
                 </div>
             </div>
             {/* important icons */}
-            <div style={{ padding: "10px" }}>
+            <div style={{ padding: "10px", width: '15%' }}>
                 <Link to="/search" style={{ textDecoration: "none", cursor: "pointer", color: "black" }}>
                     <SearchIcon style={{ padding: "0px 7.5px 0px 7.5px", fontSize: 40 }} />
                 </Link>

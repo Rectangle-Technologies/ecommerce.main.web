@@ -9,14 +9,12 @@ const FooterDesktop = (props) => {
         <Box style={{ backgroundColor: "#e5e5e5" }} width="100%">
             <Container maxWidth="lg" sx={{ p: 4 }}>
                 <Grid container>
-                    <center>
-                        <Grid item xs={12} md={3} my={1}>
-                            <img
-                                src="/logo.png"
-                                style={{ maxHeight: "80px", aspectRatio: 2.2 }}
-                            />
-                        </Grid>
-                    </center>
+                    <Grid item xs={12} md={3} my={1}>
+                        <img
+                            src="/logo.png"
+                            style={{ width: '90%' }}
+                        />
+                    </Grid>
                 </Grid>
                 <Grid container>
                     <Footer1 />
