@@ -94,7 +94,7 @@ const ClientDiariesForm = (props) => {
                                             />
 
                                         </Grid>
-                                        <Grid item xs={12}>
+                                        <Grid item xs={12} md={6}>
                                             {images.map((item, index) => (
                                                 <ImageListItem key={item.name}>
                                                     <div
