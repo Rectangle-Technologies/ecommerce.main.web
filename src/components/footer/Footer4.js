@@ -35,7 +35,7 @@ const Footer4 = (props) => {
     props.addLoader()
     try {
       const res = await axios.post(`${BASE_URL_1}/subscriber/add`, { email })
-      enqueueSnackbar('Thank you for subscribing!', {
+      enqueueSnackbar(res.data.message, {
         variant: 'success',
         autoHideDuration: 3000
       })
@@ -112,6 +112,7 @@ const Footer4 = (props) => {
         sx={{ my: 1, mr: 1 }}
         onChange={(e) => setEmail(e.target.value)}
         name='email'
+        value={email}
       />
       <CustomButton variant="contained" sx={{ my: 1 }} onClick={handleSubscribe}>
         Subscribe
