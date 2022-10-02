@@ -73,7 +73,7 @@ const Footer2 = (props) => {
           >
             Policies
           </Typography>
-          <TypographyLink style={textStyle} my={1}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate(`/privacy`)}>
             Privacy Policy
           </TypographyLink>
           <TypographyLink style={textStyle} my={1} onClick={() => navigate(`/return`)}>

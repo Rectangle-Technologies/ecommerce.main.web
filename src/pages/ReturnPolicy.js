@@ -7,7 +7,7 @@ const ReturnPolicy = () => {
         <div style={{ width: '90%', margin: 'auto', marginTop: '20px' }}>
             <Typography style={{ ...textStyle, fontSize: 36, fontWeight: 700 }}>RETURN POLICY</Typography>
             <Typography style={textStyle} my={1}>
-                Bloombykhushbu.com follows a friendly policy to ensure your purchases are free of stress. We are always with you, before and after your purchase. As an additional measure, please read through the following terms & conditions prior to making a purchase.
+                Bloombykhushbu.co.in follows a friendly policy to ensure your purchases are free of stress. We are always with you, before and after your purchase. As an additional measure, please read through the following terms & conditions prior to making a purchase.
             </Typography>
             <Typography style={textStyle} component='div' my={1}>
                 <Box display='inline' style={{ fontWeight: 600 }}>Return: </Box>

@@ -38,7 +38,7 @@ const Footer3 = (props) => {
   const list3 = [
     {
       name: "Privacy Policy",
-      url: ''
+      url: 'privacy'
     },
     {
       name: "Return Policy",

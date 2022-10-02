@@ -18,6 +18,7 @@ import Orders from "./pages/Orders";
 import OrderDetails from "./pages/OrderDetails";
 import Exchange from "./pages/Exchange";
 import ReturnPolicy from "./pages/ReturnPolicy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 
 const routes = [
   {
@@ -87,6 +88,10 @@ const routes = [
       {
         path: 'return',
         element: <ReturnPolicy />
+      },
+      {
+        path: 'privacy',
+        element: <PrivacyPolicy />
       }
     ],
   },
