@@ -1,7 +1,8 @@
+import { BASE_URL_2 } from "../../../constants/urls";
 import { post } from "../../../utils/apiHelper"
 
 export const addNewQuery = (data, token, enqueueSnackbar, setSubmitting, resetForm) => async (dispatch) => {
-    post("http://localhost:5000/exchange/query/new", `Bearer ${token}`, data)
+    post(`${BASE_URL_2}/exchange/query/new`, `Bearer ${token}`, data)
         .then((res) => {
             enqueueSnackbar(res.data.message, {
                 autoHideDuration: 3000,
