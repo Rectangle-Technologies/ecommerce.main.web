@@ -19,6 +19,7 @@ import OrderDetails from "./pages/OrderDetails";
 import Exchange from "./pages/Exchange";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import ShippingPolicy from "./pages/ShippingPolicy";
 
 const routes = [
   {
@@ -92,6 +93,10 @@ const routes = [
       {
         path: 'privacy',
         element: <PrivacyPolicy />
+      },
+      {
+        path: 'shipping',
+        element: <ShippingPolicy />
       }
     ],
   },

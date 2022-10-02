@@ -46,7 +46,7 @@ const Footer3 = (props) => {
     },
     {
       name: "Shipping Policy",
-      url: ''
+      url: 'shipping'
     },
     {
       name: "Terms Of Services",
