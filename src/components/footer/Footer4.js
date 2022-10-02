@@ -39,6 +39,7 @@ const Footer4 = (props) => {
         variant: 'success',
         autoHideDuration: 3000
       })
+      setEmail('')
       props.removeLoader()
     } catch (err) {
       console.log(err)
