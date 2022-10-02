@@ -50,7 +50,7 @@ const Footer3 = (props) => {
     },
     {
       name: "Terms Of Services",
-      url: ''
+      url: 'termsofservices'
     },
   ];
   return (

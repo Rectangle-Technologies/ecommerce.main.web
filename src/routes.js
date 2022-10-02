@@ -20,6 +20,7 @@ import Exchange from "./pages/Exchange";
 import ReturnPolicy from "./pages/ReturnPolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
+import TermsOfServices from "./pages/TermsOfServices";
 
 const routes = [
   {
@@ -97,6 +98,10 @@ const routes = [
       {
         path: 'shipping',
         element: <ShippingPolicy />
+      },
+      {
+        path: 'termsofservices',
+        element: <TermsOfServices />
       }
     ],
   },

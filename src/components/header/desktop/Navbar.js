@@ -47,7 +47,7 @@ const NavbarDesktop = (props) => {
             </Link>
             {/* important links */}
             <div style={{ display: "flex", flexDirection: "column", width: '45%' }} >
-                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }} >
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center" }} >
                     <Link to="/" style={{ textDecoration: "none" }}>
                         <Typography className={url === '/' ? "navbar_item navbar_item_selected" : 'navbar_item'} style={{ fontSize: 18 }}>New-in</Typography>
                     </Link>

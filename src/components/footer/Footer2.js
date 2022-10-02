@@ -82,7 +82,7 @@ const Footer2 = (props) => {
           <TypographyLink style={textStyle} my={1} onClick={() => navigate(`/shipping`)}>
             Shipping Policy
           </TypographyLink>
-          <TypographyLink style={textStyle} my={1}>
+          <TypographyLink style={textStyle} my={1} onClick={() => navigate(`/termsofservices`)}>
             Terms Of Services
           </TypographyLink>
         </Grid>
