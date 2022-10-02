@@ -110,6 +110,7 @@ const Footer4 = (props) => {
         size="small"
         sx={{ my: 1, mr: 1 }}
         onChange={(e) => setEmail(e.target.value)}
+        name='email'
       />
       <CustomButton variant="contained" sx={{ my: 1 }} onClick={handleSubscribe}>
         Subscribe
