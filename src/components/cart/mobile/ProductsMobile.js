@@ -36,8 +36,8 @@ const ProductsMobile = (props) => {
                 setQuantity(quantity + 1)
                 props.removeLoader()
             } else if (action == '-') {
-                const res = await axios.post(`${BASE_URL_1}/cart/delete/${props.product.productId._id}`, {
-                    size: props.product.size
+                const res = await axios.post(`${BASE_URL_1}/cart/delete/${props?.product?.productId._id}`, {
+                    size: props?.product?.size
                 }, config)
                 props.setCart(res.data.cart)
                 props.setTotal(res.data.cart.total)
@@ -66,7 +66,7 @@ const ProductsMobile = (props) => {
     return (
         <Grid container my={2}>
             <Grid item xs={5} mx={1}>
-                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`)}>
+                <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props?.product?.productId._id}`)}>
                     <img src={props?.product?.productId?.imageUrls[0]}
                         style={{ width: '100%', aspectRatio: 0.65 }}
                     />
@@ -74,9 +74,9 @@ const ProductsMobile = (props) => {
             </Grid>
             <Grid item xs={6}>
                 <Link style={{ cursor: 'pointer' }} onClick={() => navigate(`/product/${props.product.productId._id}`)}>
-                    <Typography style={{ ...textStyle, fontWeight: 500, textAlign: 'left' }} mx={1}>{props.product.productId.name}</Typography>
+                    <Typography style={{ ...textStyle, fontWeight: 500, textAlign: 'left' }} mx={1}>{props?.product?.productId?.name}</Typography>
                 </Link>
-                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>{formatAmount(props.product.productId.price)}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>{formatAmount(props?.product?.productId?.price)}</Typography>
                 <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: 10 }}>
                     <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>
                         <div
@@ -137,7 +137,7 @@ const ProductsMobile = (props) => {
                         </div>
                     </Link>
                 </div>
-                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>Size: {props.product.size}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }} m={1}>Size: {props?.product?.size}</Typography>
             </Grid>
         </Grid>
     )

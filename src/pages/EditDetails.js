@@ -31,8 +31,6 @@ const EditDetails = (props) => {
         pincode: Yup.string().required("pincode is required")
     });
 
-    console.log(props.auth)
-
     const formik = useFormik({
         initialValues: {
             email: props?.auth?.user?.email || "",
@@ -120,6 +118,7 @@ const EditDetails = (props) => {
                                 {...getFieldProps("firstName")}
                                 error={Boolean(touched.firstName && errors.firstName)}
                                 helperText={touched.firstName && errors.firstName}
+                                disabled={disabled}
                             />
                         </div>
                     </Grid>
@@ -137,6 +136,7 @@ const EditDetails = (props) => {
                                 {...getFieldProps("lastName")}
                                 error={Boolean(touched.lastName && errors.lastName)}
                                 helperText={touched.lastName && errors.lastName}
+                                disabled={disabled}
                             />
                         </div>
                     </Grid>
@@ -154,6 +154,7 @@ const EditDetails = (props) => {
                         {...getFieldProps("email")}
                         error={Boolean(touched.email && errors.email)}
                         helperText={touched.email && errors.email}
+                        disabled={disabled}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -169,6 +170,7 @@ const EditDetails = (props) => {
                         {...getFieldProps("password")}
                         error={Boolean(touched.password && errors.password)}
                         helperText={touched.password && errors.password}
+                        disabled={disabled}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -187,6 +189,7 @@ const EditDetails = (props) => {
                         {...getFieldProps("contact")}
                         error={Boolean(touched.contact && errors.contact)}
                         helperText={touched.contact && errors.contact}
+                        disabled={disabled}
                     />
                 </div>
                 <div style={{ marginBottom: 20 }}>
@@ -202,6 +205,7 @@ const EditDetails = (props) => {
                         {...getFieldProps("line1")}
                         error={Boolean(touched.line1 && errors.line1)}
                         helperText={touched.line1 && errors.line1}
+                        disabled={disabled}
                     />
                 </div>
                 <Grid container spacing={2}>
@@ -218,6 +222,7 @@ const EditDetails = (props) => {
                             {...getFieldProps("city")}
                             error={Boolean(touched.city && errors.city)}
                             helperText={touched.city && errors.city}
+                            disabled={disabled}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -233,6 +238,7 @@ const EditDetails = (props) => {
                             {...getFieldProps("state")}
                             error={Boolean(touched.state && errors.state)}
                             helperText={touched.state && errors.state}
+                            disabled={disabled}
                         />
                     </Grid>
                     <Grid item xs={12} md={4}>
@@ -248,11 +254,12 @@ const EditDetails = (props) => {
                             {...getFieldProps("pincode")}
                             error={Boolean(touched.pincode && errors.pincode)}
                             helperText={touched.pincode && errors.pincode}
+                            disabled={disabled}
                         />
                     </Grid>
                 </Grid>
             </div>
-            <div style={{ width: '90%', maxWidth: '600px', margin: 'auto', marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ width: '90%', maxWidth: '600px', margin: 'auto', marginBottom: '20px', marginTop: '20px', display: 'flex', justifyContent: 'flex-end' }}>
                 {disabled
                     ? <CustomButton variant="contained" size='small' onClick={() => setDisabled(false)}>Edit</CustomButton>
                     : <CustomButton variant="contained" size='small' onClick={handleSubmit}>Save</CustomButton>

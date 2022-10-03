@@ -74,10 +74,10 @@ const ProductsDesktop = (props) => {
                     style={{ width: '20%', aspectRatio: 0.65 }}
                     alt="Product image"
                 />
-                <Typography style={{ ...textStyle, fontWeight: 500 }} m={2}>{props.product.productId.name}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }} m={2}>{props?.product?.productId?.name}</Typography>
             </Link>
             <div style={{ width: '20%', margin: 'auto', padding: 10 }}>
-                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{formatAmount(props.product.productId.price)}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{formatAmount(props?.product?.productId?.price)}</Typography>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '20%', margin: 'auto', padding: 10 }}>
                 <Link style={{ cursor: 'pointer' }} onClick={() => updateQuantity('-')}>
@@ -140,7 +140,7 @@ const ProductsDesktop = (props) => {
                 </Link>
             </div>
             <div style={{ width: '20%', margin: 'auto', padding: 10 }}>
-                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{props.product.size}</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 24, textAlign: 'center' }} m={2}>{props?.product?.size}</Typography>
             </div>
         </div>
     )
