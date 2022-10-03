@@ -1,5 +1,5 @@
 import { io } from "socket.io-client";
-const base_url = "ws://localhost:4000/";
+import { WEBSOCKET_URL } from "../../../constants/urls";
 
 export default class SocketAPI {
     constructor(userid, token, dispatch, navigate, snackbar) {
@@ -15,7 +15,7 @@ export default class SocketAPI {
     
     connect = () => {
         return new Promise((resolve, reject) => {
-            this.socket = io(base_url, {
+            this.socket = io(WEBSOCKET_URL, {
                 query: {
                     type: this.type,
                     userid: this.userid,

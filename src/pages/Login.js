@@ -72,6 +72,10 @@ function Login(props) {
 
     return (
         <div style={{ width: '100vw', minHeight: '150vh', padding: '20px 10px', backgroundColor: '#F8F5CC' }}>
+            <center>
+            <img style={{ maxWidth: "300px", width: "50vw", marginBottom: 25 }} src="/logo.png" />
+            </center>
+
             <Paper sx={{ width: '100%', maxWidth: 700, margin: 'auto', padding: window.innerWidth > 400 ? 5 : '20px 5px' }} elevation={4}>
                 <Box>
                     <Tabs value={value} onChange={handleChange} centered TabIndicatorProps={{

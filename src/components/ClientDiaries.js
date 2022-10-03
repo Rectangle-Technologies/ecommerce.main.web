@@ -2,6 +2,7 @@ import { Fab, Grid, Paper, Rating, Typography } from "@mui/material";
 import { useSnackbar } from "notistack";
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { BASE_URL_2 } from "../constants/urls";
 import { get } from "../utils/apiHelper";
 import ClientDiariesForm from "./ClientDiariesForm";
 import DoubleTextComponent from "./DoubleText";
@@ -11,7 +12,7 @@ const ClientDiariesComponent = (props) => {
     const { enqueueSnackbar } = useSnackbar();
 
     useEffect(() => {
-        get("http://localhost:5000/diaries/latest", props?.auth?.token)
+        get(`${BASE_URL_2}/diaries/latest`, props?.auth?.token)
             .then((response) => {
                 setFeedback(response.data.diary);
             })
