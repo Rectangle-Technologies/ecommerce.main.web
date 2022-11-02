@@ -66,7 +66,14 @@ const Checkout = (props) => {
                 description: "Test Transaction",
                 image: "https://example.com/your_logo",
                 order_id: res.data.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-                callback_url: `${BASE_URL_3}/payment/verify`,
+                handler: async function (response) {
+                    const res = await axios.post(`${BASE_URL_3}/payment/verify`, {
+                        razorpay_order_id: response.razorpay_order_id,
+                        razorpay_payment_id: response.razorpay_payment_id,
+                        razorpay_signature: response.razorpay_signature
+                    })
+                    navigate(`/orderstatus/${res.data.status}?paymentId=${res.data.paymentId}`)
+                },
                 prefill: {
                     name: props?.auth?.user?.name,
                     email: props?.auth?.user?.email,
