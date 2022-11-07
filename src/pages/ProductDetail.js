@@ -423,9 +423,11 @@ const ProductDetail = (props) => {
                         {product?.recommendations?.length > 0 &&
                             <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
                                 <DoubleTextComponent
-                                    backText="You might be interested"
+                                    backText=""
                                     frontText="Recommendations"
                                     left='-60%'
+                                    frontTextTopDistance='0vw'
+                                    marginTop='1.5vw'
                                 />
                                 <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
                                     {product.recommendations?.map((recommendation, index) => {
@@ -443,7 +445,7 @@ const ProductDetail = (props) => {
                             </div>
                         }
                         <div style={{ margin: window.innerWidth > 500 ? 20 : 0 }}>
-                            <DoubleTextComponent backText="What We Design" frontText="New Arrivals" left='-60%' />
+                            <DoubleTextComponent backText="" frontText="New Arrivals" left='-60%' frontTextTopDistance='0vw' marginTop='1.5vw' marginBottom='3vw' />
                             <Grid container spacing={window.innerWidth > 500 ? 3 : 1.5} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
                                 {newArrivals?.map((p, idx) => (
                                     <Grid key={idx} item xs={6} md={3}>

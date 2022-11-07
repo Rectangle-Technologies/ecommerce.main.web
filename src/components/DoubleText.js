@@ -9,9 +9,9 @@ const DoubleTextComponent = (props) => {
         style={{
           position: "relative",
           width: "100vw",
-          height: "12vw",
+          height: "5vw",
           marginTop: props.marginTop || "3.5vw",
-          marginBottom: props.marginBottom || "3.2vw",
+          marginBottom: props.marginBottom || "2vw",
         }}
       >
         <div style={{ position: "absolute", left: "50%" }}>
