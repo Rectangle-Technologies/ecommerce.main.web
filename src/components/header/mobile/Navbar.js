@@ -54,7 +54,7 @@ const NavbarMobile = (props) => {
 
             {/* toggle menu */}
             <div style={{ width: '20%' }}>
-                <MenuIcon onClick={() => { setIsOpen(!isOpen) }} style={{ border: "1px solid black", padding: "5px", borderRadius: "5px", marginLeft: "15px" }} />
+                <MenuIcon onClick={() => { setIsOpen(!isOpen) }} style={{ marginLeft: "10px" }} />
             </div>
 
             {/* logo section */}
