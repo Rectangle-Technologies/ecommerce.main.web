@@ -32,7 +32,7 @@ const OrderStatus = (props) => {
     const createOrder = async () => {
         props.addLoader()
         try {
-            const res = await axios.post(`${BASE_URL_1}/order/create`, data, config)
+            const res = await axios.post(`${BASE_URL_1}/order/create`, { ...data, paymentId }, config)
             setOrder(res.data.order)
             props.updateCart(0)
             localStorage.removeItem('order')
