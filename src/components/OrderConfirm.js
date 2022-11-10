@@ -2,6 +2,7 @@ import { Box, Grid, Link, Modal, Typography } from '@mui/material'
 import React from 'react'
 import formatAmount from '../helpers/formatAmount';
 import textStyle from '../helpers/textStyle';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 
 const OrderConfirm = (props) => {
     const handleClose = () => props.setOpen(false);
@@ -65,15 +66,28 @@ const OrderConfirm = (props) => {
                     <Typography style={{ ...textStyle, fontWeight: 500 }} mb={1}><span style={{ fontWeight: 600 }}>Name: </span>{props.user.name}</Typography>
                     <Typography style={{ ...textStyle, fontWeight: 500 }} mb={1}><span style={{ fontWeight: 600 }}>Contact: </span>{props.user.contact}</Typography>
                     <Typography style={{ ...textStyle, fontWeight: 500 }} mb={1}><span style={{ fontWeight: 600 }}>Address: </span>{props?.user?.line1 + ', ' + props?.user?.city + ', ' + props?.user?.state + ' - ' + props?.user?.pincode}</Typography>
-                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
-                        <Link style={{ cursor: 'pointer' }} onClick={props.handleSubmit}>
-                            <div style={{ backgroundColor: '#FA861B', padding: '10px 30px', borderRadius: 30 }}>
-                                <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 14, color: '#F8F5CC', textAlign: 'center' }}>
-                                    Proceed
-                                </Typography>
+                    <Grid container my={2}>
+                        <Grid item xs={12} md={6} my={2}>
+                            <Link
+                                style={{ display: 'flex', cursor: 'pointer' }}
+                                onClick={() => props.setOpen(false)}
+                            >
+                                <KeyboardArrowLeftIcon />
+                                <Typography style={{ ...textStyle, fontSize: 18 }} mx={1}>Cancel</Typography>
+                            </Link>
+                        </Grid>
+                        <Grid item xs={12} md={6} my={2}>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                                <Link style={{ cursor: 'pointer' }} onClick={props.handleSubmit}>
+                                    <div style={{ backgroundColor: '#FA861B', padding: '10px 30px', borderRadius: 30 }}>
+                                        <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 14, color: '#F8F5CC', textAlign: 'center' }}>
+                                            Proceed
+                                        </Typography>
+                                    </div>
+                                </Link>
                             </div>
-                        </Link>
-                    </div>
+                        </Grid>
+                    </Grid>
                 </Box>
             </Modal>
         </div >
