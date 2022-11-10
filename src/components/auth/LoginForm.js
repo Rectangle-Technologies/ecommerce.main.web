@@ -3,7 +3,7 @@ import { useSnackbar } from "notistack";
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login } from '../../redux/services/actions/authActions';
-import { Box, Link, TextField, Typography } from '@mui/material';
+import { Box, InputAdornment, Link, TextField, Typography } from '@mui/material';
 import textStyle from '../../helpers/textStyle';
 import { useFormik, Form, FormikProvider } from "formik";
 import * as Yup from "yup";
@@ -14,19 +14,19 @@ const LoginForm = (props) => {
     const navigate = useNavigate();
 
     const Schema = Yup.object().shape({
-        email: Yup.string().required("Email is required"),
+        contact: Yup.string().required("Contact is required"),
         password: Yup.string().required("Password is required"),
     });
 
     const formik = useFormik({
         initialValues: {
-            email: "",
+            contact: "",
             password: ""
         },
         validationSchema: Schema,
         onSubmit: (values, action) => {
             props.login(
-                { email: values.email, password: values.password, navigateUrl: props?.navigateUrl },
+                { contact: values.contact, password: values.password, navigateUrl: props?.navigateUrl },
                 enqueueSnackbar,
                 navigate,
             );
@@ -49,21 +49,19 @@ const LoginForm = (props) => {
                 <div style={{ marginBottom: 20 }}>
                     <TextField
                         fullWidth
-                        id='email'
-                        name='email'
+                        id='contact'
+                        name='contact'
                         variant='outlined'
-                        label='Email'
-                        placeholder="Email"
+                        label='Contact'
+                        placeholder="Contact"
                         type='text'
-                        onKeyDown={e => {
-                            if (e.key === 'Enter') {
-                                handleLogin(e)
-                            }
+                        InputProps={{
+                            startAdornment: <InputAdornment position="start">+91-</InputAdornment>,
                         }}
-                        value={values.email}
-                        {...getFieldProps("email")}
-                        error={Boolean(touched.email && errors.email)}
-                        helperText={touched.email && errors.email}
+                        value={values.contact}
+                        {...getFieldProps("contact")}
+                        error={Boolean(touched.contact && errors.contact)}
+                        helperText={touched.contact && errors.contact}
                     />
                 </div>
                 <div style={{ marginTop: 20 }}>
