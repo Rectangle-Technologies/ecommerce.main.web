@@ -9,11 +9,13 @@ import ProductLayout from "../components/ProductLayout";
 import { BASE_URL_2 } from "../constants/urls";
 import { addLoader, removeLoader } from "../redux/services/actions/loaderActions";
 import { useNavigate } from "react-router-dom";
+import { useSnackbar } from "notistack";
 
 const Landing = (props) => {
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState()
   const navigate = useNavigate()
+  const { enqueueSnackbar } = useSnackbar();
 
   const fetchNewArrivals = async () => {
     props.addLoader()
