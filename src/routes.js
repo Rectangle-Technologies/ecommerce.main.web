@@ -22,6 +22,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import ShippingPolicy from "./pages/ShippingPolicy";
 import TermsOfServices from "./pages/TermsOfServices";
 import ResetPassword from "./reset_password";
+import ResetPasswordEmail from "./reset_password_email";
 
 const routes = [
   {
@@ -111,8 +112,12 @@ const routes = [
     element: <Checkout />
   },
   {
-    path: '/reset_password/:email',
+    path: '/reset_password',
     element: <ResetPassword />
+  },
+  {
+    path: '/reset_password/:email',
+    element: <ResetPasswordEmail />
   },
   {
     path: 'login',
