@@ -42,8 +42,8 @@ const NavbarDesktop = (props) => {
             alignItems: "center"
         }}>
             {/* logo section */}
-            <Link to="/" style={{ textDecoration: "none", width: '20%' }}>
-                <img src="/logo.png" style={{ width: '80%' }} />
+            <Link to="/" style={{ textDecoration: "none", width: '20%', marginLeft: 10 }}>
+                <img src="/logo.png" style={{ width: '60%' }} />
             </Link>
             {/* important links */}
             <div style={{ display: "flex", flexDirection: "column", width: '45%' }} >

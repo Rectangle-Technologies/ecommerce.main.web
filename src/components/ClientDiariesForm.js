@@ -60,7 +60,7 @@ const ClientDiariesForm = (props) => {
 
     return (
         <>
-            <DoubleTextComponent frontTextTopDistance={window.innerWidth < 500 ? "3.5vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '8vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="Add a review" backText="Want to be featured" />
+            <DoubleTextComponent frontTextTopDistance='0vw' backTextFontSize={window.innerWidth < 500 ? '8vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="Add a review" backText="" />
             <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: "5em" }}>
                 <FormikProvider value={formik}>
                     <Form autoComplete="off" noValidate onSubmit={handleSubmit}>

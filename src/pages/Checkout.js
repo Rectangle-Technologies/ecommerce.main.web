@@ -12,12 +12,15 @@ import { connect } from 'react-redux';
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions';
 import * as Yup from "yup";
 import { Form, FormikProvider, useFormik } from 'formik';
+import OrderConfirm from '../components/OrderConfirm';
 
 const Checkout = (props) => {
     const [disabled, setDisabled] = useState(true)
     const location = useLocation()
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar();
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
 
     const CheckoutSchema = Yup.object().shape({
         first_name: Yup.string().required("First name is required"),
@@ -37,6 +40,7 @@ const Checkout = (props) => {
     }, [])
 
     const checkoutHandler = async (values) => {
+        setOpen(false)
         props.addLoader()
         try {
             const res = await axios.post(`${BASE_URL_3}/payment/createOrder`, {
@@ -302,7 +306,7 @@ const Checkout = (props) => {
                                     </Grid>
                                     <Grid item xs={12} md={6} my={2}>
                                         <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                                            <Link style={{ cursor: 'pointer' }} onClick={handleSubmit}>
+                                            <Link style={{ cursor: 'pointer' }} onClick={handleOpen}>
                                                 <div style={{ backgroundColor: '#FA861B', padding: '10px 50px', borderRadius: 30 }}>
                                                     <Typography style={{ ...textStyle, fontWeight: 500, fontSize: 18, color: '#F8F5CC', textAlign: 'center' }}>
                                                         Proceed
@@ -311,6 +315,25 @@ const Checkout = (props) => {
                                             </Link>
                                         </div>
                                     </Grid>
+                                    <OrderConfirm
+                                        open={open}
+                                        setOpen={setOpen}
+                                        cart={location?.state?.cart}
+                                        instructions={location?.state?.instructions}
+                                        total={location?.state?.total}
+                                        discount={location?.state?.discount}
+                                        finalAmount={location?.state?.finalAmount}
+                                        voucherName={location?.state?.voucherName}
+                                        user={{
+                                            name: values.first_name + ' ' + values.last_name,
+                                            contact: values.mobile_no,
+                                            line1: values.address,
+                                            city: values.city,
+                                            state: values.state,
+                                            pincode: values.pincode
+                                        }}
+                                        handleSubmit={handleSubmit}
+                                    />
                                 </Grid>
                             </Grid>
                         </Grid>

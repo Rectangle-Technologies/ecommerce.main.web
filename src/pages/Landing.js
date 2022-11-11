@@ -66,7 +66,7 @@ const Landing = (props) => {
   return (
     <>
       {/* <Caraousel /> */}
-      <DoubleTextComponent backTextFontSize={window.innerWidth < 500 ? '9.5vw' : '8vw'} frontTextFontSize={window.innerWidth < 500 ? '5vw' : '3.5vw'} frontTextTopDistance={window.innerWidth < 500 ? '4.5vw' : '5vw'} backText="What We Design" frontText="New Arrivals" marginTop='1.5vw' />
+      <DoubleTextComponent backTextFontSize={window.innerWidth < 500 ? '9.5vw' : '8vw'} frontTextFontSize={window.innerWidth < 500 ? '5vw' : '3.5vw'} frontTextTopDistance={window.innerWidth < 500 ? '0vw' : '0vw'} backText="" frontText="New Arrivals" marginTop='1.5vw' />
       <Grid container my={2} spacing={window.innerWidth > 600 ? 6 : 3} style={{ padding: "0px 7.5vw 0px 7.5vw" }}>
         {products?.map((p, idx) => (
           <Grid key={idx} item xs={6} md={3}>
@@ -82,7 +82,7 @@ const Landing = (props) => {
           </Grid>
         ))}
       </Grid>
-      <DoubleTextComponent backTextFontSize={window.innerWidth < 500 ? '9.5vw' : '8vw'} frontTextFontSize={window.innerWidth < 500 ? '5vw' : '3.5vw'} frontTextTopDistance={window.innerWidth < 500 ? '4.5vw' : '5vw'} backText="What We Have" frontText="Categories" />
+      <DoubleTextComponent backTextFontSize={window.innerWidth < 500 ? '9.5vw' : '8vw'} frontTextFontSize={window.innerWidth < 500 ? '5vw' : '3.5vw'} frontTextTopDistance={window.innerWidth < 500 ? '0vw' : '0vw'} backText="" frontText="Categories" marginTop='1.5vw' />
       <Grid container my={2} spacing={3} style={{ padding: "0px 7.5vw 0px 7.5vw", marginBottom: "50px" }}>
         {categories?.map((category, idx) => (
           <Grid item xs={6} md={3} key={idx}>

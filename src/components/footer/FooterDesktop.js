@@ -12,7 +12,7 @@ const FooterDesktop = (props) => {
                     <Grid item xs={12} md={3} my={1}>
                         <img
                             src="/logo.png"
-                            style={{ width: '90%' }}
+                            style={{ width: '70%' }}
                         />
                     </Grid>
                 </Grid>

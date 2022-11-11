@@ -14,21 +14,21 @@ const AboutPage = () => {
         <>
             {/* ABOUT PAGE BANNER */}
             <BrowserView>
-            <div style={{ position: "relative" }} className="about_page_banner_img">
-                <div style={{ width: "100%", height: "100%", backgroundColor: "rgb(0,0,0,0.35)" }} ></div>
-                <div style={{ position: "absolute", left: "50%", bottom: "0" }}>
-                    <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Bloom_by_Khushboo</Typography>
+                <div style={{ position: "relative" }} className="about_page_banner_img">
+                    <div style={{ width: "100%", height: "100%", backgroundColor: "rgb(0,0,0,0.35)" }} ></div>
+                    <div style={{ position: "absolute", left: "50%", bottom: "0" }}>
+                        <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Bloom_by_Khushboo</Typography>
+                    </div>
                 </div>
-            </div>
             </BrowserView>
 
             <MobileView>
-            <div style={{ position: "relative", width: "100%" }} className="about_page_banner_img">
-                <div style={{ width: "100%", height: "100%", backgroundColor: "rgb(0,0,0,0.35)" }} ></div>
-                <div style={{ position: "absolute", left: "50%", bottom: "0" }}>
-                    <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Bloom_by_Khushboo</Typography>
+                <div style={{ position: "relative", width: "100%" }} className="about_page_banner_img">
+                    <div style={{ width: "100%", height: "100%", backgroundColor: "rgb(0,0,0,0.35)" }} ></div>
+                    <div style={{ position: "absolute", left: "50%", bottom: "0" }}>
+                        <Typography style={{ position: "relative", left: "-50%", color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "5vw" }} >#Bloom_by_Khushboo</Typography>
+                    </div>
                 </div>
-            </div>
             </MobileView>
 
             <Grid container spacing={5} style={{ padding: "8vw 8vw 0 8vw", marginBottom: "100px" }}>
@@ -59,37 +59,37 @@ const AboutPage = () => {
                     <Grid container spacing={3}>
                         <Grid item xs={6} md={3} pb={2}>
                             <center>
-                            <LocalShippingIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
-                            <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
-                            <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
+                                <LocalShippingIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
+                                <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
+                                <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
                             </center>
                         </Grid>
                         <Grid item xs={6} md={3} pb={2}>
                             <center>
-                            <SupportAgentIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
-                            <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
-                            <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
+                                <SupportAgentIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
+                                <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
+                                <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
                             </center>
                         </Grid>
                         <Grid item md={3} xs={6} pb={2}>
                             <center>
-                            <InventoryIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
-                            <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
-                            <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
+                                <InventoryIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
+                                <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
+                                <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
                             </center>
                         </Grid>
                         <Grid item md={3} xs={6} pb={2}>
                             <center>
-                            <DesignServicesIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
-                            <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
-                            <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
+                                <DesignServicesIcon style={{ color: "#F8F5CC", fontSize: "55px" }} />
+                                <Typography color="#F8F5CC" style={{ fontFamily: "Poppins", fontWeight: "600", fontSize: "22px" }} >Worldwide Delivery</Typography>
+                                <Typography color="#F8F5CC">On-Time Delivery with Nominal Charges</Typography>
                             </center>
                         </Grid>
                     </Grid>
                 </div>
             </div>
-            <DoubleTextComponent frontText="FOLLOW US ON" backText="Instagram" frontTextFontFamily="Poppins" backTextFontSize="10vw" frontTextFontSize="2.6vw" frontTextTopDistance="7vw" underline={false} frontFontWeight="700" left="-35%" />
-            <Grid container spacing={0} style={{ padding: "0px 10vw", marginBottom: "50px" }}>
+            <DoubleTextComponent frontText="FOLLOW US ON" backText="Instagram" frontTextFontFamily="Poppins" backTextFontSize="10vw" frontTextFontSize="2.6vw" frontTextTopDistance="7vw" underline={false} frontFontWeight="700" left="-35%" marginTop='0vw' />
+            <Grid container spacing={0} style={{ padding: "0px 10vw", marginBottom: "50px", marginTop: '120px' }}>
                 <Grid item xs={6} md={3} className="about_insta_img" style={{ position: "relative" }}>
                     <img src="/insta1.jpeg" />
                     <div style={{ position: "absolute", top: 0, left: 0, width: "100%", aspectRatio: "1", backgroundColor: "rgb(235, 49, 226,.5)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>

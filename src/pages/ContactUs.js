@@ -53,7 +53,7 @@ const ContactUs = (props) => {
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <DoubleText frontTextTopDistance={window.innerWidth < 500 ? "8vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '12vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="CONTACT US" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" marginTop='1.5vw' />
+                    <DoubleText frontTextTopDistance='0vw' backTextFontSize={window.innerWidth < 500 ? '12vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4.5vw' : "3.2vw"} frontText="CONTACT US" underline={false} frontTextFontFamily="Poppins" backText="" marginTop='1.5vw' />
                     <Grid container spacing={0} style={{ padding: "0px 10vw", justifyContent: "center", alignItems: "center" }}>
                         <Grid item xs={12} md={4}>
                             <div style={{ display: "flex", justifyContent: "flex-start", alignItems: "flex-start", padding: "10px 0px 0px 0px" }}>

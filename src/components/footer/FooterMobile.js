@@ -12,7 +12,7 @@ const FooterMobile = (props) => {
                     <Grid item xs={12} md={3} my={1}>
                         <img
                             src="/logo.png"
-                            style={{ width: '70%' }}
+                            style={{ width: '50%' }}
                         />
                     </Grid>
                 </Grid>
@@ -25,7 +25,7 @@ const FooterMobile = (props) => {
                     <Grid item xs={12} md={3} my={1}>
                         <center>
                             <img
-                            src="/payment.png"
+                                src="/payment.png"
                                 alt="Payment Icons"
                                 style={{ width: '100%', maxWidth: '300px' }}
                             />
