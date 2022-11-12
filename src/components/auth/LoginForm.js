@@ -85,6 +85,14 @@ const LoginForm = (props) => {
                     />
                 </div>
             </div>
+            <div style={{ textAlign: 'right' }}>
+                <Link
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => { navigate('/reset_password') }}
+                >
+                    <Typography style={{ ...textStyle, fontSize: 18 }} my={1} mx={1}>Forgot Password?</Typography>
+                </Link>
+            </div>
             <div style={{ width: '80%', maxWidth: 200, margin: 'auto', marginTop: 15 }}>
                 <Link style={{ cursor: 'pointer' }} onClick={handleSubmit}>
                     <div style={{

@@ -113,11 +113,11 @@ const routes = [
   },
   {
     path: '/reset_password',
-    element: <ResetPassword />
+    element: <ResetPasswordEmail />
   },
   {
     path: '/reset_password/:email',
-    element: <ResetPasswordEmail />
+    element: <ResetPassword />
   },
   {
     path: 'login',
