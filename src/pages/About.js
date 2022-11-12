@@ -50,7 +50,6 @@ const AboutPage = () => {
                         <Typography style={{ fontFamily: "Kaushan Script", fontSize: "25px", lineHeight: "27px" }}>Khushbo</Typography>
                     </div>
                 </Grid>
-                <DoubleTextComponent frontText="BLOOM BY KHUSHBOO" backText="Know About Us" frontTextFontFamily="Poppins" backTextFontSize="8vw" frontTextFontSize="2.6vw" frontTextTopDistance="6vw" underline={false} frontFontWeight="700" left="-35%" />
             </Grid>
 
             <div style={{ position: "relative" }} className="about_page_feature_img">
@@ -88,7 +87,7 @@ const AboutPage = () => {
                     </Grid>
                 </div>
             </div>
-            <DoubleTextComponent frontText="FOLLOW US ON" backText="Instagram" frontTextFontFamily="Poppins" backTextFontSize="10vw" frontTextFontSize="2.6vw" frontTextTopDistance="7vw" underline={false} frontFontWeight="700" left="-35%" marginTop='0vw' />
+            <DoubleTextComponent frontText="FOLLOW US ON" backText="" frontTextFontFamily="Poppins" backTextFontSize="10vw" frontTextFontSize={window.innerWidth >= 900 ? "3vw" : window.innerWidth >= 500 ? "5vw" : "6vw"} frontTextTopDistance="7vw" underline={false} frontFontWeight="700" left="-50%" marginTop='0vw' />
             <Grid container spacing={0} style={{ padding: "0px 10vw", marginBottom: "50px", marginTop: '120px' }}>
                 <Grid item xs={6} md={3} className="about_insta_img" style={{ position: "relative" }}>
                     <img src="/insta1.jpeg" />
