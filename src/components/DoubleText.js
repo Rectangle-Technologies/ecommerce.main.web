@@ -37,7 +37,7 @@ const DoubleTextComponent = (props) => {
               fontFamily: props.frontTextFontFamily || "Playfair Display",
               fontSize: props.frontTextFontSize || "3.5vw",
               fontWeight: props.frontFontWeight,
-              color: "#222",
+              color: "#222"
             }}
           >
             {frontText}
