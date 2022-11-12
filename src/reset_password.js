@@ -6,8 +6,14 @@ import { useSnackbar } from "notistack";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { post } from "./utils/apiHelper";
 import { BASE_URL_1 } from "./constants/urls";
+import { connect } from "react-redux";
 
 const ResetPassword = (props) => {
+    React.useEffect(() => {
+        if (props.auth?.isAuthenticated) {
+            navigate("/");
+        }
+    }, []);
     const { email } = useParams();
     const token = window.location.search.split("=")[1];
     const { enqueueSnackbar } = useSnackbar();
@@ -116,4 +122,10 @@ const ResetPassword = (props) => {
     );
 }
 
-export default ResetPassword;
+const mapstatetoprops = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapstatetoprops, null)(ResetPassword);

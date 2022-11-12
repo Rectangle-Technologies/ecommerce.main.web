@@ -46,25 +46,25 @@ const Layout = (props) => {
           <Grid container>
             <Grid item xs={12}>
               <Link href="https://www.facebook.com/Bloom-boutique-805278062837758/" rel="noopener" target="_blank">
-                <img src="/fb.png" style={{ width: "100%" }} />
+                <img src="/fb.png" style={{ width: "100%", borderRadius: '5px' }} />
               </Link>
             </Grid>
 
             <Grid item xs={12}>
               <Link href="https://wa.me/918983355550" rel="noopener" target="_blank">
-                <img src="/wa.png" style={{ width: "100%" }} />
+                <img src="/wa.png" style={{ width: "100%", borderRadius: '5px' }} />
               </Link>
             </Grid>
 
             <Grid item xs={12}>
               <Link href="https://www.youtube.com/channel/UCU4Pe-yOh1BrfeZGYhX062Q" rel="noopener" target="_blank">
-                <img src="/yt.png" style={{ width: "100%" }} />
+                <img src="/yt.png" style={{ width: "100%", borderRadius: '5px' }} />
               </Link>
             </Grid>
 
             <Grid item xs={12}>
               <Link href="https://www.instagram.com/invites/contact/?i=m1t4nqbe4t4y&utm_content=gzfjgi1" rel="noopener" target="_blank">
-                <img src="/in.jpeg" style={{ width: "100%" }} />
+                <img src="/in.jpeg" style={{ width: "100%", borderRadius: '5px' }} />
               </Link>
             </Grid>
           </Grid>
