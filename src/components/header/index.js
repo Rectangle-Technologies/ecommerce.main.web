@@ -14,7 +14,7 @@ const Header = (props) => {
     return (
         <>
             {/* fix notification */}
-            <Desktop>
+            {/* <Desktop>
                 <FixedNotificationDesktop />
             </Desktop>
             <Tablet>
@@ -22,7 +22,7 @@ const Header = (props) => {
             </Tablet>
             <Mobile>
                 <FixedNotificationMobile />
-            </Mobile>
+            </Mobile> */}
 
 
             {/* NAVBAR */}

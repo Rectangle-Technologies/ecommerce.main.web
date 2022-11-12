@@ -7,6 +7,7 @@ import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { post } from "./utils/apiHelper";
 import { BASE_URL_1 } from "./constants/urls";
 import { connect } from "react-redux";
+import { addLoader, removeLoader } from './redux/services/actions/loaderActions'
 
 const ResetPasswordEmail = (props) => {
     React.useEffect(() => {
@@ -14,12 +15,10 @@ const ResetPasswordEmail = (props) => {
             navigate("/");
         }
     }, []);
-    
+
     const { email } = useParams();
     const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
-
-    console.log()
 
     const Schema = Yup.object().shape({
         email: Yup.string().required("Email is required")
@@ -31,21 +30,23 @@ const ResetPasswordEmail = (props) => {
         },
         validationSchema: Schema,
         onSubmit: async ({ email }, action) => {
-            
-            post(`${ BASE_URL_1 }/auth/reset_password`, null, { email })
-            .then(res => {
-                enqueueSnackbar(res.data.message, {
-                    autoHideDuration: 3000,
-                    variant: 'success'
+            props.addLoader()
+            post(`${BASE_URL_1}/auth/reset_password`, null, { email })
+                .then(res => {
+                    enqueueSnackbar(res.data.message, {
+                        autoHideDuration: 3000,
+                        variant: 'success'
+                    })
+                    props.removeLoader()
+                    navigate('/login', { replace: true });
                 })
-                navigate('/login', { replace: true });
-            })
-            .catch(err => {
-                enqueueSnackbar(err.message || err.response?.data?.message || "Something went wrong", {
-                    autoHideDuration: 3000,
-                    variant: 'error'
+                .catch(err => {
+                    props.removeLoader()
+                    enqueueSnackbar(err.message || err.response?.data?.message || "Something went wrong", {
+                        autoHideDuration: 3000,
+                        variant: 'error'
+                    })
                 })
-            })
         }
     })
 
@@ -98,4 +99,4 @@ const mapstatetoprops = (state) => {
     }
 }
 
-export default connect(mapstatetoprops, null)(ResetPasswordEmail);
+export default connect(mapstatetoprops, { addLoader, removeLoader })(ResetPasswordEmail);
