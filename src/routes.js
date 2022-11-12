@@ -112,11 +112,11 @@ const routes = [
     element: <Checkout />
   },
   {
-    path: '/reset_password',
+    path: '/reset_password/:email',
     element: <ResetPassword />
   },
   {
-    path: '/reset_password/:email',
+    path: '/reset_password',
     element: <ResetPasswordEmail />
   },
   {
