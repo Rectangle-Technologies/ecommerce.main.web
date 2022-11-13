@@ -45,7 +45,7 @@ const SignupForm = (props) => {
             try {
                 const res = await axios.post(`${BASE_URL_1}/auth/signup`, values)
                 props.login(
-                    { email: values.email, password: values.password, navigateUrl: props?.navigateUrl },
+                    { contact: values.contact, password: values.password, navigateUrl: props?.navigateUrl },
                     enqueueSnackbar,
                     navigate,
                 );
