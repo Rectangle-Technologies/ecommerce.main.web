@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express");
 const app = express(); // create express app
+const dotenv = require('dotenv');
+dotenv.config();
 
 // add middlewares
 app.use(express.static("build"));
@@ -11,6 +13,7 @@ app.use((req, res, next) => {
 });
 
 // start express server on port 5000
-app.listen(80, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log("server started on port 80");
 });
