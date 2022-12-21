@@ -15,10 +15,11 @@ import { BASE_URL_1, BASE_URL_2 } from "../constants/urls";
 import formatAmount from "../helpers/formatAmount";
 
 const ProductDetail = (props) => {
+    const savedProduct = JSON.parse(localStorage.getItem('product'))
     const [product, setProduct] = useState();
     const [newArrivals, setNewArrivals] = useState()
-    const [quantity, setQuantity] = useState(1)
-    const [size, setSize] = useState()
+    const [quantity, setQuantity] = useState(savedProduct ? savedProduct.quantity : 1)
+    const [size, setSize] = useState(savedProduct ? savedProduct.size : null)
     const [showMessage, setShowMessage] = useState(false)
     const { enqueueSnackbar } = useSnackbar()
     const { id } = useParams();
@@ -86,6 +87,11 @@ const ProductDetail = (props) => {
             return
         }
         if (!props.auth.isAuthenticated) {
+            localStorage.setItem('product', JSON.stringify({
+                productId: id,
+                quantity,
+                size
+            }))
             navigate('/login', {
                 state: { navigateUrl: `/product/${id}` }
             })
@@ -100,6 +106,9 @@ const ProductDetail = (props) => {
             }, config)
             props.updateCart(res.data.cartTotal)
             props.removeLoader()
+            if (JSON.parse(localStorage.getItem('product'))) {
+                localStorage.removeItem('product')
+            }
             enqueueSnackbar('Product added to cart', {
                 variant: 'success',
                 autoHideDuration: 3000
@@ -169,6 +178,9 @@ const ProductDetail = (props) => {
     useEffect(() => {
         fetchProduct()
         fetchNewArrivals()
+        if (props.auth.isAuthenticated && savedProduct) {
+            handleAddToCart()
+        }
     }, [id])
 
     return (
