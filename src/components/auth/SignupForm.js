@@ -124,7 +124,7 @@ const SignupForm = (props) => {
                         variant='outlined'
                         label='Email'
                         placeholder="Email"
-                        type='text'
+                        type='email'
                         value={values.email}
                         {...getFieldProps("email")}
                         error={Boolean(touched.email && errors.email)}
