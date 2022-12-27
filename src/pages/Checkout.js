@@ -67,8 +67,8 @@ const Checkout = (props) => {
                 amount: res.data.data.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                 currency: res.data.data.currency,
                 name: "Bloom By Khushbu",
-                description: "Test Transaction",
-                image: "https://example.com/your_logo",
+                description: "Please complete payment using any of the methods to place your order.",
+                image: "", // https://bloomdev.s3.ap-south-1.amazonaws.com/logo.png
                 order_id: res.data.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                 handler: async function (response) {
                     const res = await axios.post(`${BASE_URL_3}/payment/verify`, {
@@ -84,7 +84,7 @@ const Checkout = (props) => {
                     contact: props?.auth?.user?.contact,
                 },
                 theme: {
-                    color: "#3399cc",
+                    color: "#eb31e2",
                 },
             };
             const paymentObject = new window.Razorpay(options);
