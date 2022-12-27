@@ -1,8 +1,9 @@
-import { Box, Container, Grid } from '@mui/material'
+import { Box, Container, Grid, Link, Typography } from '@mui/material'
 import React from 'react'
 import Footer1 from './Footer1'
 import Footer2 from './Footer2'
 import Footer4 from './Footer4'
+import textStyle from '../../helpers/textStyle'
 
 const FooterDesktop = (props) => {
     return (
@@ -22,7 +23,7 @@ const FooterDesktop = (props) => {
                     <Footer4 />
                 </Grid>
                 <Grid container>
-                    <Grid item xs={12} md={3} my={1}>
+                    <Grid item xs={12} md={3}>
                         <center>
                             <img
                                 src="/payment.png"
@@ -30,6 +31,9 @@ const FooterDesktop = (props) => {
                                 style={{ width: '100%', maxWidth: '300px' }}
                             />
                         </center>
+                    </Grid>
+                    <Grid item xs={12} md={9} my={2} style={{ textAlign: 'right' }}>
+                        <Typography my={1} style={textStyle}>Developed by <Link style={{ ...textStyle, textDecoration: 'underline', cursor: 'pointer' }} href='https://rectangletechnologies.com/' target='_blank'>Rectangle Technologies</Link></Typography>
                     </Grid>
                 </Grid>
             </Container>

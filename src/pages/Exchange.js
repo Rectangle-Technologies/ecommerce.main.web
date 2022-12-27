@@ -49,7 +49,7 @@ const ExchangeComponent = (props) => {
         <>
             <FormikProvider value={formik}>
                 <Form autoComplete="off" noValidate onSubmit={handleSubmit}>
-                    <DoubleText frontTextTopDistance={window.innerWidth < 500 ? "8vw" : '5.5vw'} backTextFontSize={window.innerWidth < 500 ? '12vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4vw' : "3.2vw"} frontText="EXCHANGE REQUEST" underline={false} frontTextFontFamily="Poppins" backText="Get in Touch" marginTop='1vw' />
+                    <DoubleText frontTextTopDistance='1vw' backTextFontSize={window.innerWidth < 500 ? '12vw' : "8vw"} frontTextFontSize={window.innerWidth < 500 ? '4vw' : "3.2vw"} frontText="RETURN REQUEST" underline={false} frontTextFontFamily="Poppins" backText="" marginTop='1vw' />
                     <Paper sx={{ padding: "0px 8vw", display: 'flex', flexDirection: 'column', boxShadow: "none", marginBottom: '2em' }}>
                         <Grid container spacing={0} style={{ boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px", marginTop: "1em" }}>
                             <Grid item xs={12} md={6}>

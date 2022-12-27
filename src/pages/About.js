@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 import React from "react";
 import DoubleTextComponent from "../components/DoubleText";
 import "./about.css";
@@ -91,10 +91,12 @@ const AboutPage = () => {
             <Grid container spacing={0} style={{ padding: "0px 10vw", marginBottom: "50px", marginTop: '120px' }}>
                 <Grid item xs={6} md={3} className="about_insta_img" style={{ position: "relative" }}>
                     <img src="/insta1.jpeg" />
-                    <div style={{ position: "absolute", top: 0, left: 0, width: "100%", aspectRatio: "1", backgroundColor: "rgb(235, 49, 226,.5)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
-                        <InstagramIcon style={{ fontSize: "50px", color: "white" }} />
-                        <Typography style={{ color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "25px", lineHeight: "37px", letterSpacing: "6%" }} >Follow Us</Typography>
-                    </div>
+                    <Link style={{ textDecoration: 'none', cursor: 'pointer' }} href='https://www.instagram.com/bloom_by_khushbu/' target='_blank'>
+                        <div style={{ position: "absolute", top: 0, left: 0, width: "100%", aspectRatio: "1", backgroundColor: "rgb(235, 49, 226,.5)", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
+                            <InstagramIcon style={{ fontSize: "50px", color: "white" }} />
+                            <Typography style={{ color: "white", fontFamily: "Poppins", fontWeight: "600", fontSize: "25px", lineHeight: "37px", letterSpacing: "6%" }} >Follow Us</Typography>
+                        </div>
+                    </Link>
                 </Grid>
                 <Grid item xs={6} md={3} className="about_insta_img">
                     <img src="/insta2.jpeg" />
