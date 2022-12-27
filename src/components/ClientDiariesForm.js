@@ -43,6 +43,8 @@ const ClientDiariesForm = (props) => {
                 actions.setSubmitting(false);
                 return;
             }
+            console.log("values", values);
+            console.log("token", props.auth);
             props.clientDairyFeedback(values, props.auth.token, images, enqueueSnackbar, actions.setSubmitting, actions.resetForm);
             setImges([]);
         }
