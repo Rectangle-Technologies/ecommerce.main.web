@@ -23,7 +23,7 @@ const FooterDesktop = (props) => {
                     <Footer4 />
                 </Grid>
                 <Grid container>
-                    <Grid item xs={12} md={3} my={1}>
+                    <Grid item xs={12} md={3}>
                         <center>
                             <img
                                 src="/payment.png"
@@ -32,7 +32,7 @@ const FooterDesktop = (props) => {
                             />
                         </center>
                     </Grid>
-                    <Grid item xs={12} md={9} my={1} style={{ textAlign: 'right' }}>
+                    <Grid item xs={12} md={9} my={2} style={{ textAlign: 'right' }}>
                         <Typography my={1} style={textStyle}>Developed by <Link style={{ ...textStyle, textDecoration: 'underline', cursor: 'pointer' }} href='https://rectangletechnologies.com/' target='_blank'>Rectangle Technologies</Link></Typography>
                     </Grid>
                 </Grid>
