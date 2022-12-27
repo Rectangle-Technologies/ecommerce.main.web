@@ -63,7 +63,7 @@ const Layout = (props) => {
             </Grid>
 
             <Grid item xs={12}>
-              <Link href="https://www.instagram.com/invites/contact/?i=m1t4nqbe4t4y&utm_content=gzfjgi1" rel="noopener" target="_blank">
+              <Link href="https://www.instagram.com/bloom_by_khushbu/" rel="noopener" target="_blank">
                 <img src="/in.jpeg" style={{ width: "100%", borderRadius: '5px' }} />
               </Link>
             </Grid>
