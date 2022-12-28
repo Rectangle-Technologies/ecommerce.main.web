@@ -61,6 +61,10 @@ const OrderDetails = (props) => {
                 <Grid item xs={12} md={6}>
                     <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} my={3}>Order Id: {order?._id}</Typography>
                     <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} component='div' my={3}>Status: <Box display='inline' color='#eb31e2'>{capitalizeFirstLetter(order?.status)}</Box></Typography>
+                    {order?.status === 'dispatched' && <div>
+                        <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} my={3}>Tracking Id: {order?.tracking_id}</Typography>
+                        <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} component='div' my={3}><Link style={{ color: '#eb31e2', cursor: 'pointer' }}>Click here</Link> to track your order</Typography>
+                    </div>}
                     {order?.instructions && <Typography style={{ ...textStyle, fontSize: '18px', textAlign: 'left' }} my={3}>Instructions: {order?.instructions}</Typography>}
                 </Grid>
             </Grid>
