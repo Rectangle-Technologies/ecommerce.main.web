@@ -57,6 +57,9 @@ const CartDesktop = (props) => {
       }, config)
       props.setDiscount(res.data.discount)
       props.setFinalAmount(props.total - res.data.discount)
+      if (props.total - res.data.discount <= 695) {
+        props.setShipping(80)
+      }
       props.removeLoader()
       enqueueSnackbar('Discount applied', {
         variant: 'success',
@@ -97,6 +100,7 @@ const CartDesktop = (props) => {
               setTotal={props.setTotal}
               setFinalAmount={props.setFinalAmount}
               discount={props.discount}
+              setShipping={props.setShipping}
             />
           ))
           : <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, textAlign: 'center' }} my={2}>Your cart is empty</Typography>}
@@ -136,6 +140,10 @@ const CartDesktop = (props) => {
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>SUB TOTAL</Typography>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>{formatAmount(props.total)}</Typography>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15 }}>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>SHIPPING</Typography>
+                <Typography style={{ ...textStyle, fontWeight: 500 }}>{formatAmount(props.shipping)}</Typography>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 15 }}>
                 <Typography style={{ ...textStyle, fontWeight: 500 }}>DISCOUNT (if any)</Typography>

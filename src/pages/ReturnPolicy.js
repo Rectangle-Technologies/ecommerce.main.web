@@ -15,16 +15,16 @@ const ReturnPolicy = () => {
             </Typography>
             <Typography style={textStyle} component='div' my={1}>
                 <Box display='inline' style={{ fontWeight: 600 }}>Damaged/Wrong Delivery: </Box>
-                If it's a damaged/defective product, incorrect item sent, such cases are to be informed us within 24 hours of delivery. we will replace the product with the next fastest possible courier facility. However, when a product is shipped from our warehouse it goes under 3 layers of quality check and we record the process for your reference as well. Still, if there is an issue with the product we would resolve it for you.
+                If it's a damaged/defective product, incorrect item sent, such cases are to be informed us within 24 hours of delivery. We will replace the product with the next fastest possible courier facility. However, when a product is shipped from our warehouse it goes under 3 layers of quality check and we record the process for your reference as well. Still, if there is an issue with the product we would resolve it for you.
                 Only products which are unused, unworn, unwashed, undamaged, with all its labels and tags completely intact, in original packaging and eligible for exchange.
-                Opening Video of the parcel for the first time is mandatory in both the scenerios otherwise we will not be able to proceed with the exchange.
+                360<span>&deg;</span> Opening Video of the parcel for the first time is mandatory in both the scenerios otherwise we will not be able to proceed with the exchange.
             </Typography>
             <Typography style={{ ...textStyle, fontSize: 25, fontWeight: 700 }} my={2}>Can I cancel my order?</Typography>
             <Typography style={textStyle} my={1}>
                 Prepaid orders are not eligible for cancellation.
             </Typography>
             <Typography style={textStyle} my={1}>
-                You can cancel your Cash on Delivery order within 24 hours of order. Please call us on 8983355550 or write to us at bloomboutique@gmail.com to request a cancellation.
+                You can cancel your Cash on Delivery order within 24 hours of order. Please call us on 8983355550 or write to us at bloombykhushbu1984@gmail.com to request a cancellation.
             </Typography>
             <Typography style={{ ...textStyle, fontSize: 25, fontWeight: 700 }} my={2}>When my exchange is not accepted?</Typography>
             <Typography style={textStyle} my={1}>

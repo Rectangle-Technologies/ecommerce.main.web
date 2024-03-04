@@ -54,6 +54,9 @@ const CartMobile = (props) => {
             }, config)
             props.setDiscount(res.data.discount)
             props.setFinalAmount(props.total - res.data.discount)
+            if (props.total - res.data.discount) {
+                props.setShipping(80)
+            }
             props.removeLoader()
             enqueueSnackbar('Discount applied', {
                 variant: 'success',
@@ -88,6 +91,7 @@ const CartMobile = (props) => {
                             setTotal={props.setTotal}
                             setFinalAmount={props.setFinalAmount}
                             discount={props.discount}
+                            setShipping={props.setShipping}
                         />
                     ))
                     : <Typography style={{ ...textStyle, fontWeight: 600, fontSize: 20, textAlign: 'center' }} my={2}>Your cart is empty</Typography>}

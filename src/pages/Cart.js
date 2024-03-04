@@ -18,6 +18,7 @@ const Cart = (props) => {
     const [cart, setCart] = useState()
     const [total, setTotal] = useState(0)
     const [discount, setDiscount] = useState(0)
+    const [shipping, setShipping] = useState(0)
     const [finalAmount, setFinalAmount] = useState(0)
     const { enqueueSnackbar } = useSnackbar()
     const navigate = useNavigate()
@@ -34,6 +35,9 @@ const Cart = (props) => {
             setCart(res.data.cart)
             setTotal(res.data.cart.total)
             setFinalAmount(res.data.cart.total)
+            if (res.data.cart.total > 0 && res.data.cart.total <= 695) {
+                setShipping(80)
+            }
             props.removeLoader()
         } catch (err) {
             props.removeLoader()
@@ -59,6 +63,7 @@ const Cart = (props) => {
         }
         fetchCart()
     }, [])
+
     return (
         <>
             <Desktop>
@@ -76,6 +81,8 @@ const Cart = (props) => {
                         setCart={setCart}
                         setTotal={setTotal}
                         setFinalAmount={setFinalAmount}
+                        shipping={shipping}
+                        setShipping={setShipping}
                     />
                 }
             </Desktop>
@@ -94,6 +101,8 @@ const Cart = (props) => {
                         setCart={setCart}
                         setTotal={setTotal}
                         setFinalAmount={setFinalAmount}
+                        shipping={shipping}
+                        setShipping={setShipping}
                     />
                 }
             </Mobile>
@@ -112,6 +121,8 @@ const Cart = (props) => {
                         setCart={setCart}
                         setTotal={setTotal}
                         setFinalAmount={setFinalAmount}
+                        shipping={shipping}
+                        setShipping={setShipping}
                     />
                 }
             </Tablet>

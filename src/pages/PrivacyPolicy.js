@@ -7,7 +7,7 @@ const PrivacyPolicy = () => {
         <div style={{ width: '90%', margin: 'auto', marginTop: '20px' }}>
             <Typography style={{ ...textStyle, fontSize: 36, fontWeight: 700 }}>PRIVACY POLICY</Typography>
             <Typography style={textStyle} my={1}>
-                Bloom By Khushbu (“us”, “we”, or “our”) operates https://bloombykhushbu.co.in (the “Site”). This page informs you of our policies regarding the collection, use, and disclosure of Personal Information we receive from users of the Site. We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.
+                Bloom By Khushbu (“us”, “we”, or “our”) operates https://bloombykhushbu.com (the “Site”). This page informs you of our policies regarding the collection, use, and disclosure of Personal Information we receive from users of the Site. We use your Personal Information only for providing and improving the Site. By using the Site, you agree to the collection and use of information in accordance with this policy.
             </Typography>
             <Typography style={{ ...textStyle, fontSize: 25, fontWeight: 700 }} my={2}>Information Collection and Use</Typography>
             <Typography style={textStyle} my={1}>

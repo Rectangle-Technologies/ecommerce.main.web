@@ -30,7 +30,6 @@ const OrderStatus = (props) => {
     const [isLoading, setIsLoading] = useState(true)
 
     const createOrder = async () => {
-        props.addLoader()
         try {
             const res = await axios.post(`${BASE_URL_1}/order/create`, { ...data, paymentId }, config)
             setOrder(res.data.order)
@@ -58,9 +57,11 @@ const OrderStatus = (props) => {
     }
 
     useEffect(() => {
+        props.addLoader()
         if (!localStorage.getItem('order')) {
             navigate("/")
             setIsLoading(false)
+            props.removeLoader()
             return
         }
         else if (status === 'verified') {

@@ -496,7 +496,7 @@ const ProductDetail = (props) => {
                                 Prepaid orders are not eligible for cancellation.
                             </Typography>
                             <Typography style={textStyle} my={1}>
-                                You can cancel your Cash on Delivery order within 24 hours of order. Please call us on 8983355550 or write to us at bloomboutique@gmail.com to request a cancellation.
+                                You can cancel your Cash on Delivery order within 24 hours of order. Please call us on 8983355550 or write to us at bloombykhushbu1984@gmail.com to request a cancellation.
                             </Typography>
                             <Typography style={{ ...textStyle, fontSize: 25, fontWeight: 700 }} my={2}>When my exchange is not accepted?</Typography>
                             <Typography style={textStyle} my={1}>

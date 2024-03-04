@@ -33,6 +33,12 @@ const ProductsDesktop = (props) => {
                 props.setCart(res.data.cart)
                 props.setTotal(res.data.cart.total)
                 props.setFinalAmount(res.data.cart.total - props.discount)
+                if (res.data.cart.total - props.discount <= 695) {
+                    props.setShipping(80)
+                }
+                if (res.data.cart.total - props.discount === 0) {
+                    props.setShipping(0)
+                }
                 setQuantity(quantity + 1)
                 props.updateCart(res.data.cartTotal)
                 props.removeLoader()
@@ -43,6 +49,12 @@ const ProductsDesktop = (props) => {
                 props.setCart(res.data.cart)
                 props.setTotal(res.data.cart.total)
                 props.setFinalAmount(res.data.cart.total - props.discount)
+                if (res.data.cart.total - props.discount <= 695) {
+                    props.setShipping(80)
+                }
+                if (res.data.cart.total - props.discount === 0) {
+                    props.setShipping(0)
+                }
                 if (quantity > 1) {
                     setQuantity(quantity - 1)
                 }

@@ -17,7 +17,8 @@ const ShippingPolicy = () => {
                     <li>Next, your item is passed through a quality check before handing over to the courier partner.</li>
                     <li>Your item is packed securely and handed over to our trusted delivery partners.</li>
                     <li>Then, your item is shipped to your location.</li>
-                    <li>In case your address falls on location that is not served by our delivery partners, Bloom By Khushbu team will contact you and find an alternative solution to make your order reach you.</li>
+                    <li>Kindly verify that your address falls on a location that is served by the delivery partner.</li>
+                    <li>If the shipment is returned to us by the delivery partner, we will contact you to get a new address to deliver the shipment. If the order amount is below ₹1000/-, extra shipping charges will be charged.</li>
                 </ul>
             </Typography>
             <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>B) What is the estimated delivery time?</Typography>
@@ -33,14 +34,12 @@ const ShippingPolicy = () => {
             <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>C) What are the different shipping options you provide?</Typography>
             <Typography style={textStyle} my={1}>We provide standard shipping which you can choose from the checkout page while placing your order.</Typography>
             <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>D) Are there any shipping charges?</Typography>
-            <Typography style={textStyle} my={1}>Shipping is Free for all Prepaid orders*, We charge a nominal shipping fee of INR 180 for COD across India which will be added at the payment page before completing the purchase.</Typography>
+            <Typography style={textStyle} my={1}>If the final order amount is below ₹695, there will be an additional shipping charges of ₹80.</Typography>
             <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>E) Do you provide Cash on Delivery method?</Typography>
-            <Typography style={textStyle} my={1}>Yes, we do. You can pay in cash for your order when the product reaches your home.</Typography>
-            <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>F) Are there any charges for Cash on Delivery (COD)?</Typography>
-            <Typography style={textStyle} my={1}>If you choose COD option, you pay INR 180 as delivery charges. This amount includes shipping charges as well.</Typography>
-            <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>G) How are orders packaged?</Typography>
+            <Typography style={textStyle} my={1}>No, we do not provide Cash on Delivery method.</Typography>
+            <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>F) How are orders packaged?</Typography>
             <Typography style={textStyle} my={1}>We go an extra mile to make sure you receive your order in top-notch condition. Each item is wrapped in sturdy packaging so that it stays free from any physical damage. So far, Bloom By Khushbu has received minimal complaints about damaged items due to packaging.</Typography>
-            <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>H) Can I modify the shipping address of my order after it has been placed?</Typography>
+            <Typography style={{ ...textStyle, fontWeight: 700 }} my={2}>G) Can I modify the shipping address of my order after it has been placed?</Typography>
             <Typography style={textStyle} my={1}>No. Incase, your product is already shipped and you wish to change the address, we will have to reship your order again to a different address which will charge you INR 150.</Typography>
         </div>
     )

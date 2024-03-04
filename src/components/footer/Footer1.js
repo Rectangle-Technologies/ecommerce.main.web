@@ -8,7 +8,7 @@ const Footer1 = () => {
   const desc2 =
     "MON-SAT- 11 AM TO 7 PM (IST)";
   const contact = "+91 - 8983355550 / 9975663656";
-  const email = "bloomboutique@gmail.com";
+  const email = "bloombykhushbu1984@gmail.com";
   const address =
     "F-21, Sacred World Mall, Wanewadi, Jagtap Chock, Pune - 411040";
   return (
