@@ -6,7 +6,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import EditIcon from '@mui/icons-material/Edit';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { BASE_URL_3 } from '../constants/urls';
+import { BASE_URL_2 } from '../constants/urls';
 import { useSnackbar } from 'notistack';
 import { connect } from 'react-redux';
 import { addLoader, removeLoader } from '../redux/services/actions/loaderActions';
@@ -43,7 +43,7 @@ const Checkout = (props) => {
         setOpen(false)
         props.addLoader()
         try {
-            const res = await axios.post(`${BASE_URL_3}/payment/createOrder`, {
+            const res = await axios.post(`${BASE_URL_2}/payment/createOrder`, {
                 amount: location?.state?.finalAmount,
             })
             localStorage.setItem('order', JSON.stringify({
@@ -71,7 +71,7 @@ const Checkout = (props) => {
                 image: "", // https://bloomdev.s3.ap-south-1.amazonaws.com/logo.png
                 order_id: res.data.data.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
                 handler: async function (response) {
-                    const res = await axios.post(`${BASE_URL_3}/payment/verify`, {
+                    const res = await axios.post(`${BASE_URL_2}/payment/verify`, {
                         razorpay_order_id: response.razorpay_order_id,
                         razorpay_payment_id: response.razorpay_payment_id,
                         razorpay_signature: response.razorpay_signature
